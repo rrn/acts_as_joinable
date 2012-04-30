@@ -1,0 +1,53 @@
+== ActsAsJoinable
+
+This plugin adds access control to objects by giving them members, each with configurable permissions.
+
+== Overview
+
+Access control is achieved through the addition of three *acts_as* extensions and four models.
+
+== ActsAs Extensions
+
+acts_as_joinable - Added to the primary model to which access control is being added.
+acts_as_joinable_component - Added to all of the models which need to inherit their permissions from their parent joinable.
+acts_as_member - Added to a User model which can join joinables.
+
+== Models
+
+=== DefaultPermissionSet
+
+A set of permissions which any user automatically receives after joining the joinable. 
+The owner of a joinable can configure these. This allows joinables to be open to all Users.
+
+The permissions contained by the DefaultPermissionSet specify the *access model* for the joinable.
+There are three access models:
+
+* open - Users can join this joinable and receive a membership without submitting a MembershipRequest
+* closed - Users need to submit a MembershipRequest or accept a MembershipInvitation in order to join this joinable.
+* private - Users can *only* be added to the joinable after accepting a MembershipInvitation
+	
+The current access model is determined solely by the permission level of the DefaultPermissionSet.
+If the DefaultPermissionSet has a permission level which allows users to view the contents of the joinable.
+Then the access model is *open*. If the permission level allows any user to find the joinable, the access
+model is *closed*. If the permission level doesn't allow users not in the joinable to find the joinable,
+the access model is *private*.
+
+=== MembershipRequest
+
+Any user can submit a request to join any joinable which they can see. The managers of the joinable can
+then accept that request (and choose an appropriate permission level for the user) or deny it.
+
+=== MembershipInvitation
+
+The managers of a joinable can invite users to join a joinable. The invitation includes the permissions that
+the user will receive upon acceptance. 
+
+NOTE: A user cannot use the permissions given in the invitation until they accept the invitation.
+
+=== Membership
+
+Represents a set of permissions for a specific user in a specific joinable. Can be created in 3 ways:
+
+* Through the accepting of a MembershipRequest by the managers of a joinable
+* Through the accepting of a MembershipInvitation by the invitee
+* If the joinable has an *open* access model, a User can create a Membership directly

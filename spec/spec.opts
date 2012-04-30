@@ -1,0 +1,6 @@
+--format specdoc
+--format html:spec/report.html
+--loadby
+mtime
+--reverse
+--backtrace
