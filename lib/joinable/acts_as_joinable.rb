@@ -240,7 +240,7 @@ module Joinable #:nodoc:
       # request in order to facilitate eager loading.
       #NOTE: See :membership_request_for documentation for an in depth example of this type of behaviour
       def membership_for(user)
-        unless cached_membership.nil?
+        if cached_membership != nil
           cached_membership
         else
           memberships.where(:user_id => user.id).first
@@ -275,7 +275,7 @@ module Joinable #:nodoc:
         #  - depends on existence of invitation
         # Else User doesn't have any membership
         #  - depends on default permissions of the joinable
-        if membership = find_user_membership(user)
+        if membership = memberships.where(:user_id => user.id).first
           key = "membership_#{membership.updated_at.to_f}"
         elsif self.membership_invitations.where(:user_id => user.id).exists?
           key = "invitation_exists"
@@ -322,14 +322,6 @@ module Joinable #:nodoc:
       # Adds an permission entry with full access to the object by the user associated with the object if one does not already exist
       def add_owner_membership
        Membership.create(:joinable => self, :user => user, :permissions => self.class.permissions_string) unless Membership.where(:joinable_type => self.class.to_s, :joinable_id => self.id, :user_id => user.id).exists?
-      end
-      
-      # Finds a membership for the given user, caching it because it will probably be checked again for another permission
-      def find_user_membership(user)
-        unless @cached_membership && @cached_membership.user_id == user.id
-          @cached_membership = memberships.where(:user_id => user.id).first
-        end
-        return @cached_membership
       end
     end
   end

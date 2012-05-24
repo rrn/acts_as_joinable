@@ -61,7 +61,7 @@ module Joinable #:nodoc:
       # * join_and_* - This is a class of permissions that start with the words 'join_and_'. When determining if a user will have a certain permission
       #                after they join a project, we need to check the default_permission_set of the project.
       def with_permission_sql(user, permission, options = {})
-        permission = permission.to_sym
+        permission = permission.to_s
         
         case user
         when String
@@ -73,12 +73,12 @@ module Joinable #:nodoc:
         component_type = options[:type_column] || name
         component_id = options[:id_column] || table_name + ".id"
 
-        permission_without_join_and_prefix = permission.to_s.gsub('join_and_', '')
-        comparison_permission = permission_without_join_and_prefix == :view ? "permission_links.component_view_permission || ' %|% ' || permission_links.component_view_permission || ' %|% ' || permission_links.component_view_permission" : "'#{permission_without_join_and_prefix} %|% #{permission_without_join_and_prefix} %|% #{permission_without_join_and_prefix}'"
+        permission_without_join_and_prefix = permission.gsub('join_and_', '')
+        comparison_permission = permission_without_join_and_prefix == 'view' ? "permission_links.component_view_permission || '|' || permission_links.component_view_permission || ' %|% ' || permission_links.component_view_permission || ' %|% ' || permission_links.component_view_permission" : "'#{permission_without_join_and_prefix}|#{permission_without_join_and_prefix} %|% #{permission_without_join_and_prefix} %|% #{permission_without_join_and_prefix}'"
 
-        if permission.to_s.starts_with?('view')
+        if permission.starts_with?('view')
           "#{no_inherited_permissions_exist_sql(component_type, component_id)} OR #{membership_permission_exists_sql(user_id, component_type, component_id, comparison_permission)} OR #{default_permission_set_permission_exists_sql(component_type, component_id, comparison_permission)}"
-        elsif permission.to_s.starts_with?('join_and_')
+        elsif permission.starts_with?('join_and_')
           default_permission_set_permission_exists_sql(component_type, component_id, comparison_permission)
         else
           "#{no_inherited_permissions_exist_sql(component_type, component_id)} OR #{membership_permission_exists_sql(user_id, component_type, component_id, comparison_permission)}"
