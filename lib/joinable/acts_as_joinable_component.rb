@@ -10,6 +10,10 @@ module Joinable #:nodoc:
         
         options.assert_valid_keys :polymorphic, :parent, :view_permission
         
+        class << self
+          attr_accessor :view_permission
+        end
+
         self.view_permission = options[:view_permission]
         
         # If we inherit permissions from multiple types of objects (polymorphic)
@@ -39,9 +43,7 @@ module Joinable #:nodoc:
     module ClassMethods
       include Joinable::ActsAsPermissable::ClassMethods
   
-      def self.extended(base)
-        base.cattr_accessor :view_permission
-        
+      def self.extended(base)        
         base.has_one :permission_link, :as => :component, :dependent => :destroy
         base.after_create :find_joinable_and_create_permission_link
 
@@ -177,28 +179,31 @@ module Joinable #:nodoc:
           end
         end
       end
+
+      # Delegate view_permission to permission_link
+      def view_permission
+        permission_link.try(:component_view_permission)
+      end
       
       # Recurse up the tree to see if any of the intervening joinable_components have a customized view permission
       # In that case, inherit that customized view permission. This allows searches of the form
       # Feed.with_permission(:view) where feeds belong to joinable_components with custom view permissions.
       # The query will then be able to return only the feeds which belong to joinable components that are viewable by the user
-      def recurse_to_inherit_custom_view_permission(current_view_permission = self.view_permission)
+      def recurse_to_inherit_custom_view_permission(current_view_permission = self.class.view_permission)
         parent = next_link
-        
+
         if parent.acts_like?(:joinable)
-          return (current_view_permission || :view).to_s
+          if current_view_permission.respond_to?(:call)
+            return current_view_permission.call(self)
+          else
+            return current_view_permission || :view
+          end
         elsif parent.acts_like?(:joinable_component)
           return parent.recurse_to_inherit_custom_view_permission
         else
           return nil
         end
       end
-      
-      def view_permission
-        @view_permission || self.class.view_permission
-      end
-      
-      attr_writer :view_permission
 
       # Creates a link to the joinable that this component is associated with, if there is one.
       def find_joinable_and_create_permission_link    
