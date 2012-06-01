@@ -180,24 +180,33 @@ module Joinable #:nodoc:
         end
       end
 
-      # Delegate view_permission to permission_link
-      def view_permission
+      # inherited_view_permission is calculated by ascending up the chain of joinable components
+      # while view permission only takes into account the current joinable component.
+      # inherited_view_permission is for external use while view_permission should only be used internally.
+      def inherited_view_permission
         permission_link.try(:component_view_permission)
       end
-      
+
+      def view_permission
+        klass_view_permission = self.class.view_permission
+        klass_view_permission = klass_view_permission.call(self) if klass_view_permission.respond_to?(:call)
+
+        # Allow view_permission to be set at the instance level
+        return @view_permission || klass_view_permission
+      end
+      attr_writer :view_permission
+
+
       # Recurse up the tree to see if any of the intervening joinable_components have a customized view permission
       # In that case, inherit that customized view permission. This allows searches of the form
       # Feed.with_permission(:view) where feeds belong to joinable_components with custom view permissions.
       # The query will then be able to return only the feeds which belong to joinable components that are viewable by the user
-      def recurse_to_inherit_custom_view_permission(current_view_permission = self.class.view_permission)
+      def recurse_to_inherit_custom_view_permission
         parent = next_link
 
-        if parent.acts_like?(:joinable)
-          if current_view_permission.respond_to?(:call)
-            return current_view_permission.call(self)
-          else
-            return current_view_permission || :view
-          end
+        # If we've reached the last component in the chain or if this component provides a view permission
+        if parent.acts_like?(:joinable) || self.view_permission
+          return self.view_permission || :view
         elsif parent.acts_like?(:joinable_component)
           return parent.recurse_to_inherit_custom_view_permission
         else
