@@ -215,8 +215,8 @@ module Joinable #:nodoc:
       end
 
       # Creates a link to the joinable that this component is associated with, if there is one.
-      def find_joinable_and_create_permission_link    
-        PermissionLink.create(:joinable => joinable, :component => self, :component_view_permission => recurse_to_inherit_custom_view_permission) if joinable.acts_like?(:joinable)
+      def find_joinable_and_create_permission_link
+        self.create_permission_link(:joinable => joinable, :component_view_permission => recurse_to_inherit_custom_view_permission) if joinable.acts_like?(:joinable)
       end
     end
   end

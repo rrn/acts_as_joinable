@@ -9,8 +9,6 @@ class MembershipRequest < ActiveRecord::Base
     joins("INNER JOIN memberships ON membership_requests.joinable_type = memberships.joinable_type AND membership_requests.joinable_id = memberships.joinable_id")
     .where("memberships.user_id = ? AND memberships.permissions ~ ?", user.id, '\\mmanage\\M')
   }
-
-  acts_as_feedable :parent => 'joinable', :delegate => {:references => 'user', :actions => {:created => 'requested', :destroyed => 'cancelled_request'}}
   
   after_create :match_to_invitation_or_send_email
   

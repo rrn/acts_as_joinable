@@ -11,10 +11,7 @@ class Membership < ActiveRecord::Base
   validates_uniqueness_of :user_id, :scope => [:joinable_type, :joinable_id] # Ensure that a User has only one Membership per Joinable
   after_create :destroy_remnant_invitations_and_requests
 
-  acts_as_feedable :parent => 'joinable', :delegate => {:references => 'user', :actions => {:created => 'joined', :destroyed => 'left'}}
-
   attr_accessor :initiator, :locked
-  
   
   def locked?
     locked == 'true'

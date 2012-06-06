@@ -12,8 +12,6 @@ class MembershipInvitation < ActiveRecord::Base
 
   after_create :match_to_request_or_send_email
 
-  acts_as_feedable :parent => 'joinable', :delegate => {:references => 'user', :actions => {:created => 'invited', :destroyed => 'cancelled_invite'}}
-
   attr_accessor :no_default_feed
   
   def accept(current_user)
