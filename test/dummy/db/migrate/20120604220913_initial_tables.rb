@@ -36,6 +36,7 @@ class InitialTables < ActiveRecord::Migration
 	  end
 
 	  create_table :projects, :force => true do |t|
+	  	t.belongs_to :user
 	  end
 
 	  create_table :discussions, :force => true do |t|

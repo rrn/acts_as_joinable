@@ -1,5 +1,0 @@
-Tests to Write
-============
-Ensure MembershipInvitation gets an initiator regardless of the params order passed into the Joinable when it is created or updated
-    -- MembershipInvitation params were blowing up if they are initialized before the user_id of the Joinable is initialized
-    -- A similar problem happened when the Joinable is updated and an initiator is passed in (though the result was a silent fail)

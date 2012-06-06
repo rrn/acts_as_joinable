@@ -16346,3 +16346,937 @@ Migrating to InitialTables (20120604220913)
 Connecting to database specified by database.yml
   [1m[36m (0.2ms)[0m  [1mSELECT "schema_migrations"."version" FROM "schema_migrations" [0m
 Migrating to InitialTables (20120604220913)
+Connecting to database specified by database.yml
+  [1m[36m (15.3ms)[0m  [1mSELECT "schema_migrations"."version" FROM "schema_migrations" [0m
+Migrating to InitialTables (20120604220913)
+Connecting to database specified by database.yml
+  [1m[36m (0.1ms)[0m  [1mSELECT "schema_migrations"."version" FROM "schema_migrations" [0m
+Migrating to InitialTables (20120604220913)
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.0ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.5ms)[0m  INSERT INTO "users" ("name") VALUES (?)  [["name", "Ryan"]]
+  [1m[36m (0.2ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36m (0.0ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.0ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.4ms)[0m  [1mINSERT INTO "projects" VALUES(NULL)[0m
+  [1m[35mSQL (5.3ms)[0m  INSERT INTO "default_permission_sets" ("created_at", "joinable_id", "joinable_type", "permissions", "updated_at") VALUES (?, ?, ?, ?, ?)  [["created_at", Wed, 06 Jun 2012 17:33:32 UTC +00:00], ["joinable_id", 1], ["joinable_type", "Project"], ["permissions", "find"], ["updated_at", Wed, 06 Jun 2012 17:33:32 UTC +00:00]]
+  [1m[36mMembership Exists (0.1ms)[0m  [1mSELECT 1 FROM "memberships" WHERE "memberships"."joinable_type" = 'Project' AND "memberships"."joinable_id" = 1 AND "memberships"."user_id" = 1 LIMIT 1[0m
+  [1m[35mMembership Exists (0.1ms)[0m  SELECT 1 FROM "memberships" WHERE ("memberships"."user_id" = 1 AND "memberships"."joinable_type" = 'Project' AND "memberships"."joinable_id" = 1) LIMIT 1
+  [1m[36mSQL (0.4ms)[0m  [1mINSERT INTO "memberships" ("created_at", "joinable_id", "joinable_type", "permissions", "updated_at", "user_id") VALUES (?, ?, ?, ?, ?, ?)[0m  [["created_at", Wed, 06 Jun 2012 17:33:32 UTC +00:00], ["joinable_id", 1], ["joinable_type", "Project"], ["permissions", "find view view_discussions create_discussions delete_discussions manage own"], ["updated_at", Wed, 06 Jun 2012 17:33:32 UTC +00:00], ["user_id", 1]]
+  [1m[35mMembershipInvitation Load (0.1ms)[0m  SELECT "membership_invitations".* FROM "membership_invitations" WHERE "membership_invitations"."joinable_id" = 1 AND "membership_invitations"."joinable_type" = 'Project' AND "membership_invitations"."user_id" = 1 LIMIT 1
+  [1m[36mMembershipRequest Load (0.1ms)[0m  [1mSELECT "membership_requests".* FROM "membership_requests" WHERE "membership_requests"."joinable_id" = 1 AND "membership_requests"."joinable_type" = 'Project' AND "membership_requests"."user_id" = 1 LIMIT 1[0m
+  [1m[35m (0.0ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.0ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "discussions" ("discussable_id", "discussable_type") VALUES (?, ?)  [["discussable_id", 1], ["discussable_type", "Project"]]
+  [1m[36mPermissionLink Load (0.1ms)[0m  [1mSELECT "permission_links".* FROM "permission_links" WHERE "permission_links"."component_id" = 1 AND "permission_links"."component_type" = 'Discussion' LIMIT 1[0m
+  [1m[35mProject Load (0.1ms)[0m  SELECT "projects".* FROM "projects" WHERE "projects"."id" = 1 LIMIT 1
+  [1m[36mProject Load (0.1ms)[0m  [1mSELECT "projects".* FROM "projects" WHERE "projects"."id" = 1 LIMIT 1[0m
+  [1m[35mProject Load (0.1ms)[0m  SELECT "projects".* FROM "projects" WHERE "projects"."id" = 1 LIMIT 1
+  [1m[36mPermissionLink Exists (0.1ms)[0m  [1mSELECT 1 FROM "permission_links" WHERE ("permission_links"."component_id" = 1 AND "permission_links"."joinable_type" = 'Project' AND "permission_links"."joinable_id" = 1 AND "permission_links"."component_type" = 'Discussion') LIMIT 1[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "permission_links" ("component_id", "component_type", "component_view_permission", "joinable_id", "joinable_type") VALUES (?, ?, ?, ?, ?)  [["component_id", 1], ["component_type", "Discussion"], ["component_view_permission", :view_discussions], ["joinable_id", 1], ["joinable_type", "Project"]]
+  [1m[36m (0.0ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.9ms)[0m  rollback transaction
+Connecting to database specified by database.yml
+  [1m[36m (0.1ms)[0m  [1mSELECT "schema_migrations"."version" FROM "schema_migrations" [0m
+Migrating to InitialTables (20120604220913)
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.0ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.5ms)[0m  INSERT INTO "users" ("name") VALUES (?)  [["name", "Ryan"]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36m (0.0ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.0ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.5ms)[0m  [1mINSERT INTO "projects" VALUES(NULL)[0m
+  [1m[35mSQL (5.2ms)[0m  INSERT INTO "default_permission_sets" ("created_at", "joinable_id", "joinable_type", "permissions", "updated_at") VALUES (?, ?, ?, ?, ?)  [["created_at", Wed, 06 Jun 2012 17:36:00 UTC +00:00], ["joinable_id", 1], ["joinable_type", "Project"], ["permissions", "find"], ["updated_at", Wed, 06 Jun 2012 17:36:00 UTC +00:00]]
+  [1m[36mMembership Exists (0.1ms)[0m  [1mSELECT 1 FROM "memberships" WHERE "memberships"."joinable_type" = 'Project' AND "memberships"."joinable_id" = 1 AND "memberships"."user_id" = 1 LIMIT 1[0m
+  [1m[35mMembership Exists (0.1ms)[0m  SELECT 1 FROM "memberships" WHERE ("memberships"."user_id" = 1 AND "memberships"."joinable_type" = 'Project' AND "memberships"."joinable_id" = 1) LIMIT 1
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "memberships" ("created_at", "joinable_id", "joinable_type", "permissions", "updated_at", "user_id") VALUES (?, ?, ?, ?, ?, ?)[0m  [["created_at", Wed, 06 Jun 2012 17:36:00 UTC +00:00], ["joinable_id", 1], ["joinable_type", "Project"], ["permissions", "find view view_discussions create_discussions delete_discussions manage own"], ["updated_at", Wed, 06 Jun 2012 17:36:00 UTC +00:00], ["user_id", 1]]
+  [1m[35mMembershipInvitation Load (0.1ms)[0m  SELECT "membership_invitations".* FROM "membership_invitations" WHERE "membership_invitations"."joinable_id" = 1 AND "membership_invitations"."joinable_type" = 'Project' AND "membership_invitations"."user_id" = 1 LIMIT 1
+  [1m[36mMembershipRequest Load (0.1ms)[0m  [1mSELECT "membership_requests".* FROM "membership_requests" WHERE "membership_requests"."joinable_id" = 1 AND "membership_requests"."joinable_type" = 'Project' AND "membership_requests"."user_id" = 1 LIMIT 1[0m
+  [1m[35m (0.0ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "discussions" ("discussable_id", "discussable_type") VALUES (?, ?)  [["discussable_id", 1], ["discussable_type", "Project"]]
+  [1m[36mPermissionLink Load (0.1ms)[0m  [1mSELECT "permission_links".* FROM "permission_links" WHERE "permission_links"."component_id" = 1 AND "permission_links"."component_type" = 'Discussion' LIMIT 1[0m
+  [1m[35mProject Load (0.1ms)[0m  SELECT "projects".* FROM "projects" WHERE "projects"."id" = 1 LIMIT 1
+  [1m[36mProject Load (0.1ms)[0m  [1mSELECT "projects".* FROM "projects" WHERE "projects"."id" = 1 LIMIT 1[0m
+  [1m[35mProject Load (0.1ms)[0m  SELECT "projects".* FROM "projects" WHERE "projects"."id" = 1 LIMIT 1
+  [1m[36mPermissionLink Exists (0.1ms)[0m  [1mSELECT 1 FROM "permission_links" WHERE ("permission_links"."component_id" = 1 AND "permission_links"."joinable_type" = 'Project' AND "permission_links"."joinable_id" = 1 AND "permission_links"."component_type" = 'Discussion') LIMIT 1[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "permission_links" ("component_id", "component_type", "component_view_permission", "joinable_id", "joinable_type") VALUES (?, ?, ?, ?, ?)  [["component_id", 1], ["component_type", "Discussion"], ["component_view_permission", :view_discussions], ["joinable_id", 1], ["joinable_type", "Project"]]
+  [1m[36m (0.0ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.9ms)[0m  rollback transaction
+Connecting to database specified by database.yml
+  [1m[36m (0.2ms)[0m  [1mSELECT "schema_migrations"."version" FROM "schema_migrations" [0m
+Migrating to InitialTables (20120604220913)
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.0ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (1.1ms)[0m  INSERT INTO "users" ("name") VALUES (?)  [["name", "Ryan"]]
+  [1m[36m (0.2ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36m (0.0ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.0ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.5ms)[0m  [1mINSERT INTO "projects" VALUES(NULL)[0m
+  [1m[35mSQL (6.2ms)[0m  INSERT INTO "default_permission_sets" ("created_at", "joinable_id", "joinable_type", "permissions", "updated_at") VALUES (?, ?, ?, ?, ?)  [["created_at", Wed, 06 Jun 2012 17:36:13 UTC +00:00], ["joinable_id", 1], ["joinable_type", "Project"], ["permissions", "find"], ["updated_at", Wed, 06 Jun 2012 17:36:13 UTC +00:00]]
+  [1m[36mMembership Exists (0.1ms)[0m  [1mSELECT 1 FROM "memberships" WHERE "memberships"."joinable_type" = 'Project' AND "memberships"."joinable_id" = 1 AND "memberships"."user_id" = 1 LIMIT 1[0m
+  [1m[35mMembership Exists (0.1ms)[0m  SELECT 1 FROM "memberships" WHERE ("memberships"."user_id" = 1 AND "memberships"."joinable_type" = 'Project' AND "memberships"."joinable_id" = 1) LIMIT 1
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "memberships" ("created_at", "joinable_id", "joinable_type", "permissions", "updated_at", "user_id") VALUES (?, ?, ?, ?, ?, ?)[0m  [["created_at", Wed, 06 Jun 2012 17:36:13 UTC +00:00], ["joinable_id", 1], ["joinable_type", "Project"], ["permissions", "find view view_discussions create_discussions delete_discussions manage own"], ["updated_at", Wed, 06 Jun 2012 17:36:13 UTC +00:00], ["user_id", 1]]
+  [1m[35mMembershipInvitation Load (0.1ms)[0m  SELECT "membership_invitations".* FROM "membership_invitations" WHERE "membership_invitations"."joinable_id" = 1 AND "membership_invitations"."joinable_type" = 'Project' AND "membership_invitations"."user_id" = 1 LIMIT 1
+  [1m[36mMembershipRequest Load (0.1ms)[0m  [1mSELECT "membership_requests".* FROM "membership_requests" WHERE "membership_requests"."joinable_id" = 1 AND "membership_requests"."joinable_type" = 'Project' AND "membership_requests"."user_id" = 1 LIMIT 1[0m
+  [1m[35m (0.0ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.0ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "discussions" ("discussable_id", "discussable_type") VALUES (?, ?)  [["discussable_id", 1], ["discussable_type", "Project"]]
+  [1m[36mPermissionLink Load (0.1ms)[0m  [1mSELECT "permission_links".* FROM "permission_links" WHERE "permission_links"."component_id" = 1 AND "permission_links"."component_type" = 'Discussion' LIMIT 1[0m
+  [1m[35mProject Load (0.1ms)[0m  SELECT "projects".* FROM "projects" WHERE "projects"."id" = 1 LIMIT 1
+  [1m[36mProject Load (0.1ms)[0m  [1mSELECT "projects".* FROM "projects" WHERE "projects"."id" = 1 LIMIT 1[0m
+  [1m[35mProject Load (0.1ms)[0m  SELECT "projects".* FROM "projects" WHERE "projects"."id" = 1 LIMIT 1
+  [1m[36mPermissionLink Exists (0.1ms)[0m  [1mSELECT 1 FROM "permission_links" WHERE ("permission_links"."component_id" = 1 AND "permission_links"."joinable_type" = 'Project' AND "permission_links"."joinable_id" = 1 AND "permission_links"."component_type" = 'Discussion') LIMIT 1[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "permission_links" ("component_id", "component_type", "component_view_permission", "joinable_id", "joinable_type") VALUES (?, ?, ?, ?, ?)  [["component_id", 1], ["component_type", "Discussion"], ["component_view_permission", :view_discussions], ["joinable_id", 1], ["joinable_type", "Project"]]
+  [1m[36m (0.0ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.8ms)[0m  rollback transaction
+Connecting to database specified by database.yml
+  [1m[36m (0.2ms)[0m  [1mselect sqlite_version(*)[0m
+  [1m[35m (1.3ms)[0m  CREATE TABLE "schema_migrations" ("version" varchar(255) NOT NULL) 
+  [1m[36m (0.0ms)[0m  [1mPRAGMA index_list("schema_migrations")[0m
+  [1m[35m (1.3ms)[0m  CREATE UNIQUE INDEX "unique_schema_migrations" ON "schema_migrations" ("version")
+  [1m[36m (0.1ms)[0m  [1mSELECT "schema_migrations"."version" FROM "schema_migrations" [0m
+Migrating to InitialTables (20120604220913)
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36m (0.4ms)[0m  [1mCREATE TABLE "memberships" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "joinable_id" integer, "joinable_type" varchar(255), "user_id" integer, "permissions" text, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) [0m
+  [1m[35m (0.2ms)[0m  CREATE TABLE "membership_requests" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "joinable_id" integer, "joinable_type" varchar(255), "user_id" integer, "message" text, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) 
+  [1m[36m (0.2ms)[0m  [1mCREATE TABLE "membership_invitations" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "joinable_id" integer, "joinable_type" varchar(255), "user_id" integer, "initiator_id" integer, "permissions" text, "message" text, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) [0m
+  [1m[35m (0.1ms)[0m  CREATE TABLE "permission_links" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "joinable_id" integer, "joinable_type" varchar(255), "component_id" integer, "component_type" varchar(255), "component_view_permission" varchar(255)) 
+  [1m[36m (0.1ms)[0m  [1mCREATE TABLE "default_permission_sets" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "joinable_id" integer, "joinable_type" varchar(255), "permissions" text, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) [0m
+  [1m[35m (0.1ms)[0m  CREATE TABLE "projects" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "user_id" integer) 
+  [1m[36m (0.1ms)[0m  [1mCREATE TABLE "discussions" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "discussable_id" integer, "discussable_type" varchar(255)) [0m
+  [1m[35m (0.1ms)[0m  CREATE TABLE "users" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar(255)) 
+  [1m[36m (0.1ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES ('20120604220913')[0m
+  [1m[35m (1.9ms)[0m  commit transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.4ms)[0m  [1mINSERT INTO "users" ("name") VALUES (?)[0m  [["name", "Ryan"]]
+  [1m[35m (0.0ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35m (0.0ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.0ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (35.3ms)[0m  INSERT INTO "projects" ("user_id") VALUES (?)  [["user_id", 1]]
+  [1m[36mSQL (1.1ms)[0m  [1mINSERT INTO "default_permission_sets" ("created_at", "joinable_id", "joinable_type", "permissions", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["created_at", Wed, 06 Jun 2012 17:36:28 UTC +00:00], ["joinable_id", 1], ["joinable_type", "Project"], ["permissions", "find"], ["updated_at", Wed, 06 Jun 2012 17:36:28 UTC +00:00]]
+  [1m[35mMembership Exists (0.1ms)[0m  SELECT 1 FROM "memberships" WHERE "memberships"."joinable_type" = 'Project' AND "memberships"."joinable_id" = 1 AND "memberships"."user_id" = 1 LIMIT 1
+  [1m[36mMembership Exists (0.1ms)[0m  [1mSELECT 1 FROM "memberships" WHERE ("memberships"."user_id" = 1 AND "memberships"."joinable_type" = 'Project' AND "memberships"."joinable_id" = 1) LIMIT 1[0m
+  [1m[35mSQL (0.4ms)[0m  INSERT INTO "memberships" ("created_at", "joinable_id", "joinable_type", "permissions", "updated_at", "user_id") VALUES (?, ?, ?, ?, ?, ?)  [["created_at", Wed, 06 Jun 2012 17:36:28 UTC +00:00], ["joinable_id", 1], ["joinable_type", "Project"], ["permissions", "find view view_discussions create_discussions delete_discussions manage own"], ["updated_at", Wed, 06 Jun 2012 17:36:28 UTC +00:00], ["user_id", 1]]
+  [1m[36mMembershipInvitation Load (0.1ms)[0m  [1mSELECT "membership_invitations".* FROM "membership_invitations" WHERE "membership_invitations"."joinable_id" = 1 AND "membership_invitations"."joinable_type" = 'Project' AND "membership_invitations"."user_id" = 1 LIMIT 1[0m
+  [1m[35mMembershipRequest Load (0.1ms)[0m  SELECT "membership_requests".* FROM "membership_requests" WHERE "membership_requests"."joinable_id" = 1 AND "membership_requests"."joinable_type" = 'Project' AND "membership_requests"."user_id" = 1 LIMIT 1
+  [1m[36m (0.0ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "discussions" ("discussable_id", "discussable_type") VALUES (?, ?)[0m  [["discussable_id", 1], ["discussable_type", "Project"]]
+  [1m[35mPermissionLink Load (0.1ms)[0m  SELECT "permission_links".* FROM "permission_links" WHERE "permission_links"."component_id" = 1 AND "permission_links"."component_type" = 'Discussion' LIMIT 1
+  [1m[36mProject Load (0.1ms)[0m  [1mSELECT "projects".* FROM "projects" WHERE "projects"."id" = 1 LIMIT 1[0m
+  [1m[35mProject Load (0.1ms)[0m  SELECT "projects".* FROM "projects" WHERE "projects"."id" = 1 LIMIT 1
+  [1m[36mProject Load (0.1ms)[0m  [1mSELECT "projects".* FROM "projects" WHERE "projects"."id" = 1 LIMIT 1[0m
+  [1m[35mPermissionLink Exists (0.1ms)[0m  SELECT 1 FROM "permission_links" WHERE ("permission_links"."component_id" = 1 AND "permission_links"."joinable_type" = 'Project' AND "permission_links"."joinable_id" = 1 AND "permission_links"."component_type" = 'Discussion') LIMIT 1
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "permission_links" ("component_id", "component_type", "component_view_permission", "joinable_id", "joinable_type") VALUES (?, ?, ?, ?, ?)[0m  [["component_id", 1], ["component_type", "Discussion"], ["component_view_permission", :view_discussions], ["joinable_id", 1], ["joinable_type", "Project"]]
+  [1m[35m (0.0ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.8ms)[0m  [1mrollback transaction[0m
+Connecting to database specified by database.yml
+  [1m[36m (0.1ms)[0m  [1mSELECT "schema_migrations"."version" FROM "schema_migrations" [0m
+Migrating to InitialTables (20120604220913)
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.9ms)[0m  INSERT INTO "users" ("name") VALUES (?)  [["name", "Ryan"]]
+  [1m[36m (0.0ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36m (0.0ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.0ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (3.4ms)[0m  [1mINSERT INTO "projects" ("user_id") VALUES (?)[0m  [["user_id", 1]]
+  [1m[35mSQL (16.9ms)[0m  INSERT INTO "default_permission_sets" ("created_at", "joinable_id", "joinable_type", "permissions", "updated_at") VALUES (?, ?, ?, ?, ?)  [["created_at", Wed, 06 Jun 2012 17:56:28 UTC +00:00], ["joinable_id", 1], ["joinable_type", "Project"], ["permissions", "find"], ["updated_at", Wed, 06 Jun 2012 17:56:28 UTC +00:00]]
+  [1m[36mMembership Exists (0.1ms)[0m  [1mSELECT 1 FROM "memberships" WHERE "memberships"."joinable_type" = 'Project' AND "memberships"."joinable_id" = 1 AND "memberships"."user_id" = 1 LIMIT 1[0m
+  [1m[35mMembership Exists (0.2ms)[0m  SELECT 1 FROM "memberships" WHERE ("memberships"."user_id" = 1 AND "memberships"."joinable_type" = 'Project' AND "memberships"."joinable_id" = 1) LIMIT 1
+  [1m[36mSQL (0.4ms)[0m  [1mINSERT INTO "memberships" ("created_at", "joinable_id", "joinable_type", "permissions", "updated_at", "user_id") VALUES (?, ?, ?, ?, ?, ?)[0m  [["created_at", Wed, 06 Jun 2012 17:56:29 UTC +00:00], ["joinable_id", 1], ["joinable_type", "Project"], ["permissions", "find view view_discussions create_discussions delete_discussions manage own"], ["updated_at", Wed, 06 Jun 2012 17:56:29 UTC +00:00], ["user_id", 1]]
+  [1m[35mMembershipInvitation Load (0.1ms)[0m  SELECT "membership_invitations".* FROM "membership_invitations" WHERE "membership_invitations"."joinable_id" = 1 AND "membership_invitations"."joinable_type" = 'Project' AND "membership_invitations"."user_id" = 1 LIMIT 1
+  [1m[36mMembershipRequest Load (0.1ms)[0m  [1mSELECT "membership_requests".* FROM "membership_requests" WHERE "membership_requests"."joinable_id" = 1 AND "membership_requests"."joinable_type" = 'Project' AND "membership_requests"."user_id" = 1 LIMIT 1[0m
+  [1m[35m (0.0ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.0ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "discussions" ("discussable_id", "discussable_type") VALUES (?, ?)  [["discussable_id", 1], ["discussable_type", "Project"]]
+  [1m[36mPermissionLink Load (0.1ms)[0m  [1mSELECT "permission_links".* FROM "permission_links" WHERE "permission_links"."component_id" = 1 AND "permission_links"."component_type" = 'Discussion' LIMIT 1[0m
+  [1m[35mProject Load (0.1ms)[0m  SELECT "projects".* FROM "projects" WHERE "projects"."id" = 1 LIMIT 1
+  [1m[36mProject Load (0.1ms)[0m  [1mSELECT "projects".* FROM "projects" WHERE "projects"."id" = 1 LIMIT 1[0m
+  [1m[35mProject Load (0.1ms)[0m  SELECT "projects".* FROM "projects" WHERE "projects"."id" = 1 LIMIT 1
+  [1m[36mPermissionLink Exists (0.1ms)[0m  [1mSELECT 1 FROM "permission_links" WHERE ("permission_links"."component_id" = 1 AND "permission_links"."joinable_type" = 'Project' AND "permission_links"."joinable_id" = 1 AND "permission_links"."component_type" = 'Discussion') LIMIT 1[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "permission_links" ("component_id", "component_type", "component_view_permission", "joinable_id", "joinable_type") VALUES (?, ?, ?, ?, ?)  [["component_id", 1], ["component_type", "Discussion"], ["component_view_permission", :view_discussions], ["joinable_id", 1], ["joinable_type", "Project"]]
+  [1m[36m (0.0ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.9ms)[0m  rollback transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.0ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "users" ("name") VALUES (?)[0m  [["name", "Ryan"]]
+  [1m[35m (0.0ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.0ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35m (0.0ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.0ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.4ms)[0m  INSERT INTO "projects" ("user_id") VALUES (?)  [["user_id", 1]]
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "default_permission_sets" ("created_at", "joinable_id", "joinable_type", "permissions", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["created_at", Wed, 06 Jun 2012 17:56:29 UTC +00:00], ["joinable_id", 1], ["joinable_type", "Project"], ["permissions", "find"], ["updated_at", Wed, 06 Jun 2012 17:56:29 UTC +00:00]]
+  [1m[35mMembership Exists (0.1ms)[0m  SELECT 1 FROM "memberships" WHERE "memberships"."joinable_type" = 'Project' AND "memberships"."joinable_id" = 1 AND "memberships"."user_id" = 1 LIMIT 1
+  [1m[36mMembership Exists (0.1ms)[0m  [1mSELECT 1 FROM "memberships" WHERE ("memberships"."user_id" = 1 AND "memberships"."joinable_type" = 'Project' AND "memberships"."joinable_id" = 1) LIMIT 1[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "memberships" ("created_at", "joinable_id", "joinable_type", "permissions", "updated_at", "user_id") VALUES (?, ?, ?, ?, ?, ?)  [["created_at", Wed, 06 Jun 2012 17:56:29 UTC +00:00], ["joinable_id", 1], ["joinable_type", "Project"], ["permissions", "find view view_discussions create_discussions delete_discussions manage own"], ["updated_at", Wed, 06 Jun 2012 17:56:29 UTC +00:00], ["user_id", 1]]
+  [1m[36mMembershipInvitation Load (0.1ms)[0m  [1mSELECT "membership_invitations".* FROM "membership_invitations" WHERE "membership_invitations"."joinable_id" = 1 AND "membership_invitations"."joinable_type" = 'Project' AND "membership_invitations"."user_id" = 1 LIMIT 1[0m
+  [1m[35mMembershipRequest Load (0.1ms)[0m  SELECT "membership_requests".* FROM "membership_requests" WHERE "membership_requests"."joinable_id" = 1 AND "membership_requests"."joinable_type" = 'Project' AND "membership_requests"."user_id" = 1 LIMIT 1
+  [1m[36m (0.0ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.1ms)[0m  SELECT COUNT(*) FROM "memberships" WHERE "memberships"."joinable_id" = 1 AND "memberships"."joinable_type" = 'Project'
+  [1m[36mMembership Load (0.1ms)[0m  [1mSELECT "memberships".* FROM "memberships" WHERE "memberships"."joinable_id" = 1 AND "memberships"."joinable_type" = 'Project' ORDER BY id ASC LIMIT 1[0m
+  [1m[35mUser Load (0.1ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = 1 LIMIT 1
+  [1m[36m (0.8ms)[0m  [1mrollback transaction[0m
+Connecting to database specified by database.yml
+  [1m[36m (0.1ms)[0m  [1mSELECT "schema_migrations"."version" FROM "schema_migrations" [0m
+Migrating to InitialTables (20120604220913)
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.6ms)[0m  INSERT INTO "users" ("name") VALUES (?)  [["name", "Ryan"]]
+  [1m[36m (0.0ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36m (0.0ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.0ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (3.9ms)[0m  [1mINSERT INTO "projects" ("user_id") VALUES (?)[0m  [["user_id", 1]]
+  [1m[35mSQL (1.0ms)[0m  INSERT INTO "default_permission_sets" ("created_at", "joinable_id", "joinable_type", "permissions", "updated_at") VALUES (?, ?, ?, ?, ?)  [["created_at", Wed, 06 Jun 2012 17:57:28 UTC +00:00], ["joinable_id", 1], ["joinable_type", "Project"], ["permissions", "find"], ["updated_at", Wed, 06 Jun 2012 17:57:28 UTC +00:00]]
+  [1m[36mMembership Exists (0.1ms)[0m  [1mSELECT 1 FROM "memberships" WHERE "memberships"."joinable_type" = 'Project' AND "memberships"."joinable_id" = 1 AND "memberships"."user_id" = 1 LIMIT 1[0m
+  [1m[35mMembership Exists (0.1ms)[0m  SELECT 1 FROM "memberships" WHERE ("memberships"."user_id" = 1 AND "memberships"."joinable_type" = 'Project' AND "memberships"."joinable_id" = 1) LIMIT 1
+  [1m[36mSQL (0.4ms)[0m  [1mINSERT INTO "memberships" ("created_at", "joinable_id", "joinable_type", "permissions", "updated_at", "user_id") VALUES (?, ?, ?, ?, ?, ?)[0m  [["created_at", Wed, 06 Jun 2012 17:57:28 UTC +00:00], ["joinable_id", 1], ["joinable_type", "Project"], ["permissions", "find view view_discussions create_discussions delete_discussions manage own"], ["updated_at", Wed, 06 Jun 2012 17:57:28 UTC +00:00], ["user_id", 1]]
+  [1m[35mMembershipInvitation Load (0.1ms)[0m  SELECT "membership_invitations".* FROM "membership_invitations" WHERE "membership_invitations"."joinable_id" = 1 AND "membership_invitations"."joinable_type" = 'Project' AND "membership_invitations"."user_id" = 1 LIMIT 1
+  [1m[36mMembershipRequest Load (0.1ms)[0m  [1mSELECT "membership_requests".* FROM "membership_requests" WHERE "membership_requests"."joinable_id" = 1 AND "membership_requests"."joinable_type" = 'Project' AND "membership_requests"."user_id" = 1 LIMIT 1[0m
+  [1m[35m (0.0ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.0ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "discussions" ("discussable_id", "discussable_type") VALUES (?, ?)  [["discussable_id", 1], ["discussable_type", "Project"]]
+  [1m[36mPermissionLink Load (0.1ms)[0m  [1mSELECT "permission_links".* FROM "permission_links" WHERE "permission_links"."component_id" = 1 AND "permission_links"."component_type" = 'Discussion' LIMIT 1[0m
+  [1m[35mProject Load (0.1ms)[0m  SELECT "projects".* FROM "projects" WHERE "projects"."id" = 1 LIMIT 1
+  [1m[36mProject Load (0.1ms)[0m  [1mSELECT "projects".* FROM "projects" WHERE "projects"."id" = 1 LIMIT 1[0m
+  [1m[35mProject Load (0.1ms)[0m  SELECT "projects".* FROM "projects" WHERE "projects"."id" = 1 LIMIT 1
+  [1m[36mPermissionLink Exists (0.1ms)[0m  [1mSELECT 1 FROM "permission_links" WHERE ("permission_links"."component_id" = 1 AND "permission_links"."joinable_type" = 'Project' AND "permission_links"."joinable_id" = 1 AND "permission_links"."component_type" = 'Discussion') LIMIT 1[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "permission_links" ("component_id", "component_type", "component_view_permission", "joinable_id", "joinable_type") VALUES (?, ?, ?, ?, ?)  [["component_id", 1], ["component_type", "Discussion"], ["component_view_permission", :view_discussions], ["joinable_id", 1], ["joinable_type", "Project"]]
+  [1m[36m (0.0ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (1.0ms)[0m  rollback transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.0ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "users" ("name") VALUES (?)[0m  [["name", "Ryan"]]
+  [1m[35m (0.0ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.0ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35m (0.0ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.0ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "projects" ("user_id") VALUES (?)  [["user_id", 1]]
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "default_permission_sets" ("created_at", "joinable_id", "joinable_type", "permissions", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["created_at", Wed, 06 Jun 2012 17:57:29 UTC +00:00], ["joinable_id", 1], ["joinable_type", "Project"], ["permissions", "find"], ["updated_at", Wed, 06 Jun 2012 17:57:29 UTC +00:00]]
+  [1m[35mMembership Exists (0.1ms)[0m  SELECT 1 FROM "memberships" WHERE "memberships"."joinable_type" = 'Project' AND "memberships"."joinable_id" = 1 AND "memberships"."user_id" = 1 LIMIT 1
+  [1m[36mMembership Exists (0.1ms)[0m  [1mSELECT 1 FROM "memberships" WHERE ("memberships"."user_id" = 1 AND "memberships"."joinable_type" = 'Project' AND "memberships"."joinable_id" = 1) LIMIT 1[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "memberships" ("created_at", "joinable_id", "joinable_type", "permissions", "updated_at", "user_id") VALUES (?, ?, ?, ?, ?, ?)  [["created_at", Wed, 06 Jun 2012 17:57:29 UTC +00:00], ["joinable_id", 1], ["joinable_type", "Project"], ["permissions", "find view view_discussions create_discussions delete_discussions manage own"], ["updated_at", Wed, 06 Jun 2012 17:57:29 UTC +00:00], ["user_id", 1]]
+  [1m[36mMembershipInvitation Load (0.1ms)[0m  [1mSELECT "membership_invitations".* FROM "membership_invitations" WHERE "membership_invitations"."joinable_id" = 1 AND "membership_invitations"."joinable_type" = 'Project' AND "membership_invitations"."user_id" = 1 LIMIT 1[0m
+  [1m[35mMembershipRequest Load (0.1ms)[0m  SELECT "membership_requests".* FROM "membership_requests" WHERE "membership_requests"."joinable_id" = 1 AND "membership_requests"."joinable_type" = 'Project' AND "membership_requests"."user_id" = 1 LIMIT 1
+  [1m[36m (0.0ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.1ms)[0m  SELECT COUNT(*) FROM "memberships" WHERE "memberships"."joinable_id" = 1 AND "memberships"."joinable_type" = 'Project'
+  [1m[36mMembership Load (0.1ms)[0m  [1mSELECT "memberships".* FROM "memberships" WHERE "memberships"."joinable_id" = 1 AND "memberships"."joinable_type" = 'Project' ORDER BY id ASC LIMIT 1[0m
+  [1m[35mUser Load (0.1ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = 1 LIMIT 1
+  [1m[36m (0.8ms)[0m  [1mrollback transaction[0m
+Connecting to database specified by database.yml
+  [1m[36m (0.1ms)[0m  [1mSELECT "schema_migrations"."version" FROM "schema_migrations" [0m
+Migrating to InitialTables (20120604220913)
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.5ms)[0m  INSERT INTO "users" ("name") VALUES (?)  [["name", "Ryan"]]
+  [1m[36m (0.0ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36m (0.0ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.0ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (3.4ms)[0m  [1mINSERT INTO "projects" ("user_id") VALUES (?)[0m  [["user_id", 1]]
+  [1m[35mSQL (0.9ms)[0m  INSERT INTO "default_permission_sets" ("created_at", "joinable_id", "joinable_type", "permissions", "updated_at") VALUES (?, ?, ?, ?, ?)  [["created_at", Wed, 06 Jun 2012 17:57:49 UTC +00:00], ["joinable_id", 1], ["joinable_type", "Project"], ["permissions", "find"], ["updated_at", Wed, 06 Jun 2012 17:57:49 UTC +00:00]]
+  [1m[36mMembership Exists (0.1ms)[0m  [1mSELECT 1 FROM "memberships" WHERE "memberships"."joinable_type" = 'Project' AND "memberships"."joinable_id" = 1 AND "memberships"."user_id" = 1 LIMIT 1[0m
+  [1m[35mMembership Exists (0.1ms)[0m  SELECT 1 FROM "memberships" WHERE ("memberships"."user_id" = 1 AND "memberships"."joinable_type" = 'Project' AND "memberships"."joinable_id" = 1) LIMIT 1
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "memberships" ("created_at", "joinable_id", "joinable_type", "permissions", "updated_at", "user_id") VALUES (?, ?, ?, ?, ?, ?)[0m  [["created_at", Wed, 06 Jun 2012 17:57:49 UTC +00:00], ["joinable_id", 1], ["joinable_type", "Project"], ["permissions", "find view view_discussions create_discussions delete_discussions manage own"], ["updated_at", Wed, 06 Jun 2012 17:57:49 UTC +00:00], ["user_id", 1]]
+  [1m[35mMembershipInvitation Load (0.1ms)[0m  SELECT "membership_invitations".* FROM "membership_invitations" WHERE "membership_invitations"."joinable_id" = 1 AND "membership_invitations"."joinable_type" = 'Project' AND "membership_invitations"."user_id" = 1 LIMIT 1
+  [1m[36mMembershipRequest Load (0.1ms)[0m  [1mSELECT "membership_requests".* FROM "membership_requests" WHERE "membership_requests"."joinable_id" = 1 AND "membership_requests"."joinable_type" = 'Project' AND "membership_requests"."user_id" = 1 LIMIT 1[0m
+  [1m[35m (0.0ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "discussions" ("discussable_id", "discussable_type") VALUES (?, ?)  [["discussable_id", 1], ["discussable_type", "Project"]]
+  [1m[36mPermissionLink Load (0.1ms)[0m  [1mSELECT "permission_links".* FROM "permission_links" WHERE "permission_links"."component_id" = 1 AND "permission_links"."component_type" = 'Discussion' LIMIT 1[0m
+  [1m[35mProject Load (0.1ms)[0m  SELECT "projects".* FROM "projects" WHERE "projects"."id" = 1 LIMIT 1
+  [1m[36mProject Load (0.1ms)[0m  [1mSELECT "projects".* FROM "projects" WHERE "projects"."id" = 1 LIMIT 1[0m
+  [1m[35mProject Load (0.1ms)[0m  SELECT "projects".* FROM "projects" WHERE "projects"."id" = 1 LIMIT 1
+  [1m[36mPermissionLink Exists (0.1ms)[0m  [1mSELECT 1 FROM "permission_links" WHERE ("permission_links"."component_id" = 1 AND "permission_links"."joinable_type" = 'Project' AND "permission_links"."joinable_id" = 1 AND "permission_links"."component_type" = 'Discussion') LIMIT 1[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "permission_links" ("component_id", "component_type", "component_view_permission", "joinable_id", "joinable_type") VALUES (?, ?, ?, ?, ?)  [["component_id", 1], ["component_type", "Discussion"], ["component_view_permission", :view_discussions], ["joinable_id", 1], ["joinable_type", "Project"]]
+  [1m[36m (0.0ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.9ms)[0m  rollback transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.0ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "users" ("name") VALUES (?)[0m  [["name", "Ryan"]]
+  [1m[35m (0.0ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.0ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35m (0.0ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.0ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "projects" ("user_id") VALUES (?)  [["user_id", 1]]
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "default_permission_sets" ("created_at", "joinable_id", "joinable_type", "permissions", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["created_at", Wed, 06 Jun 2012 17:57:49 UTC +00:00], ["joinable_id", 1], ["joinable_type", "Project"], ["permissions", "find"], ["updated_at", Wed, 06 Jun 2012 17:57:49 UTC +00:00]]
+  [1m[35mMembership Exists (0.1ms)[0m  SELECT 1 FROM "memberships" WHERE "memberships"."joinable_type" = 'Project' AND "memberships"."joinable_id" = 1 AND "memberships"."user_id" = 1 LIMIT 1
+  [1m[36mMembership Exists (0.1ms)[0m  [1mSELECT 1 FROM "memberships" WHERE ("memberships"."user_id" = 1 AND "memberships"."joinable_type" = 'Project' AND "memberships"."joinable_id" = 1) LIMIT 1[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "memberships" ("created_at", "joinable_id", "joinable_type", "permissions", "updated_at", "user_id") VALUES (?, ?, ?, ?, ?, ?)  [["created_at", Wed, 06 Jun 2012 17:57:49 UTC +00:00], ["joinable_id", 1], ["joinable_type", "Project"], ["permissions", "find view view_discussions create_discussions delete_discussions manage own"], ["updated_at", Wed, 06 Jun 2012 17:57:49 UTC +00:00], ["user_id", 1]]
+  [1m[36mMembershipInvitation Load (0.2ms)[0m  [1mSELECT "membership_invitations".* FROM "membership_invitations" WHERE "membership_invitations"."joinable_id" = 1 AND "membership_invitations"."joinable_type" = 'Project' AND "membership_invitations"."user_id" = 1 LIMIT 1[0m
+  [1m[35mMembershipRequest Load (0.1ms)[0m  SELECT "membership_requests".* FROM "membership_requests" WHERE "membership_requests"."joinable_id" = 1 AND "membership_requests"."joinable_type" = 'Project' AND "membership_requests"."user_id" = 1 LIMIT 1
+  [1m[36m (0.0ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.1ms)[0m  SELECT COUNT(*) FROM "memberships" WHERE "memberships"."joinable_id" = 1 AND "memberships"."joinable_type" = 'Project'
+  [1m[36mMembership Load (0.1ms)[0m  [1mSELECT "memberships".* FROM "memberships" WHERE "memberships"."joinable_id" = 1 AND "memberships"."joinable_type" = 'Project' ORDER BY id ASC LIMIT 1[0m
+  [1m[35mUser Load (0.1ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = 1 LIMIT 1
+  [1m[36m (0.8ms)[0m  [1mrollback transaction[0m
+Connecting to database specified by database.yml
+  [1m[36m (0.1ms)[0m  [1mSELECT "schema_migrations"."version" FROM "schema_migrations" [0m
+Migrating to InitialTables (20120604220913)
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36m (0.0ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.5ms)[0m  INSERT INTO "users" ("name") VALUES (?)  [["name", "Ryan"]]
+  [1m[36m (0.0ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36m (0.0ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.0ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (4.1ms)[0m  [1mINSERT INTO "projects" ("user_id") VALUES (?)[0m  [["user_id", 1]]
+  [1m[35mSQL (1.1ms)[0m  INSERT INTO "default_permission_sets" ("created_at", "joinable_id", "joinable_type", "permissions", "updated_at") VALUES (?, ?, ?, ?, ?)  [["created_at", Wed, 06 Jun 2012 17:58:08 UTC +00:00], ["joinable_id", 1], ["joinable_type", "Project"], ["permissions", "find"], ["updated_at", Wed, 06 Jun 2012 17:58:08 UTC +00:00]]
+  [1m[36mMembership Exists (0.2ms)[0m  [1mSELECT 1 FROM "memberships" WHERE "memberships"."joinable_type" = 'Project' AND "memberships"."joinable_id" = 1 AND "memberships"."user_id" = 1 LIMIT 1[0m
+  [1m[35mMembership Exists (0.1ms)[0m  SELECT 1 FROM "memberships" WHERE ("memberships"."user_id" = 1 AND "memberships"."joinable_type" = 'Project' AND "memberships"."joinable_id" = 1) LIMIT 1
+  [1m[36mSQL (0.4ms)[0m  [1mINSERT INTO "memberships" ("created_at", "joinable_id", "joinable_type", "permissions", "updated_at", "user_id") VALUES (?, ?, ?, ?, ?, ?)[0m  [["created_at", Wed, 06 Jun 2012 17:58:08 UTC +00:00], ["joinable_id", 1], ["joinable_type", "Project"], ["permissions", "find view view_discussions create_discussions delete_discussions manage own"], ["updated_at", Wed, 06 Jun 2012 17:58:08 UTC +00:00], ["user_id", 1]]
+  [1m[35mMembershipInvitation Load (0.1ms)[0m  SELECT "membership_invitations".* FROM "membership_invitations" WHERE "membership_invitations"."joinable_id" = 1 AND "membership_invitations"."joinable_type" = 'Project' AND "membership_invitations"."user_id" = 1 LIMIT 1
+  [1m[36mMembershipRequest Load (0.1ms)[0m  [1mSELECT "membership_requests".* FROM "membership_requests" WHERE "membership_requests"."joinable_id" = 1 AND "membership_requests"."joinable_type" = 'Project' AND "membership_requests"."user_id" = 1 LIMIT 1[0m
+  [1m[35m (0.0ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.0ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "discussions" ("discussable_id", "discussable_type") VALUES (?, ?)  [["discussable_id", 1], ["discussable_type", "Project"]]
+  [1m[36mPermissionLink Load (0.1ms)[0m  [1mSELECT "permission_links".* FROM "permission_links" WHERE "permission_links"."component_id" = 1 AND "permission_links"."component_type" = 'Discussion' LIMIT 1[0m
+  [1m[35mProject Load (0.1ms)[0m  SELECT "projects".* FROM "projects" WHERE "projects"."id" = 1 LIMIT 1
+  [1m[36mProject Load (0.1ms)[0m  [1mSELECT "projects".* FROM "projects" WHERE "projects"."id" = 1 LIMIT 1[0m
+  [1m[35mProject Load (0.1ms)[0m  SELECT "projects".* FROM "projects" WHERE "projects"."id" = 1 LIMIT 1
+  [1m[36mPermissionLink Exists (0.1ms)[0m  [1mSELECT 1 FROM "permission_links" WHERE ("permission_links"."component_id" = 1 AND "permission_links"."joinable_type" = 'Project' AND "permission_links"."joinable_id" = 1 AND "permission_links"."component_type" = 'Discussion') LIMIT 1[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "permission_links" ("component_id", "component_type", "component_view_permission", "joinable_id", "joinable_type") VALUES (?, ?, ?, ?, ?)  [["component_id", 1], ["component_type", "Discussion"], ["component_view_permission", :view_discussions], ["joinable_id", 1], ["joinable_type", "Project"]]
+  [1m[36m (0.0ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.9ms)[0m  rollback transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.0ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "users" ("name") VALUES (?)[0m  [["name", "Ryan"]]
+  [1m[35m (0.0ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.0ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35m (0.0ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.0ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "projects" ("user_id") VALUES (?)  [["user_id", 1]]
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "default_permission_sets" ("created_at", "joinable_id", "joinable_type", "permissions", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["created_at", Wed, 06 Jun 2012 17:58:08 UTC +00:00], ["joinable_id", 1], ["joinable_type", "Project"], ["permissions", "find"], ["updated_at", Wed, 06 Jun 2012 17:58:08 UTC +00:00]]
+  [1m[35mMembership Exists (0.1ms)[0m  SELECT 1 FROM "memberships" WHERE "memberships"."joinable_type" = 'Project' AND "memberships"."joinable_id" = 1 AND "memberships"."user_id" = 1 LIMIT 1
+  [1m[36mMembership Exists (0.1ms)[0m  [1mSELECT 1 FROM "memberships" WHERE ("memberships"."user_id" = 1 AND "memberships"."joinable_type" = 'Project' AND "memberships"."joinable_id" = 1) LIMIT 1[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "memberships" ("created_at", "joinable_id", "joinable_type", "permissions", "updated_at", "user_id") VALUES (?, ?, ?, ?, ?, ?)  [["created_at", Wed, 06 Jun 2012 17:58:08 UTC +00:00], ["joinable_id", 1], ["joinable_type", "Project"], ["permissions", "find view view_discussions create_discussions delete_discussions manage own"], ["updated_at", Wed, 06 Jun 2012 17:58:08 UTC +00:00], ["user_id", 1]]
+  [1m[36mMembershipInvitation Load (0.1ms)[0m  [1mSELECT "membership_invitations".* FROM "membership_invitations" WHERE "membership_invitations"."joinable_id" = 1 AND "membership_invitations"."joinable_type" = 'Project' AND "membership_invitations"."user_id" = 1 LIMIT 1[0m
+  [1m[35mMembershipRequest Load (0.1ms)[0m  SELECT "membership_requests".* FROM "membership_requests" WHERE "membership_requests"."joinable_id" = 1 AND "membership_requests"."joinable_type" = 'Project' AND "membership_requests"."user_id" = 1 LIMIT 1
+  [1m[36m (0.0ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.1ms)[0m  SELECT COUNT(*) FROM "memberships" WHERE "memberships"."joinable_id" = 1 AND "memberships"."joinable_type" = 'Project'
+  [1m[36mMembership Load (0.1ms)[0m  [1mSELECT "memberships".* FROM "memberships" WHERE "memberships"."joinable_id" = 1 AND "memberships"."joinable_type" = 'Project' ORDER BY id ASC LIMIT 1[0m
+  [1m[35mUser Load (0.1ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = 1 LIMIT 1
+  [1m[36m (0.7ms)[0m  [1mrollback transaction[0m
+Connecting to database specified by database.yml
+  [1m[36m (0.1ms)[0m  [1mSELECT "schema_migrations"."version" FROM "schema_migrations" [0m
+Migrating to InitialTables (20120604220913)
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.5ms)[0m  INSERT INTO "users" ("name") VALUES (?)  [["name", "Ryan"]]
+  [1m[36m (0.0ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36m (0.0ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.0ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (3.9ms)[0m  [1mINSERT INTO "projects" ("user_id") VALUES (?)[0m  [["user_id", 1]]
+  [1m[35mSQL (1.0ms)[0m  INSERT INTO "default_permission_sets" ("created_at", "joinable_id", "joinable_type", "permissions", "updated_at") VALUES (?, ?, ?, ?, ?)  [["created_at", Wed, 06 Jun 2012 17:59:14 UTC +00:00], ["joinable_id", 1], ["joinable_type", "Project"], ["permissions", "find"], ["updated_at", Wed, 06 Jun 2012 17:59:14 UTC +00:00]]
+  [1m[36mMembership Exists (0.1ms)[0m  [1mSELECT 1 FROM "memberships" WHERE "memberships"."joinable_type" = 'Project' AND "memberships"."joinable_id" = 1 AND "memberships"."user_id" = 1 LIMIT 1[0m
+  [1m[35mMembership Exists (0.1ms)[0m  SELECT 1 FROM "memberships" WHERE ("memberships"."user_id" = 1 AND "memberships"."joinable_type" = 'Project' AND "memberships"."joinable_id" = 1) LIMIT 1
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "memberships" ("created_at", "joinable_id", "joinable_type", "permissions", "updated_at", "user_id") VALUES (?, ?, ?, ?, ?, ?)[0m  [["created_at", Wed, 06 Jun 2012 17:59:14 UTC +00:00], ["joinable_id", 1], ["joinable_type", "Project"], ["permissions", "find view view_discussions create_discussions delete_discussions manage own"], ["updated_at", Wed, 06 Jun 2012 17:59:14 UTC +00:00], ["user_id", 1]]
+  [1m[35mMembershipInvitation Load (0.1ms)[0m  SELECT "membership_invitations".* FROM "membership_invitations" WHERE "membership_invitations"."joinable_id" = 1 AND "membership_invitations"."joinable_type" = 'Project' AND "membership_invitations"."user_id" = 1 LIMIT 1
+  [1m[36mMembershipRequest Load (0.2ms)[0m  [1mSELECT "membership_requests".* FROM "membership_requests" WHERE "membership_requests"."joinable_id" = 1 AND "membership_requests"."joinable_type" = 'Project' AND "membership_requests"."user_id" = 1 LIMIT 1[0m
+  [1m[35m (0.0ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "discussions" ("discussable_id", "discussable_type") VALUES (?, ?)  [["discussable_id", 1], ["discussable_type", "Project"]]
+  [1m[36mPermissionLink Load (0.2ms)[0m  [1mSELECT "permission_links".* FROM "permission_links" WHERE "permission_links"."component_id" = 1 AND "permission_links"."component_type" = 'Discussion' LIMIT 1[0m
+  [1m[35mProject Load (0.1ms)[0m  SELECT "projects".* FROM "projects" WHERE "projects"."id" = 1 LIMIT 1
+  [1m[36mProject Load (0.1ms)[0m  [1mSELECT "projects".* FROM "projects" WHERE "projects"."id" = 1 LIMIT 1[0m
+  [1m[35mProject Load (0.1ms)[0m  SELECT "projects".* FROM "projects" WHERE "projects"."id" = 1 LIMIT 1
+  [1m[36mPermissionLink Exists (0.2ms)[0m  [1mSELECT 1 FROM "permission_links" WHERE ("permission_links"."component_id" = 1 AND "permission_links"."joinable_type" = 'Project' AND "permission_links"."joinable_id" = 1 AND "permission_links"."component_type" = 'Discussion') LIMIT 1[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "permission_links" ("component_id", "component_type", "component_view_permission", "joinable_id", "joinable_type") VALUES (?, ?, ?, ?, ?)  [["component_id", 1], ["component_type", "Discussion"], ["component_view_permission", :view_discussions], ["joinable_id", 1], ["joinable_type", "Project"]]
+  [1m[36m (0.0ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (4.7ms)[0m  rollback transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.0ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.4ms)[0m  [1mINSERT INTO "users" ("name") VALUES (?)[0m  [["name", "Ryan"]]
+  [1m[35m (0.0ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.0ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35m (0.0ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.0ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.6ms)[0m  INSERT INTO "projects" ("user_id") VALUES (?)  [["user_id", 1]]
+  [1m[36mSQL (0.6ms)[0m  [1mINSERT INTO "default_permission_sets" ("created_at", "joinable_id", "joinable_type", "permissions", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["created_at", Wed, 06 Jun 2012 17:59:15 UTC +00:00], ["joinable_id", 1], ["joinable_type", "Project"], ["permissions", "find"], ["updated_at", Wed, 06 Jun 2012 17:59:15 UTC +00:00]]
+  [1m[35mMembership Exists (0.1ms)[0m  SELECT 1 FROM "memberships" WHERE "memberships"."joinable_type" = 'Project' AND "memberships"."joinable_id" = 1 AND "memberships"."user_id" = 1 LIMIT 1
+  [1m[36mMembership Exists (4.2ms)[0m  [1mSELECT 1 FROM "memberships" WHERE ("memberships"."user_id" = 1 AND "memberships"."joinable_type" = 'Project' AND "memberships"."joinable_id" = 1) LIMIT 1[0m
+  [1m[35mSQL (0.4ms)[0m  INSERT INTO "memberships" ("created_at", "joinable_id", "joinable_type", "permissions", "updated_at", "user_id") VALUES (?, ?, ?, ?, ?, ?)  [["created_at", Wed, 06 Jun 2012 17:59:15 UTC +00:00], ["joinable_id", 1], ["joinable_type", "Project"], ["permissions", "find view view_discussions create_discussions delete_discussions manage own"], ["updated_at", Wed, 06 Jun 2012 17:59:15 UTC +00:00], ["user_id", 1]]
+  [1m[36mMembershipInvitation Load (0.2ms)[0m  [1mSELECT "membership_invitations".* FROM "membership_invitations" WHERE "membership_invitations"."joinable_id" = 1 AND "membership_invitations"."joinable_type" = 'Project' AND "membership_invitations"."user_id" = 1 LIMIT 1[0m
+  [1m[35mMembershipRequest Load (0.1ms)[0m  SELECT "membership_requests".* FROM "membership_requests" WHERE "membership_requests"."joinable_id" = 1 AND "membership_requests"."joinable_type" = 'Project' AND "membership_requests"."user_id" = 1 LIMIT 1
+  [1m[36m (0.0ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.1ms)[0m  SELECT COUNT(*) FROM "memberships" WHERE "memberships"."joinable_id" = 1 AND "memberships"."joinable_type" = 'Project'
+  [1m[36mMembership Load (0.1ms)[0m  [1mSELECT "memberships".* FROM "memberships" WHERE "memberships"."joinable_id" = 1 AND "memberships"."joinable_type" = 'Project' ORDER BY id ASC LIMIT 1[0m
+  [1m[35mUser Load (0.1ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = 1 LIMIT 1
+  [1m[36m (0.7ms)[0m  [1mrollback transaction[0m
+Connecting to database specified by database.yml
+  [1m[36m (0.1ms)[0m  [1mSELECT "schema_migrations"."version" FROM "schema_migrations" [0m
+Migrating to InitialTables (20120604220913)
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.6ms)[0m  INSERT INTO "users" ("name") VALUES (?)  [["name", "Ryan"]]
+  [1m[36m (0.0ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36m (0.0ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.0ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (3.4ms)[0m  [1mINSERT INTO "projects" ("user_id") VALUES (?)[0m  [["user_id", 1]]
+  [1m[35mSQL (30.4ms)[0m  INSERT INTO "default_permission_sets" ("created_at", "joinable_id", "joinable_type", "permissions", "updated_at") VALUES (?, ?, ?, ?, ?)  [["created_at", Wed, 06 Jun 2012 18:31:08 UTC +00:00], ["joinable_id", 1], ["joinable_type", "Project"], ["permissions", "find"], ["updated_at", Wed, 06 Jun 2012 18:31:08 UTC +00:00]]
+  [1m[36mMembership Exists (0.2ms)[0m  [1mSELECT 1 FROM "memberships" WHERE "memberships"."joinable_type" = 'Project' AND "memberships"."joinable_id" = 1 AND "memberships"."user_id" = 1 LIMIT 1[0m
+  [1m[35mMembership Exists (0.1ms)[0m  SELECT 1 FROM "memberships" WHERE ("memberships"."user_id" = 1 AND "memberships"."joinable_type" = 'Project' AND "memberships"."joinable_id" = 1) LIMIT 1
+  [1m[36mSQL (0.4ms)[0m  [1mINSERT INTO "memberships" ("created_at", "joinable_id", "joinable_type", "permissions", "updated_at", "user_id") VALUES (?, ?, ?, ?, ?, ?)[0m  [["created_at", Wed, 06 Jun 2012 18:31:08 UTC +00:00], ["joinable_id", 1], ["joinable_type", "Project"], ["permissions", "find view view_discussions create_discussions delete_discussions manage own"], ["updated_at", Wed, 06 Jun 2012 18:31:08 UTC +00:00], ["user_id", 1]]
+  [1m[35mMembershipInvitation Load (0.1ms)[0m  SELECT "membership_invitations".* FROM "membership_invitations" WHERE "membership_invitations"."joinable_id" = 1 AND "membership_invitations"."joinable_type" = 'Project' AND "membership_invitations"."user_id" = 1 LIMIT 1
+  [1m[36mMembershipRequest Load (0.1ms)[0m  [1mSELECT "membership_requests".* FROM "membership_requests" WHERE "membership_requests"."joinable_id" = 1 AND "membership_requests"."joinable_type" = 'Project' AND "membership_requests"."user_id" = 1 LIMIT 1[0m
+  [1m[35m (0.0ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.0ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (17.2ms)[0m  INSERT INTO "discussions" ("discussable_id", "discussable_type") VALUES (?, ?)  [["discussable_id", 1], ["discussable_type", "Project"]]
+  [1m[36mPermissionLink Load (0.1ms)[0m  [1mSELECT "permission_links".* FROM "permission_links" WHERE "permission_links"."component_id" = 1 AND "permission_links"."component_type" = 'Discussion' LIMIT 1[0m
+  [1m[35mProject Load (0.1ms)[0m  SELECT "projects".* FROM "projects" WHERE "projects"."id" = 1 LIMIT 1
+  [1m[36mProject Load (0.1ms)[0m  [1mSELECT "projects".* FROM "projects" WHERE "projects"."id" = 1 LIMIT 1[0m
+  [1m[35mProject Load (0.1ms)[0m  SELECT "projects".* FROM "projects" WHERE "projects"."id" = 1 LIMIT 1
+  [1m[36mPermissionLink Exists (0.1ms)[0m  [1mSELECT 1 FROM "permission_links" WHERE ("permission_links"."component_id" = 1 AND "permission_links"."joinable_type" = 'Project' AND "permission_links"."joinable_id" = 1 AND "permission_links"."component_type" = 'Discussion') LIMIT 1[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "permission_links" ("component_id", "component_type", "component_view_permission", "joinable_id", "joinable_type") VALUES (?, ?, ?, ?, ?)  [["component_id", 1], ["component_type", "Discussion"], ["component_view_permission", :view], ["joinable_id", 1], ["joinable_type", "Project"]]
+  [1m[36m (0.0ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.8ms)[0m  rollback transaction
+  [1m[36m (0.3ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.0ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "users" ("name") VALUES (?)[0m  [["name", "Ryan"]]
+  [1m[35m (0.0ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.0ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35m (0.0ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.0ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "projects" ("user_id") VALUES (?)  [["user_id", 1]]
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "default_permission_sets" ("created_at", "joinable_id", "joinable_type", "permissions", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["created_at", Wed, 06 Jun 2012 18:31:08 UTC +00:00], ["joinable_id", 1], ["joinable_type", "Project"], ["permissions", "find"], ["updated_at", Wed, 06 Jun 2012 18:31:08 UTC +00:00]]
+  [1m[35mMembership Exists (0.1ms)[0m  SELECT 1 FROM "memberships" WHERE "memberships"."joinable_type" = 'Project' AND "memberships"."joinable_id" = 1 AND "memberships"."user_id" = 1 LIMIT 1
+  [1m[36mMembership Exists (0.1ms)[0m  [1mSELECT 1 FROM "memberships" WHERE ("memberships"."user_id" = 1 AND "memberships"."joinable_type" = 'Project' AND "memberships"."joinable_id" = 1) LIMIT 1[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "memberships" ("created_at", "joinable_id", "joinable_type", "permissions", "updated_at", "user_id") VALUES (?, ?, ?, ?, ?, ?)  [["created_at", Wed, 06 Jun 2012 18:31:08 UTC +00:00], ["joinable_id", 1], ["joinable_type", "Project"], ["permissions", "find view view_discussions create_discussions delete_discussions manage own"], ["updated_at", Wed, 06 Jun 2012 18:31:08 UTC +00:00], ["user_id", 1]]
+  [1m[36mMembershipInvitation Load (0.1ms)[0m  [1mSELECT "membership_invitations".* FROM "membership_invitations" WHERE "membership_invitations"."joinable_id" = 1 AND "membership_invitations"."joinable_type" = 'Project' AND "membership_invitations"."user_id" = 1 LIMIT 1[0m
+  [1m[35mMembershipRequest Load (0.1ms)[0m  SELECT "membership_requests".* FROM "membership_requests" WHERE "membership_requests"."joinable_id" = 1 AND "membership_requests"."joinable_type" = 'Project' AND "membership_requests"."user_id" = 1 LIMIT 1
+  [1m[36m (0.0ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.0ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "discussions" ("discussable_id", "discussable_type") VALUES (?, ?)[0m  [["discussable_id", 1], ["discussable_type", "Project"]]
+  [1m[35mPermissionLink Load (0.1ms)[0m  SELECT "permission_links".* FROM "permission_links" WHERE "permission_links"."component_id" = 1 AND "permission_links"."component_type" = 'Discussion' LIMIT 1
+  [1m[36mProject Load (0.1ms)[0m  [1mSELECT "projects".* FROM "projects" WHERE "projects"."id" = 1 LIMIT 1[0m
+  [1m[35mProject Load (0.1ms)[0m  SELECT "projects".* FROM "projects" WHERE "projects"."id" = 1 LIMIT 1
+  [1m[36mProject Load (0.1ms)[0m  [1mSELECT "projects".* FROM "projects" WHERE "projects"."id" = 1 LIMIT 1[0m
+  [1m[35mPermissionLink Exists (0.1ms)[0m  SELECT 1 FROM "permission_links" WHERE ("permission_links"."component_id" = 1 AND "permission_links"."joinable_type" = 'Project' AND "permission_links"."joinable_id" = 1 AND "permission_links"."component_type" = 'Discussion') LIMIT 1
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "permission_links" ("component_id", "component_type", "component_view_permission", "joinable_id", "joinable_type") VALUES (?, ?, ?, ?, ?)[0m  [["component_id", 1], ["component_type", "Discussion"], ["component_view_permission", :view], ["joinable_id", 1], ["joinable_type", "Project"]]
+  [1m[35m (0.0ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.8ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36m (0.0ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "users" ("name") VALUES (?)  [["name", "Ryan"]]
+  [1m[36m (0.0ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.0ms)[0m  SAVEPOINT active_record_1
+  [1m[36m (0.0ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.0ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "projects" ("user_id") VALUES (?)[0m  [["user_id", 1]]
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "default_permission_sets" ("created_at", "joinable_id", "joinable_type", "permissions", "updated_at") VALUES (?, ?, ?, ?, ?)  [["created_at", Wed, 06 Jun 2012 18:31:08 UTC +00:00], ["joinable_id", 1], ["joinable_type", "Project"], ["permissions", "find"], ["updated_at", Wed, 06 Jun 2012 18:31:08 UTC +00:00]]
+  [1m[36mMembership Exists (0.1ms)[0m  [1mSELECT 1 FROM "memberships" WHERE "memberships"."joinable_type" = 'Project' AND "memberships"."joinable_id" = 1 AND "memberships"."user_id" = 1 LIMIT 1[0m
+  [1m[35mMembership Exists (0.1ms)[0m  SELECT 1 FROM "memberships" WHERE ("memberships"."user_id" = 1 AND "memberships"."joinable_type" = 'Project' AND "memberships"."joinable_id" = 1) LIMIT 1
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "memberships" ("created_at", "joinable_id", "joinable_type", "permissions", "updated_at", "user_id") VALUES (?, ?, ?, ?, ?, ?)[0m  [["created_at", Wed, 06 Jun 2012 18:31:08 UTC +00:00], ["joinable_id", 1], ["joinable_type", "Project"], ["permissions", "find view view_discussions create_discussions delete_discussions manage own"], ["updated_at", Wed, 06 Jun 2012 18:31:08 UTC +00:00], ["user_id", 1]]
+  [1m[35mMembershipInvitation Load (0.1ms)[0m  SELECT "membership_invitations".* FROM "membership_invitations" WHERE "membership_invitations"."joinable_id" = 1 AND "membership_invitations"."joinable_type" = 'Project' AND "membership_invitations"."user_id" = 1 LIMIT 1
+  [1m[36mMembershipRequest Load (0.1ms)[0m  [1mSELECT "membership_requests".* FROM "membership_requests" WHERE "membership_requests"."joinable_id" = 1 AND "membership_requests"."joinable_type" = 'Project' AND "membership_requests"."user_id" = 1 LIMIT 1[0m
+  [1m[35m (0.0ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.1ms)[0m  [1mSELECT COUNT(*) FROM "memberships" WHERE "memberships"."joinable_id" = 1 AND "memberships"."joinable_type" = 'Project'[0m
+  [1m[35mMembership Load (0.1ms)[0m  SELECT "memberships".* FROM "memberships" WHERE "memberships"."joinable_id" = 1 AND "memberships"."joinable_type" = 'Project' ORDER BY id ASC LIMIT 1
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = 1 LIMIT 1[0m
+  [1m[35m (0.7ms)[0m  rollback transaction
+Connecting to database specified by database.yml
+  [1m[36m (0.1ms)[0m  [1mSELECT "schema_migrations"."version" FROM "schema_migrations" [0m
+Migrating to InitialTables (20120604220913)
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.6ms)[0m  INSERT INTO "users" ("name") VALUES (?)  [["name", "Ryan"]]
+  [1m[36m (0.0ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36m (0.0ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.0ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (3.5ms)[0m  [1mINSERT INTO "projects" ("user_id") VALUES (?)[0m  [["user_id", 1]]
+  [1m[35mSQL (0.9ms)[0m  INSERT INTO "default_permission_sets" ("created_at", "joinable_id", "joinable_type", "permissions", "updated_at") VALUES (?, ?, ?, ?, ?)  [["created_at", Wed, 06 Jun 2012 18:32:02 UTC +00:00], ["joinable_id", 1], ["joinable_type", "Project"], ["permissions", "find"], ["updated_at", Wed, 06 Jun 2012 18:32:02 UTC +00:00]]
+  [1m[36mMembership Exists (0.2ms)[0m  [1mSELECT 1 FROM "memberships" WHERE "memberships"."joinable_type" = 'Project' AND "memberships"."joinable_id" = 1 AND "memberships"."user_id" = 1 LIMIT 1[0m
+  [1m[35mMembership Exists (0.1ms)[0m  SELECT 1 FROM "memberships" WHERE ("memberships"."user_id" = 1 AND "memberships"."joinable_type" = 'Project' AND "memberships"."joinable_id" = 1) LIMIT 1
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "memberships" ("created_at", "joinable_id", "joinable_type", "permissions", "updated_at", "user_id") VALUES (?, ?, ?, ?, ?, ?)[0m  [["created_at", Wed, 06 Jun 2012 18:32:02 UTC +00:00], ["joinable_id", 1], ["joinable_type", "Project"], ["permissions", "find view view_discussions create_discussions delete_discussions manage own"], ["updated_at", Wed, 06 Jun 2012 18:32:02 UTC +00:00], ["user_id", 1]]
+  [1m[35mMembershipInvitation Load (0.1ms)[0m  SELECT "membership_invitations".* FROM "membership_invitations" WHERE "membership_invitations"."joinable_id" = 1 AND "membership_invitations"."joinable_type" = 'Project' AND "membership_invitations"."user_id" = 1 LIMIT 1
+  [1m[36mMembershipRequest Load (0.1ms)[0m  [1mSELECT "membership_requests".* FROM "membership_requests" WHERE "membership_requests"."joinable_id" = 1 AND "membership_requests"."joinable_type" = 'Project' AND "membership_requests"."user_id" = 1 LIMIT 1[0m
+  [1m[35m (0.0ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "discussions" ("discussable_id", "discussable_type") VALUES (?, ?)  [["discussable_id", 1], ["discussable_type", "Project"]]
+  [1m[36mPermissionLink Load (0.1ms)[0m  [1mSELECT "permission_links".* FROM "permission_links" WHERE "permission_links"."component_id" = 1 AND "permission_links"."component_type" = 'Discussion' LIMIT 1[0m
+  [1m[35mProject Load (0.1ms)[0m  SELECT "projects".* FROM "projects" WHERE "projects"."id" = 1 LIMIT 1
+  [1m[36mProject Load (0.1ms)[0m  [1mSELECT "projects".* FROM "projects" WHERE "projects"."id" = 1 LIMIT 1[0m
+  [1m[35mProject Load (0.1ms)[0m  SELECT "projects".* FROM "projects" WHERE "projects"."id" = 1 LIMIT 1
+  [1m[36mPermissionLink Exists (0.1ms)[0m  [1mSELECT 1 FROM "permission_links" WHERE ("permission_links"."component_id" = 1 AND "permission_links"."joinable_type" = 'Project' AND "permission_links"."joinable_id" = 1 AND "permission_links"."component_type" = 'Discussion') LIMIT 1[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "permission_links" ("component_id", "component_type", "component_view_permission", "joinable_id", "joinable_type") VALUES (?, ?, ?, ?, ?)  [["component_id", 1], ["component_type", "Discussion"], ["component_view_permission", :view], ["joinable_id", 1], ["joinable_type", "Project"]]
+  [1m[36m (0.0ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.9ms)[0m  rollback transaction
+  [1m[36m (0.4ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.0ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.6ms)[0m  [1mINSERT INTO "users" ("name") VALUES (?)[0m  [["name", "Ryan"]]
+  [1m[35m (0.0ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.0ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35m (0.0ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.0ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "projects" ("user_id") VALUES (?)  [["user_id", 1]]
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "default_permission_sets" ("created_at", "joinable_id", "joinable_type", "permissions", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["created_at", Wed, 06 Jun 2012 18:32:02 UTC +00:00], ["joinable_id", 1], ["joinable_type", "Project"], ["permissions", "find"], ["updated_at", Wed, 06 Jun 2012 18:32:02 UTC +00:00]]
+  [1m[35mMembership Exists (0.1ms)[0m  SELECT 1 FROM "memberships" WHERE "memberships"."joinable_type" = 'Project' AND "memberships"."joinable_id" = 1 AND "memberships"."user_id" = 1 LIMIT 1
+  [1m[36mMembership Exists (0.1ms)[0m  [1mSELECT 1 FROM "memberships" WHERE ("memberships"."user_id" = 1 AND "memberships"."joinable_type" = 'Project' AND "memberships"."joinable_id" = 1) LIMIT 1[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "memberships" ("created_at", "joinable_id", "joinable_type", "permissions", "updated_at", "user_id") VALUES (?, ?, ?, ?, ?, ?)  [["created_at", Wed, 06 Jun 2012 18:32:02 UTC +00:00], ["joinable_id", 1], ["joinable_type", "Project"], ["permissions", "find view view_discussions create_discussions delete_discussions manage own"], ["updated_at", Wed, 06 Jun 2012 18:32:02 UTC +00:00], ["user_id", 1]]
+  [1m[36mMembershipInvitation Load (0.1ms)[0m  [1mSELECT "membership_invitations".* FROM "membership_invitations" WHERE "membership_invitations"."joinable_id" = 1 AND "membership_invitations"."joinable_type" = 'Project' AND "membership_invitations"."user_id" = 1 LIMIT 1[0m
+  [1m[35mMembershipRequest Load (0.1ms)[0m  SELECT "membership_requests".* FROM "membership_requests" WHERE "membership_requests"."joinable_id" = 1 AND "membership_requests"."joinable_type" = 'Project' AND "membership_requests"."user_id" = 1 LIMIT 1
+  [1m[36m (0.0ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.0ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "discussions" ("discussable_id", "discussable_type") VALUES (?, ?)[0m  [["discussable_id", 1], ["discussable_type", "Project"]]
+  [1m[35mPermissionLink Load (0.1ms)[0m  SELECT "permission_links".* FROM "permission_links" WHERE "permission_links"."component_id" = 1 AND "permission_links"."component_type" = 'Discussion' LIMIT 1
+  [1m[36mProject Load (0.1ms)[0m  [1mSELECT "projects".* FROM "projects" WHERE "projects"."id" = 1 LIMIT 1[0m
+  [1m[35mProject Load (0.1ms)[0m  SELECT "projects".* FROM "projects" WHERE "projects"."id" = 1 LIMIT 1
+  [1m[36mProject Load (0.1ms)[0m  [1mSELECT "projects".* FROM "projects" WHERE "projects"."id" = 1 LIMIT 1[0m
+  [1m[35mPermissionLink Exists (0.1ms)[0m  SELECT 1 FROM "permission_links" WHERE ("permission_links"."component_id" = 1 AND "permission_links"."joinable_type" = 'Project' AND "permission_links"."joinable_id" = 1 AND "permission_links"."component_type" = 'Discussion') LIMIT 1
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "permission_links" ("component_id", "component_type", "component_view_permission", "joinable_id", "joinable_type") VALUES (?, ?, ?, ?, ?)[0m  [["component_id", 1], ["component_type", "Discussion"], ["component_view_permission", :view_discussions], ["joinable_id", 1], ["joinable_type", "Project"]]
+  [1m[35m (0.0ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.8ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36m (0.0ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "users" ("name") VALUES (?)  [["name", "Ryan"]]
+  [1m[36m (0.0ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.0ms)[0m  SAVEPOINT active_record_1
+  [1m[36m (0.0ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.0ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "projects" ("user_id") VALUES (?)[0m  [["user_id", 1]]
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "default_permission_sets" ("created_at", "joinable_id", "joinable_type", "permissions", "updated_at") VALUES (?, ?, ?, ?, ?)  [["created_at", Wed, 06 Jun 2012 18:32:02 UTC +00:00], ["joinable_id", 1], ["joinable_type", "Project"], ["permissions", "find"], ["updated_at", Wed, 06 Jun 2012 18:32:02 UTC +00:00]]
+  [1m[36mMembership Exists (0.1ms)[0m  [1mSELECT 1 FROM "memberships" WHERE "memberships"."joinable_type" = 'Project' AND "memberships"."joinable_id" = 1 AND "memberships"."user_id" = 1 LIMIT 1[0m
+  [1m[35mMembership Exists (0.1ms)[0m  SELECT 1 FROM "memberships" WHERE ("memberships"."user_id" = 1 AND "memberships"."joinable_type" = 'Project' AND "memberships"."joinable_id" = 1) LIMIT 1
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "memberships" ("created_at", "joinable_id", "joinable_type", "permissions", "updated_at", "user_id") VALUES (?, ?, ?, ?, ?, ?)[0m  [["created_at", Wed, 06 Jun 2012 18:32:02 UTC +00:00], ["joinable_id", 1], ["joinable_type", "Project"], ["permissions", "find view view_discussions create_discussions delete_discussions manage own"], ["updated_at", Wed, 06 Jun 2012 18:32:02 UTC +00:00], ["user_id", 1]]
+  [1m[35mMembershipInvitation Load (0.1ms)[0m  SELECT "membership_invitations".* FROM "membership_invitations" WHERE "membership_invitations"."joinable_id" = 1 AND "membership_invitations"."joinable_type" = 'Project' AND "membership_invitations"."user_id" = 1 LIMIT 1
+  [1m[36mMembershipRequest Load (0.1ms)[0m  [1mSELECT "membership_requests".* FROM "membership_requests" WHERE "membership_requests"."joinable_id" = 1 AND "membership_requests"."joinable_type" = 'Project' AND "membership_requests"."user_id" = 1 LIMIT 1[0m
+  [1m[35m (0.0ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.2ms)[0m  [1mSELECT COUNT(*) FROM "memberships" WHERE "memberships"."joinable_id" = 1 AND "memberships"."joinable_type" = 'Project'[0m
+  [1m[35mMembership Load (0.1ms)[0m  SELECT "memberships".* FROM "memberships" WHERE "memberships"."joinable_id" = 1 AND "memberships"."joinable_type" = 'Project' ORDER BY id ASC LIMIT 1
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = 1 LIMIT 1[0m
+  [1m[35m (0.6ms)[0m  rollback transaction
+Connecting to database specified by database.yml
+  [1m[36m (0.1ms)[0m  [1mSELECT "schema_migrations"."version" FROM "schema_migrations" [0m
+Migrating to InitialTables (20120604220913)
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.5ms)[0m  INSERT INTO "users" ("name") VALUES (?)  [["name", "Ryan"]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36m (0.0ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.0ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (3.6ms)[0m  [1mINSERT INTO "projects" ("user_id") VALUES (?)[0m  [["user_id", 1]]
+  [1m[35mSQL (1.6ms)[0m  INSERT INTO "default_permission_sets" ("created_at", "joinable_id", "joinable_type", "permissions", "updated_at") VALUES (?, ?, ?, ?, ?)  [["created_at", Wed, 06 Jun 2012 18:32:43 UTC +00:00], ["joinable_id", 1], ["joinable_type", "Project"], ["permissions", "find"], ["updated_at", Wed, 06 Jun 2012 18:32:43 UTC +00:00]]
+  [1m[36mMembership Exists (0.6ms)[0m  [1mSELECT 1 FROM "memberships" WHERE "memberships"."joinable_type" = 'Project' AND "memberships"."joinable_id" = 1 AND "memberships"."user_id" = 1 LIMIT 1[0m
+  [1m[35mMembership Exists (0.1ms)[0m  SELECT 1 FROM "memberships" WHERE ("memberships"."user_id" = 1 AND "memberships"."joinable_type" = 'Project' AND "memberships"."joinable_id" = 1) LIMIT 1
+  [1m[36mSQL (0.4ms)[0m  [1mINSERT INTO "memberships" ("created_at", "joinable_id", "joinable_type", "permissions", "updated_at", "user_id") VALUES (?, ?, ?, ?, ?, ?)[0m  [["created_at", Wed, 06 Jun 2012 18:32:43 UTC +00:00], ["joinable_id", 1], ["joinable_type", "Project"], ["permissions", "find view view_discussions create_discussions delete_discussions manage own"], ["updated_at", Wed, 06 Jun 2012 18:32:43 UTC +00:00], ["user_id", 1]]
+  [1m[35mMembershipInvitation Load (0.1ms)[0m  SELECT "membership_invitations".* FROM "membership_invitations" WHERE "membership_invitations"."joinable_id" = 1 AND "membership_invitations"."joinable_type" = 'Project' AND "membership_invitations"."user_id" = 1 LIMIT 1
+  [1m[36mMembershipRequest Load (0.1ms)[0m  [1mSELECT "membership_requests".* FROM "membership_requests" WHERE "membership_requests"."joinable_id" = 1 AND "membership_requests"."joinable_type" = 'Project' AND "membership_requests"."user_id" = 1 LIMIT 1[0m
+  [1m[35m (0.0ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "discussions" ("discussable_id", "discussable_type") VALUES (?, ?)  [["discussable_id", 1], ["discussable_type", "Project"]]
+  [1m[36mPermissionLink Load (0.1ms)[0m  [1mSELECT "permission_links".* FROM "permission_links" WHERE "permission_links"."component_id" = 1 AND "permission_links"."component_type" = 'Discussion' LIMIT 1[0m
+  [1m[35mProject Load (0.1ms)[0m  SELECT "projects".* FROM "projects" WHERE "projects"."id" = 1 LIMIT 1
+  [1m[36mProject Load (0.1ms)[0m  [1mSELECT "projects".* FROM "projects" WHERE "projects"."id" = 1 LIMIT 1[0m
+  [1m[35mProject Load (0.1ms)[0m  SELECT "projects".* FROM "projects" WHERE "projects"."id" = 1 LIMIT 1
+  [1m[36mPermissionLink Exists (0.1ms)[0m  [1mSELECT 1 FROM "permission_links" WHERE ("permission_links"."component_id" = 1 AND "permission_links"."joinable_type" = 'Project' AND "permission_links"."joinable_id" = 1 AND "permission_links"."component_type" = 'Discussion') LIMIT 1[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "permission_links" ("component_id", "component_type", "component_view_permission", "joinable_id", "joinable_type") VALUES (?, ?, ?, ?, ?)  [["component_id", 1], ["component_type", "Discussion"], ["component_view_permission", :view], ["joinable_id", 1], ["joinable_type", "Project"]]
+  [1m[36m (0.0ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.8ms)[0m  rollback transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.0ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "users" ("name") VALUES (?)[0m  [["name", "Ryan"]]
+  [1m[35m (0.0ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.0ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35m (0.0ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.0ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "projects" ("user_id") VALUES (?)  [["user_id", 1]]
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "default_permission_sets" ("created_at", "joinable_id", "joinable_type", "permissions", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["created_at", Wed, 06 Jun 2012 18:32:43 UTC +00:00], ["joinable_id", 1], ["joinable_type", "Project"], ["permissions", "find"], ["updated_at", Wed, 06 Jun 2012 18:32:43 UTC +00:00]]
+  [1m[35mMembership Exists (0.1ms)[0m  SELECT 1 FROM "memberships" WHERE "memberships"."joinable_type" = 'Project' AND "memberships"."joinable_id" = 1 AND "memberships"."user_id" = 1 LIMIT 1
+  [1m[36mMembership Exists (0.1ms)[0m  [1mSELECT 1 FROM "memberships" WHERE ("memberships"."user_id" = 1 AND "memberships"."joinable_type" = 'Project' AND "memberships"."joinable_id" = 1) LIMIT 1[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "memberships" ("created_at", "joinable_id", "joinable_type", "permissions", "updated_at", "user_id") VALUES (?, ?, ?, ?, ?, ?)  [["created_at", Wed, 06 Jun 2012 18:32:43 UTC +00:00], ["joinable_id", 1], ["joinable_type", "Project"], ["permissions", "find view view_discussions create_discussions delete_discussions manage own"], ["updated_at", Wed, 06 Jun 2012 18:32:43 UTC +00:00], ["user_id", 1]]
+  [1m[36mMembershipInvitation Load (0.1ms)[0m  [1mSELECT "membership_invitations".* FROM "membership_invitations" WHERE "membership_invitations"."joinable_id" = 1 AND "membership_invitations"."joinable_type" = 'Project' AND "membership_invitations"."user_id" = 1 LIMIT 1[0m
+  [1m[35mMembershipRequest Load (0.2ms)[0m  SELECT "membership_requests".* FROM "membership_requests" WHERE "membership_requests"."joinable_id" = 1 AND "membership_requests"."joinable_type" = 'Project' AND "membership_requests"."user_id" = 1 LIMIT 1
+  [1m[36m (0.0ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.0ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "discussions" ("discussable_id", "discussable_type") VALUES (?, ?)[0m  [["discussable_id", 1], ["discussable_type", "Project"]]
+  [1m[35mPermissionLink Load (0.1ms)[0m  SELECT "permission_links".* FROM "permission_links" WHERE "permission_links"."component_id" = 1 AND "permission_links"."component_type" = 'Discussion' LIMIT 1
+  [1m[36mProject Load (0.1ms)[0m  [1mSELECT "projects".* FROM "projects" WHERE "projects"."id" = 1 LIMIT 1[0m
+  [1m[35mProject Load (0.1ms)[0m  SELECT "projects".* FROM "projects" WHERE "projects"."id" = 1 LIMIT 1
+  [1m[36mProject Load (0.1ms)[0m  [1mSELECT "projects".* FROM "projects" WHERE "projects"."id" = 1 LIMIT 1[0m
+  [1m[35mPermissionLink Exists (0.1ms)[0m  SELECT 1 FROM "permission_links" WHERE ("permission_links"."component_id" = 1 AND "permission_links"."joinable_type" = 'Project' AND "permission_links"."joinable_id" = 1 AND "permission_links"."component_type" = 'Discussion') LIMIT 1
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "permission_links" ("component_id", "component_type", "component_view_permission", "joinable_id", "joinable_type") VALUES (?, ?, ?, ?, ?)[0m  [["component_id", 1], ["component_type", "Discussion"], ["component_view_permission", :view_discussions], ["joinable_id", 1], ["joinable_type", "Project"]]
+  [1m[35m (0.0ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.8ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36m (0.0ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "users" ("name") VALUES (?)  [["name", "Ryan"]]
+  [1m[36m (0.0ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.0ms)[0m  SAVEPOINT active_record_1
+  [1m[36m (0.0ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.0ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "projects" ("user_id") VALUES (?)[0m  [["user_id", 1]]
+  [1m[35mSQL (0.4ms)[0m  INSERT INTO "default_permission_sets" ("created_at", "joinable_id", "joinable_type", "permissions", "updated_at") VALUES (?, ?, ?, ?, ?)  [["created_at", Wed, 06 Jun 2012 18:32:43 UTC +00:00], ["joinable_id", 1], ["joinable_type", "Project"], ["permissions", "find"], ["updated_at", Wed, 06 Jun 2012 18:32:43 UTC +00:00]]
+  [1m[36mMembership Exists (0.1ms)[0m  [1mSELECT 1 FROM "memberships" WHERE "memberships"."joinable_type" = 'Project' AND "memberships"."joinable_id" = 1 AND "memberships"."user_id" = 1 LIMIT 1[0m
+  [1m[35mMembership Exists (0.1ms)[0m  SELECT 1 FROM "memberships" WHERE ("memberships"."user_id" = 1 AND "memberships"."joinable_type" = 'Project' AND "memberships"."joinable_id" = 1) LIMIT 1
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "memberships" ("created_at", "joinable_id", "joinable_type", "permissions", "updated_at", "user_id") VALUES (?, ?, ?, ?, ?, ?)[0m  [["created_at", Wed, 06 Jun 2012 18:32:43 UTC +00:00], ["joinable_id", 1], ["joinable_type", "Project"], ["permissions", "find view view_discussions create_discussions delete_discussions manage own"], ["updated_at", Wed, 06 Jun 2012 18:32:43 UTC +00:00], ["user_id", 1]]
+  [1m[35mMembershipInvitation Load (0.1ms)[0m  SELECT "membership_invitations".* FROM "membership_invitations" WHERE "membership_invitations"."joinable_id" = 1 AND "membership_invitations"."joinable_type" = 'Project' AND "membership_invitations"."user_id" = 1 LIMIT 1
+  [1m[36mMembershipRequest Load (0.1ms)[0m  [1mSELECT "membership_requests".* FROM "membership_requests" WHERE "membership_requests"."joinable_id" = 1 AND "membership_requests"."joinable_type" = 'Project' AND "membership_requests"."user_id" = 1 LIMIT 1[0m
+  [1m[35m (0.0ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.1ms)[0m  [1mSELECT COUNT(*) FROM "memberships" WHERE "memberships"."joinable_id" = 1 AND "memberships"."joinable_type" = 'Project'[0m
+  [1m[35mMembership Load (0.1ms)[0m  SELECT "memberships".* FROM "memberships" WHERE "memberships"."joinable_id" = 1 AND "memberships"."joinable_type" = 'Project' ORDER BY id ASC LIMIT 1
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = 1 LIMIT 1[0m
+  [1m[35m (0.8ms)[0m  rollback transaction
+Connecting to database specified by database.yml
+  [1m[36m (0.1ms)[0m  [1mSELECT "schema_migrations"."version" FROM "schema_migrations" [0m
+Migrating to InitialTables (20120604220913)
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.5ms)[0m  INSERT INTO "users" ("name") VALUES (?)  [["name", "Ryan"]]
+  [1m[36m (0.0ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36m (0.0ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.0ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (3.5ms)[0m  [1mINSERT INTO "projects" ("user_id") VALUES (?)[0m  [["user_id", 1]]
+  [1m[35mSQL (0.9ms)[0m  INSERT INTO "default_permission_sets" ("created_at", "joinable_id", "joinable_type", "permissions", "updated_at") VALUES (?, ?, ?, ?, ?)  [["created_at", Wed, 06 Jun 2012 18:33:59 UTC +00:00], ["joinable_id", 1], ["joinable_type", "Project"], ["permissions", "find"], ["updated_at", Wed, 06 Jun 2012 18:33:59 UTC +00:00]]
+  [1m[36mMembership Exists (0.1ms)[0m  [1mSELECT 1 FROM "memberships" WHERE "memberships"."joinable_type" = 'Project' AND "memberships"."joinable_id" = 1 AND "memberships"."user_id" = 1 LIMIT 1[0m
+  [1m[35mMembership Exists (0.1ms)[0m  SELECT 1 FROM "memberships" WHERE ("memberships"."user_id" = 1 AND "memberships"."joinable_type" = 'Project' AND "memberships"."joinable_id" = 1) LIMIT 1
+  [1m[36mSQL (0.4ms)[0m  [1mINSERT INTO "memberships" ("created_at", "joinable_id", "joinable_type", "permissions", "updated_at", "user_id") VALUES (?, ?, ?, ?, ?, ?)[0m  [["created_at", Wed, 06 Jun 2012 18:33:59 UTC +00:00], ["joinable_id", 1], ["joinable_type", "Project"], ["permissions", "find view view_discussions create_discussions delete_discussions manage own"], ["updated_at", Wed, 06 Jun 2012 18:33:59 UTC +00:00], ["user_id", 1]]
+  [1m[35mMembershipInvitation Load (0.1ms)[0m  SELECT "membership_invitations".* FROM "membership_invitations" WHERE "membership_invitations"."joinable_id" = 1 AND "membership_invitations"."joinable_type" = 'Project' AND "membership_invitations"."user_id" = 1 LIMIT 1
+  [1m[36mMembershipRequest Load (0.1ms)[0m  [1mSELECT "membership_requests".* FROM "membership_requests" WHERE "membership_requests"."joinable_id" = 1 AND "membership_requests"."joinable_type" = 'Project' AND "membership_requests"."user_id" = 1 LIMIT 1[0m
+  [1m[35m (0.0ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.0ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "discussions" ("discussable_id", "discussable_type") VALUES (?, ?)  [["discussable_id", 1], ["discussable_type", "Project"]]
+  [1m[36mPermissionLink Load (0.4ms)[0m  [1mSELECT "permission_links".* FROM "permission_links" WHERE "permission_links"."component_id" = 1 AND "permission_links"."component_type" = 'Discussion' LIMIT 1[0m
+  [1m[35mProject Load (0.1ms)[0m  SELECT "projects".* FROM "projects" WHERE "projects"."id" = 1 LIMIT 1
+  [1m[36mProject Load (0.1ms)[0m  [1mSELECT "projects".* FROM "projects" WHERE "projects"."id" = 1 LIMIT 1[0m
+  [1m[35mProject Load (0.1ms)[0m  SELECT "projects".* FROM "projects" WHERE "projects"."id" = 1 LIMIT 1
+  [1m[36mPermissionLink Exists (0.1ms)[0m  [1mSELECT 1 FROM "permission_links" WHERE ("permission_links"."component_id" = 1 AND "permission_links"."joinable_type" = 'Project' AND "permission_links"."joinable_id" = 1 AND "permission_links"."component_type" = 'Discussion') LIMIT 1[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "permission_links" ("component_id", "component_type", "component_view_permission", "joinable_id", "joinable_type") VALUES (?, ?, ?, ?, ?)  [["component_id", 1], ["component_type", "Discussion"], ["component_view_permission", "create_discussions"], ["joinable_id", 1], ["joinable_type", "Project"]]
+  [1m[36m (0.0ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.8ms)[0m  rollback transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.0ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "users" ("name") VALUES (?)[0m  [["name", "Ryan"]]
+  [1m[35m (0.0ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.0ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35m (0.0ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.0ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.4ms)[0m  INSERT INTO "projects" ("user_id") VALUES (?)  [["user_id", 1]]
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "default_permission_sets" ("created_at", "joinable_id", "joinable_type", "permissions", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["created_at", Wed, 06 Jun 2012 18:33:59 UTC +00:00], ["joinable_id", 1], ["joinable_type", "Project"], ["permissions", "find"], ["updated_at", Wed, 06 Jun 2012 18:33:59 UTC +00:00]]
+  [1m[35mMembership Exists (0.1ms)[0m  SELECT 1 FROM "memberships" WHERE "memberships"."joinable_type" = 'Project' AND "memberships"."joinable_id" = 1 AND "memberships"."user_id" = 1 LIMIT 1
+  [1m[36mMembership Exists (0.1ms)[0m  [1mSELECT 1 FROM "memberships" WHERE ("memberships"."user_id" = 1 AND "memberships"."joinable_type" = 'Project' AND "memberships"."joinable_id" = 1) LIMIT 1[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "memberships" ("created_at", "joinable_id", "joinable_type", "permissions", "updated_at", "user_id") VALUES (?, ?, ?, ?, ?, ?)  [["created_at", Wed, 06 Jun 2012 18:33:59 UTC +00:00], ["joinable_id", 1], ["joinable_type", "Project"], ["permissions", "find view view_discussions create_discussions delete_discussions manage own"], ["updated_at", Wed, 06 Jun 2012 18:33:59 UTC +00:00], ["user_id", 1]]
+  [1m[36mMembershipInvitation Load (0.1ms)[0m  [1mSELECT "membership_invitations".* FROM "membership_invitations" WHERE "membership_invitations"."joinable_id" = 1 AND "membership_invitations"."joinable_type" = 'Project' AND "membership_invitations"."user_id" = 1 LIMIT 1[0m
+  [1m[35mMembershipRequest Load (0.1ms)[0m  SELECT "membership_requests".* FROM "membership_requests" WHERE "membership_requests"."joinable_id" = 1 AND "membership_requests"."joinable_type" = 'Project' AND "membership_requests"."user_id" = 1 LIMIT 1
+  [1m[36m (0.0ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.0ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "discussions" ("discussable_id", "discussable_type") VALUES (?, ?)[0m  [["discussable_id", 1], ["discussable_type", "Project"]]
+  [1m[35mPermissionLink Load (0.1ms)[0m  SELECT "permission_links".* FROM "permission_links" WHERE "permission_links"."component_id" = 1 AND "permission_links"."component_type" = 'Discussion' LIMIT 1
+  [1m[36mProject Load (0.1ms)[0m  [1mSELECT "projects".* FROM "projects" WHERE "projects"."id" = 1 LIMIT 1[0m
+  [1m[35mProject Load (0.1ms)[0m  SELECT "projects".* FROM "projects" WHERE "projects"."id" = 1 LIMIT 1
+  [1m[36mProject Load (0.1ms)[0m  [1mSELECT "projects".* FROM "projects" WHERE "projects"."id" = 1 LIMIT 1[0m
+  [1m[35mPermissionLink Exists (0.1ms)[0m  SELECT 1 FROM "permission_links" WHERE ("permission_links"."component_id" = 1 AND "permission_links"."joinable_type" = 'Project' AND "permission_links"."joinable_id" = 1 AND "permission_links"."component_type" = 'Discussion') LIMIT 1
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "permission_links" ("component_id", "component_type", "component_view_permission", "joinable_id", "joinable_type") VALUES (?, ?, ?, ?, ?)[0m  [["component_id", 1], ["component_type", "Discussion"], ["component_view_permission", :view], ["joinable_id", 1], ["joinable_type", "Project"]]
+  [1m[35m (0.0ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.7ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36m (0.0ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "users" ("name") VALUES (?)  [["name", "Ryan"]]
+  [1m[36m (0.0ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.0ms)[0m  SAVEPOINT active_record_1
+  [1m[36m (0.0ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.0ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "projects" ("user_id") VALUES (?)[0m  [["user_id", 1]]
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "default_permission_sets" ("created_at", "joinable_id", "joinable_type", "permissions", "updated_at") VALUES (?, ?, ?, ?, ?)  [["created_at", Wed, 06 Jun 2012 18:33:59 UTC +00:00], ["joinable_id", 1], ["joinable_type", "Project"], ["permissions", "find"], ["updated_at", Wed, 06 Jun 2012 18:33:59 UTC +00:00]]
+  [1m[36mMembership Exists (0.1ms)[0m  [1mSELECT 1 FROM "memberships" WHERE "memberships"."joinable_type" = 'Project' AND "memberships"."joinable_id" = 1 AND "memberships"."user_id" = 1 LIMIT 1[0m
+  [1m[35mMembership Exists (0.1ms)[0m  SELECT 1 FROM "memberships" WHERE ("memberships"."user_id" = 1 AND "memberships"."joinable_type" = 'Project' AND "memberships"."joinable_id" = 1) LIMIT 1
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "memberships" ("created_at", "joinable_id", "joinable_type", "permissions", "updated_at", "user_id") VALUES (?, ?, ?, ?, ?, ?)[0m  [["created_at", Wed, 06 Jun 2012 18:33:59 UTC +00:00], ["joinable_id", 1], ["joinable_type", "Project"], ["permissions", "find view view_discussions create_discussions delete_discussions manage own"], ["updated_at", Wed, 06 Jun 2012 18:33:59 UTC +00:00], ["user_id", 1]]
+  [1m[35mMembershipInvitation Load (0.1ms)[0m  SELECT "membership_invitations".* FROM "membership_invitations" WHERE "membership_invitations"."joinable_id" = 1 AND "membership_invitations"."joinable_type" = 'Project' AND "membership_invitations"."user_id" = 1 LIMIT 1
+  [1m[36mMembershipRequest Load (0.1ms)[0m  [1mSELECT "membership_requests".* FROM "membership_requests" WHERE "membership_requests"."joinable_id" = 1 AND "membership_requests"."joinable_type" = 'Project' AND "membership_requests"."user_id" = 1 LIMIT 1[0m
+  [1m[35m (0.0ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.0ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "discussions" ("discussable_id", "discussable_type") VALUES (?, ?)  [["discussable_id", 1], ["discussable_type", "Project"]]
+  [1m[36mPermissionLink Load (0.1ms)[0m  [1mSELECT "permission_links".* FROM "permission_links" WHERE "permission_links"."component_id" = 1 AND "permission_links"."component_type" = 'Discussion' LIMIT 1[0m
+  [1m[35mProject Load (0.1ms)[0m  SELECT "projects".* FROM "projects" WHERE "projects"."id" = 1 LIMIT 1
+  [1m[36mProject Load (0.1ms)[0m  [1mSELECT "projects".* FROM "projects" WHERE "projects"."id" = 1 LIMIT 1[0m
+  [1m[35mProject Load (0.1ms)[0m  SELECT "projects".* FROM "projects" WHERE "projects"."id" = 1 LIMIT 1
+  [1m[36mPermissionLink Exists (0.1ms)[0m  [1mSELECT 1 FROM "permission_links" WHERE ("permission_links"."component_id" = 1 AND "permission_links"."joinable_type" = 'Project' AND "permission_links"."joinable_id" = 1 AND "permission_links"."component_type" = 'Discussion') LIMIT 1[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "permission_links" ("component_id", "component_type", "component_view_permission", "joinable_id", "joinable_type") VALUES (?, ?, ?, ?, ?)  [["component_id", 1], ["component_type", "Discussion"], ["component_view_permission", :view_discussions], ["joinable_id", 1], ["joinable_type", "Project"]]
+  [1m[36m (0.0ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.8ms)[0m  rollback transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.0ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "users" ("name") VALUES (?)[0m  [["name", "Ryan"]]
+  [1m[35m (0.0ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.0ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35m (0.0ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.0ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.4ms)[0m  INSERT INTO "projects" ("user_id") VALUES (?)  [["user_id", 1]]
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "default_permission_sets" ("created_at", "joinable_id", "joinable_type", "permissions", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["created_at", Wed, 06 Jun 2012 18:33:59 UTC +00:00], ["joinable_id", 1], ["joinable_type", "Project"], ["permissions", "find"], ["updated_at", Wed, 06 Jun 2012 18:33:59 UTC +00:00]]
+  [1m[35mMembership Exists (0.1ms)[0m  SELECT 1 FROM "memberships" WHERE "memberships"."joinable_type" = 'Project' AND "memberships"."joinable_id" = 1 AND "memberships"."user_id" = 1 LIMIT 1
+  [1m[36mMembership Exists (0.1ms)[0m  [1mSELECT 1 FROM "memberships" WHERE ("memberships"."user_id" = 1 AND "memberships"."joinable_type" = 'Project' AND "memberships"."joinable_id" = 1) LIMIT 1[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "memberships" ("created_at", "joinable_id", "joinable_type", "permissions", "updated_at", "user_id") VALUES (?, ?, ?, ?, ?, ?)  [["created_at", Wed, 06 Jun 2012 18:33:59 UTC +00:00], ["joinable_id", 1], ["joinable_type", "Project"], ["permissions", "find view view_discussions create_discussions delete_discussions manage own"], ["updated_at", Wed, 06 Jun 2012 18:33:59 UTC +00:00], ["user_id", 1]]
+  [1m[36mMembershipInvitation Load (0.1ms)[0m  [1mSELECT "membership_invitations".* FROM "membership_invitations" WHERE "membership_invitations"."joinable_id" = 1 AND "membership_invitations"."joinable_type" = 'Project' AND "membership_invitations"."user_id" = 1 LIMIT 1[0m
+  [1m[35mMembershipRequest Load (0.1ms)[0m  SELECT "membership_requests".* FROM "membership_requests" WHERE "membership_requests"."joinable_id" = 1 AND "membership_requests"."joinable_type" = 'Project' AND "membership_requests"."user_id" = 1 LIMIT 1
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.1ms)[0m  SELECT COUNT(*) FROM "memberships" WHERE "memberships"."joinable_id" = 1 AND "memberships"."joinable_type" = 'Project'
+  [1m[36mMembership Load (0.1ms)[0m  [1mSELECT "memberships".* FROM "memberships" WHERE "memberships"."joinable_id" = 1 AND "memberships"."joinable_type" = 'Project' ORDER BY id ASC LIMIT 1[0m
+  [1m[35mUser Load (0.1ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = 1 LIMIT 1
+  [1m[36m (0.7ms)[0m  [1mrollback transaction[0m
+Connecting to database specified by database.yml
+  [1m[36m (0.1ms)[0m  [1mSELECT "schema_migrations"."version" FROM "schema_migrations" [0m
+Migrating to InitialTables (20120604220913)
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.7ms)[0m  INSERT INTO "users" ("name") VALUES (?)  [["name", "Ryan"]]
+  [1m[36m (0.0ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36m (0.0ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.0ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (26.6ms)[0m  [1mINSERT INTO "projects" ("user_id") VALUES (?)[0m  [["user_id", 1]]
+  [1m[35mSQL (11.9ms)[0m  INSERT INTO "default_permission_sets" ("created_at", "joinable_id", "joinable_type", "permissions", "updated_at") VALUES (?, ?, ?, ?, ?)  [["created_at", Wed, 06 Jun 2012 18:45:30 UTC +00:00], ["joinable_id", 1], ["joinable_type", "Project"], ["permissions", "find"], ["updated_at", Wed, 06 Jun 2012 18:45:30 UTC +00:00]]
+  [1m[36mMembership Exists (0.2ms)[0m  [1mSELECT 1 FROM "memberships" WHERE "memberships"."joinable_type" = 'Project' AND "memberships"."joinable_id" = 1 AND "memberships"."user_id" = 1 LIMIT 1[0m
+  [1m[35mMembership Exists (0.1ms)[0m  SELECT 1 FROM "memberships" WHERE ("memberships"."user_id" = 1 AND "memberships"."joinable_type" = 'Project' AND "memberships"."joinable_id" = 1) LIMIT 1
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "memberships" ("created_at", "joinable_id", "joinable_type", "permissions", "updated_at", "user_id") VALUES (?, ?, ?, ?, ?, ?)[0m  [["created_at", Wed, 06 Jun 2012 18:45:30 UTC +00:00], ["joinable_id", 1], ["joinable_type", "Project"], ["permissions", "find view view_discussions create_discussions delete_discussions manage own"], ["updated_at", Wed, 06 Jun 2012 18:45:30 UTC +00:00], ["user_id", 1]]
+  [1m[35mMembershipInvitation Load (0.1ms)[0m  SELECT "membership_invitations".* FROM "membership_invitations" WHERE "membership_invitations"."joinable_id" = 1 AND "membership_invitations"."joinable_type" = 'Project' AND "membership_invitations"."user_id" = 1 LIMIT 1
+  [1m[36mMembershipRequest Load (0.1ms)[0m  [1mSELECT "membership_requests".* FROM "membership_requests" WHERE "membership_requests"."joinable_id" = 1 AND "membership_requests"."joinable_type" = 'Project' AND "membership_requests"."user_id" = 1 LIMIT 1[0m
+  [1m[35m (0.0ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.0ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "discussions" ("discussable_id", "discussable_type") VALUES (?, ?)  [["discussable_id", 1], ["discussable_type", "Project"]]
+  [1m[36mPermissionLink Load (0.1ms)[0m  [1mSELECT "permission_links".* FROM "permission_links" WHERE "permission_links"."component_id" = 1 AND "permission_links"."component_type" = 'Discussion' LIMIT 1[0m
+  [1m[35mProject Load (0.1ms)[0m  SELECT "projects".* FROM "projects" WHERE "projects"."id" = 1 LIMIT 1
+  [1m[36mProject Load (0.1ms)[0m  [1mSELECT "projects".* FROM "projects" WHERE "projects"."id" = 1 LIMIT 1[0m
+  [1m[35mProject Load (0.1ms)[0m  SELECT "projects".* FROM "projects" WHERE "projects"."id" = 1 LIMIT 1
+  [1m[36mPermissionLink Exists (0.2ms)[0m  [1mSELECT 1 FROM "permission_links" WHERE ("permission_links"."component_id" = 1 AND "permission_links"."joinable_type" = 'Project' AND "permission_links"."joinable_id" = 1 AND "permission_links"."component_type" = 'Discussion') LIMIT 1[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "permission_links" ("component_id", "component_type", "component_view_permission", "joinable_id", "joinable_type") VALUES (?, ?, ?, ?, ?)  [["component_id", 1], ["component_type", "Discussion"], ["component_view_permission", "create_discussions"], ["joinable_id", 1], ["joinable_type", "Project"]]
+  [1m[36m (0.0ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (1.0ms)[0m  rollback transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.0ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "users" ("name") VALUES (?)[0m  [["name", "Ryan"]]
+  [1m[35m (0.0ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.0ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35m (0.0ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.0ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "projects" ("user_id") VALUES (?)  [["user_id", 1]]
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "default_permission_sets" ("created_at", "joinable_id", "joinable_type", "permissions", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["created_at", Wed, 06 Jun 2012 18:45:30 UTC +00:00], ["joinable_id", 1], ["joinable_type", "Project"], ["permissions", "find"], ["updated_at", Wed, 06 Jun 2012 18:45:30 UTC +00:00]]
+  [1m[35mMembership Exists (0.1ms)[0m  SELECT 1 FROM "memberships" WHERE "memberships"."joinable_type" = 'Project' AND "memberships"."joinable_id" = 1 AND "memberships"."user_id" = 1 LIMIT 1
+  [1m[36mMembership Exists (0.1ms)[0m  [1mSELECT 1 FROM "memberships" WHERE ("memberships"."user_id" = 1 AND "memberships"."joinable_type" = 'Project' AND "memberships"."joinable_id" = 1) LIMIT 1[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "memberships" ("created_at", "joinable_id", "joinable_type", "permissions", "updated_at", "user_id") VALUES (?, ?, ?, ?, ?, ?)  [["created_at", Wed, 06 Jun 2012 18:45:30 UTC +00:00], ["joinable_id", 1], ["joinable_type", "Project"], ["permissions", "find view view_discussions create_discussions delete_discussions manage own"], ["updated_at", Wed, 06 Jun 2012 18:45:30 UTC +00:00], ["user_id", 1]]
+  [1m[36mMembershipInvitation Load (0.1ms)[0m  [1mSELECT "membership_invitations".* FROM "membership_invitations" WHERE "membership_invitations"."joinable_id" = 1 AND "membership_invitations"."joinable_type" = 'Project' AND "membership_invitations"."user_id" = 1 LIMIT 1[0m
+  [1m[35mMembershipRequest Load (0.4ms)[0m  SELECT "membership_requests".* FROM "membership_requests" WHERE "membership_requests"."joinable_id" = 1 AND "membership_requests"."joinable_type" = 'Project' AND "membership_requests"."user_id" = 1 LIMIT 1
+  [1m[36m (0.0ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.0ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "discussions" ("discussable_id", "discussable_type") VALUES (?, ?)[0m  [["discussable_id", 1], ["discussable_type", "Project"]]
+  [1m[35mPermissionLink Load (0.1ms)[0m  SELECT "permission_links".* FROM "permission_links" WHERE "permission_links"."component_id" = 1 AND "permission_links"."component_type" = 'Discussion' LIMIT 1
+  [1m[36mProject Load (0.1ms)[0m  [1mSELECT "projects".* FROM "projects" WHERE "projects"."id" = 1 LIMIT 1[0m
+  [1m[35mProject Load (0.1ms)[0m  SELECT "projects".* FROM "projects" WHERE "projects"."id" = 1 LIMIT 1
+  [1m[36mProject Load (0.1ms)[0m  [1mSELECT "projects".* FROM "projects" WHERE "projects"."id" = 1 LIMIT 1[0m
+  [1m[35mPermissionLink Exists (0.1ms)[0m  SELECT 1 FROM "permission_links" WHERE ("permission_links"."component_id" = 1 AND "permission_links"."joinable_type" = 'Project' AND "permission_links"."joinable_id" = 1 AND "permission_links"."component_type" = 'Discussion') LIMIT 1
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "permission_links" ("component_id", "component_type", "component_view_permission", "joinable_id", "joinable_type") VALUES (?, ?, ?, ?, ?)[0m  [["component_id", 1], ["component_type", "Discussion"], ["component_view_permission", :view], ["joinable_id", 1], ["joinable_type", "Project"]]
+  [1m[35m (0.0ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.8ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36m (0.0ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "users" ("name") VALUES (?)  [["name", "Ryan"]]
+  [1m[36m (0.0ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.0ms)[0m  SAVEPOINT active_record_1
+  [1m[36m (0.0ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.0ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "projects" ("user_id") VALUES (?)[0m  [["user_id", 1]]
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "default_permission_sets" ("created_at", "joinable_id", "joinable_type", "permissions", "updated_at") VALUES (?, ?, ?, ?, ?)  [["created_at", Wed, 06 Jun 2012 18:45:30 UTC +00:00], ["joinable_id", 1], ["joinable_type", "Project"], ["permissions", "find"], ["updated_at", Wed, 06 Jun 2012 18:45:30 UTC +00:00]]
+  [1m[36mMembership Exists (0.1ms)[0m  [1mSELECT 1 FROM "memberships" WHERE "memberships"."joinable_type" = 'Project' AND "memberships"."joinable_id" = 1 AND "memberships"."user_id" = 1 LIMIT 1[0m
+  [1m[35mMembership Exists (0.1ms)[0m  SELECT 1 FROM "memberships" WHERE ("memberships"."user_id" = 1 AND "memberships"."joinable_type" = 'Project' AND "memberships"."joinable_id" = 1) LIMIT 1
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "memberships" ("created_at", "joinable_id", "joinable_type", "permissions", "updated_at", "user_id") VALUES (?, ?, ?, ?, ?, ?)[0m  [["created_at", Wed, 06 Jun 2012 18:45:30 UTC +00:00], ["joinable_id", 1], ["joinable_type", "Project"], ["permissions", "find view view_discussions create_discussions delete_discussions manage own"], ["updated_at", Wed, 06 Jun 2012 18:45:30 UTC +00:00], ["user_id", 1]]
+  [1m[35mMembershipInvitation Load (0.1ms)[0m  SELECT "membership_invitations".* FROM "membership_invitations" WHERE "membership_invitations"."joinable_id" = 1 AND "membership_invitations"."joinable_type" = 'Project' AND "membership_invitations"."user_id" = 1 LIMIT 1
+  [1m[36mMembershipRequest Load (0.3ms)[0m  [1mSELECT "membership_requests".* FROM "membership_requests" WHERE "membership_requests"."joinable_id" = 1 AND "membership_requests"."joinable_type" = 'Project' AND "membership_requests"."user_id" = 1 LIMIT 1[0m
+  [1m[35m (0.0ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.0ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "discussions" ("discussable_id", "discussable_type") VALUES (?, ?)  [["discussable_id", 1], ["discussable_type", "Project"]]
+  [1m[36mPermissionLink Load (0.1ms)[0m  [1mSELECT "permission_links".* FROM "permission_links" WHERE "permission_links"."component_id" = 1 AND "permission_links"."component_type" = 'Discussion' LIMIT 1[0m
+  [1m[35mProject Load (0.1ms)[0m  SELECT "projects".* FROM "projects" WHERE "projects"."id" = 1 LIMIT 1
+  [1m[36mProject Load (0.1ms)[0m  [1mSELECT "projects".* FROM "projects" WHERE "projects"."id" = 1 LIMIT 1[0m
+  [1m[35mProject Load (0.1ms)[0m  SELECT "projects".* FROM "projects" WHERE "projects"."id" = 1 LIMIT 1
+  [1m[36mPermissionLink Exists (0.1ms)[0m  [1mSELECT 1 FROM "permission_links" WHERE ("permission_links"."component_id" = 1 AND "permission_links"."joinable_type" = 'Project' AND "permission_links"."joinable_id" = 1 AND "permission_links"."component_type" = 'Discussion') LIMIT 1[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "permission_links" ("component_id", "component_type", "component_view_permission", "joinable_id", "joinable_type") VALUES (?, ?, ?, ?, ?)  [["component_id", 1], ["component_type", "Discussion"], ["component_view_permission", :view_discussions], ["joinable_id", 1], ["joinable_type", "Project"]]
+  [1m[36m (0.0ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.8ms)[0m  rollback transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.0ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "users" ("name") VALUES (?)[0m  [["name", "Ryan"]]
+  [1m[35m (0.0ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.0ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35m (0.0ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.0ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "projects" ("user_id") VALUES (?)  [["user_id", 1]]
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "default_permission_sets" ("created_at", "joinable_id", "joinable_type", "permissions", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["created_at", Wed, 06 Jun 2012 18:45:30 UTC +00:00], ["joinable_id", 1], ["joinable_type", "Project"], ["permissions", "find"], ["updated_at", Wed, 06 Jun 2012 18:45:30 UTC +00:00]]
+  [1m[35mMembership Exists (0.1ms)[0m  SELECT 1 FROM "memberships" WHERE "memberships"."joinable_type" = 'Project' AND "memberships"."joinable_id" = 1 AND "memberships"."user_id" = 1 LIMIT 1
+  [1m[36mMembership Exists (0.1ms)[0m  [1mSELECT 1 FROM "memberships" WHERE ("memberships"."user_id" = 1 AND "memberships"."joinable_type" = 'Project' AND "memberships"."joinable_id" = 1) LIMIT 1[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "memberships" ("created_at", "joinable_id", "joinable_type", "permissions", "updated_at", "user_id") VALUES (?, ?, ?, ?, ?, ?)  [["created_at", Wed, 06 Jun 2012 18:45:30 UTC +00:00], ["joinable_id", 1], ["joinable_type", "Project"], ["permissions", "find view view_discussions create_discussions delete_discussions manage own"], ["updated_at", Wed, 06 Jun 2012 18:45:30 UTC +00:00], ["user_id", 1]]
+  [1m[36mMembershipInvitation Load (0.1ms)[0m  [1mSELECT "membership_invitations".* FROM "membership_invitations" WHERE "membership_invitations"."joinable_id" = 1 AND "membership_invitations"."joinable_type" = 'Project' AND "membership_invitations"."user_id" = 1 LIMIT 1[0m
+  [1m[35mMembershipRequest Load (0.1ms)[0m  SELECT "membership_requests".* FROM "membership_requests" WHERE "membership_requests"."joinable_id" = 1 AND "membership_requests"."joinable_type" = 'Project' AND "membership_requests"."user_id" = 1 LIMIT 1
+  [1m[36m (0.0ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.0ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "discussions" ("discussable_id", "discussable_type") VALUES (?, ?)[0m  [["discussable_id", 1], ["discussable_type", "Project"]]
+  [1m[35mPermissionLink Load (0.1ms)[0m  SELECT "permission_links".* FROM "permission_links" WHERE "permission_links"."component_id" = 1 AND "permission_links"."component_type" = 'Discussion' LIMIT 1
+  [1m[36mProject Load (0.1ms)[0m  [1mSELECT "projects".* FROM "projects" WHERE "projects"."id" = 1 LIMIT 1[0m
+  [1m[35mProject Load (0.1ms)[0m  SELECT "projects".* FROM "projects" WHERE "projects"."id" = 1 LIMIT 1
+  [1m[36mProject Load (0.1ms)[0m  [1mSELECT "projects".* FROM "projects" WHERE "projects"."id" = 1 LIMIT 1[0m
+  [1m[35mPermissionLink Exists (0.1ms)[0m  SELECT 1 FROM "permission_links" WHERE ("permission_links"."component_id" = 1 AND "permission_links"."joinable_type" = 'Project' AND "permission_links"."joinable_id" = 1 AND "permission_links"."component_type" = 'Discussion') LIMIT 1
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "permission_links" ("component_id", "component_type", "component_view_permission", "joinable_id", "joinable_type") VALUES (?, ?, ?, ?, ?)[0m  [["component_id", 1], ["component_type", "Discussion"], ["component_view_permission", :view], ["joinable_id", 1], ["joinable_type", "Project"]]
+  [1m[35m (0.0ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.8ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.2ms)[0m  begin transaction
+  [1m[36m (0.0ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "discussions" ("discussable_id", "discussable_type") VALUES (?, ?)  [["discussable_id", nil], ["discussable_type", nil]]
+  [1m[36mPermissionLink Load (0.1ms)[0m  [1mSELECT "permission_links".* FROM "permission_links" WHERE "permission_links"."component_id" = 1 AND "permission_links"."component_type" = 'Discussion' LIMIT 1[0m
+  [1m[35m (0.0ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.5ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36m (0.0ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "users" ("name") VALUES (?)  [["name", "Ryan"]]
+  [1m[36m (0.0ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.0ms)[0m  SAVEPOINT active_record_1
+  [1m[36m (0.0ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.0ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "projects" ("user_id") VALUES (?)[0m  [["user_id", 1]]
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "default_permission_sets" ("created_at", "joinable_id", "joinable_type", "permissions", "updated_at") VALUES (?, ?, ?, ?, ?)  [["created_at", Wed, 06 Jun 2012 18:45:30 UTC +00:00], ["joinable_id", 1], ["joinable_type", "Project"], ["permissions", "find"], ["updated_at", Wed, 06 Jun 2012 18:45:30 UTC +00:00]]
+  [1m[36mMembership Exists (0.1ms)[0m  [1mSELECT 1 FROM "memberships" WHERE "memberships"."joinable_type" = 'Project' AND "memberships"."joinable_id" = 1 AND "memberships"."user_id" = 1 LIMIT 1[0m
+  [1m[35mMembership Exists (0.1ms)[0m  SELECT 1 FROM "memberships" WHERE ("memberships"."user_id" = 1 AND "memberships"."joinable_type" = 'Project' AND "memberships"."joinable_id" = 1) LIMIT 1
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "memberships" ("created_at", "joinable_id", "joinable_type", "permissions", "updated_at", "user_id") VALUES (?, ?, ?, ?, ?, ?)[0m  [["created_at", Wed, 06 Jun 2012 18:45:30 UTC +00:00], ["joinable_id", 1], ["joinable_type", "Project"], ["permissions", "find view view_discussions create_discussions delete_discussions manage own"], ["updated_at", Wed, 06 Jun 2012 18:45:30 UTC +00:00], ["user_id", 1]]
+  [1m[35mMembershipInvitation Load (0.1ms)[0m  SELECT "membership_invitations".* FROM "membership_invitations" WHERE "membership_invitations"."joinable_id" = 1 AND "membership_invitations"."joinable_type" = 'Project' AND "membership_invitations"."user_id" = 1 LIMIT 1
+  [1m[36mMembershipRequest Load (0.1ms)[0m  [1mSELECT "membership_requests".* FROM "membership_requests" WHERE "membership_requests"."joinable_id" = 1 AND "membership_requests"."joinable_type" = 'Project' AND "membership_requests"."user_id" = 1 LIMIT 1[0m
+  [1m[35m (0.0ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.1ms)[0m  [1mSELECT COUNT(*) FROM "memberships" WHERE "memberships"."joinable_id" = 1 AND "memberships"."joinable_type" = 'Project'[0m
+  [1m[35mMembership Load (0.1ms)[0m  SELECT "memberships".* FROM "memberships" WHERE "memberships"."joinable_id" = 1 AND "memberships"."joinable_type" = 'Project' ORDER BY id ASC LIMIT 1
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = 1 LIMIT 1[0m
+  [1m[35m (0.7ms)[0m  rollback transaction
+Connecting to database specified by database.yml
+  [1m[36m (0.1ms)[0m  [1mSELECT "schema_migrations"."version" FROM "schema_migrations" [0m
+Migrating to InitialTables (20120604220913)
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.6ms)[0m  INSERT INTO "users" ("name") VALUES (?)  [["name", "Ryan"]]
+  [1m[36m (0.0ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36m (0.0ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.0ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (3.6ms)[0m  [1mINSERT INTO "projects" ("user_id") VALUES (?)[0m  [["user_id", 1]]
+  [1m[35mSQL (1.4ms)[0m  INSERT INTO "default_permission_sets" ("created_at", "joinable_id", "joinable_type", "permissions", "updated_at") VALUES (?, ?, ?, ?, ?)  [["created_at", Wed, 06 Jun 2012 18:46:18 UTC +00:00], ["joinable_id", 1], ["joinable_type", "Project"], ["permissions", "find"], ["updated_at", Wed, 06 Jun 2012 18:46:18 UTC +00:00]]
+  [1m[36mMembership Exists (0.1ms)[0m  [1mSELECT 1 FROM "memberships" WHERE "memberships"."joinable_type" = 'Project' AND "memberships"."joinable_id" = 1 AND "memberships"."user_id" = 1 LIMIT 1[0m
+  [1m[35mMembership Exists (0.2ms)[0m  SELECT 1 FROM "memberships" WHERE ("memberships"."user_id" = 1 AND "memberships"."joinable_type" = 'Project' AND "memberships"."joinable_id" = 1) LIMIT 1
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "memberships" ("created_at", "joinable_id", "joinable_type", "permissions", "updated_at", "user_id") VALUES (?, ?, ?, ?, ?, ?)[0m  [["created_at", Wed, 06 Jun 2012 18:46:18 UTC +00:00], ["joinable_id", 1], ["joinable_type", "Project"], ["permissions", "find view view_discussions create_discussions delete_discussions manage own"], ["updated_at", Wed, 06 Jun 2012 18:46:18 UTC +00:00], ["user_id", 1]]
+  [1m[35mMembershipInvitation Load (0.1ms)[0m  SELECT "membership_invitations".* FROM "membership_invitations" WHERE "membership_invitations"."joinable_id" = 1 AND "membership_invitations"."joinable_type" = 'Project' AND "membership_invitations"."user_id" = 1 LIMIT 1
+  [1m[36mMembershipRequest Load (0.1ms)[0m  [1mSELECT "membership_requests".* FROM "membership_requests" WHERE "membership_requests"."joinable_id" = 1 AND "membership_requests"."joinable_type" = 'Project' AND "membership_requests"."user_id" = 1 LIMIT 1[0m
+  [1m[35m (0.0ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "discussions" ("discussable_id", "discussable_type") VALUES (?, ?)  [["discussable_id", 1], ["discussable_type", "Project"]]
+  [1m[36mPermissionLink Load (0.1ms)[0m  [1mSELECT "permission_links".* FROM "permission_links" WHERE "permission_links"."component_id" = 1 AND "permission_links"."component_type" = 'Discussion' LIMIT 1[0m
+  [1m[35mProject Load (0.1ms)[0m  SELECT "projects".* FROM "projects" WHERE "projects"."id" = 1 LIMIT 1
+  [1m[36mProject Load (0.1ms)[0m  [1mSELECT "projects".* FROM "projects" WHERE "projects"."id" = 1 LIMIT 1[0m
+  [1m[35mProject Load (0.1ms)[0m  SELECT "projects".* FROM "projects" WHERE "projects"."id" = 1 LIMIT 1
+  [1m[36mPermissionLink Exists (0.1ms)[0m  [1mSELECT 1 FROM "permission_links" WHERE ("permission_links"."component_id" = 1 AND "permission_links"."joinable_type" = 'Project' AND "permission_links"."joinable_id" = 1 AND "permission_links"."component_type" = 'Discussion') LIMIT 1[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "permission_links" ("component_id", "component_type", "component_view_permission", "joinable_id", "joinable_type") VALUES (?, ?, ?, ?, ?)  [["component_id", 1], ["component_type", "Discussion"], ["component_view_permission", "create_discussions"], ["joinable_id", 1], ["joinable_type", "Project"]]
+  [1m[36m (0.0ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (1.1ms)[0m  rollback transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.0ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "users" ("name") VALUES (?)[0m  [["name", "Ryan"]]
+  [1m[35m (0.0ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.0ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35m (0.0ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.2ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "projects" ("user_id") VALUES (?)  [["user_id", 1]]
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "default_permission_sets" ("created_at", "joinable_id", "joinable_type", "permissions", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["created_at", Wed, 06 Jun 2012 18:46:19 UTC +00:00], ["joinable_id", 1], ["joinable_type", "Project"], ["permissions", "find"], ["updated_at", Wed, 06 Jun 2012 18:46:19 UTC +00:00]]
+  [1m[35mMembership Exists (0.1ms)[0m  SELECT 1 FROM "memberships" WHERE "memberships"."joinable_type" = 'Project' AND "memberships"."joinable_id" = 1 AND "memberships"."user_id" = 1 LIMIT 1
+  [1m[36mMembership Exists (0.1ms)[0m  [1mSELECT 1 FROM "memberships" WHERE ("memberships"."user_id" = 1 AND "memberships"."joinable_type" = 'Project' AND "memberships"."joinable_id" = 1) LIMIT 1[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "memberships" ("created_at", "joinable_id", "joinable_type", "permissions", "updated_at", "user_id") VALUES (?, ?, ?, ?, ?, ?)  [["created_at", Wed, 06 Jun 2012 18:46:19 UTC +00:00], ["joinable_id", 1], ["joinable_type", "Project"], ["permissions", "find view view_discussions create_discussions delete_discussions manage own"], ["updated_at", Wed, 06 Jun 2012 18:46:19 UTC +00:00], ["user_id", 1]]
+  [1m[36mMembershipInvitation Load (0.1ms)[0m  [1mSELECT "membership_invitations".* FROM "membership_invitations" WHERE "membership_invitations"."joinable_id" = 1 AND "membership_invitations"."joinable_type" = 'Project' AND "membership_invitations"."user_id" = 1 LIMIT 1[0m
+  [1m[35mMembershipRequest Load (0.1ms)[0m  SELECT "membership_requests".* FROM "membership_requests" WHERE "membership_requests"."joinable_id" = 1 AND "membership_requests"."joinable_type" = 'Project' AND "membership_requests"."user_id" = 1 LIMIT 1
+  [1m[36m (0.0ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.0ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "discussions" ("discussable_id", "discussable_type") VALUES (?, ?)[0m  [["discussable_id", 1], ["discussable_type", "Project"]]
+  [1m[35mPermissionLink Load (0.1ms)[0m  SELECT "permission_links".* FROM "permission_links" WHERE "permission_links"."component_id" = 1 AND "permission_links"."component_type" = 'Discussion' LIMIT 1
+  [1m[36mProject Load (0.1ms)[0m  [1mSELECT "projects".* FROM "projects" WHERE "projects"."id" = 1 LIMIT 1[0m
+  [1m[35mProject Load (0.1ms)[0m  SELECT "projects".* FROM "projects" WHERE "projects"."id" = 1 LIMIT 1
+  [1m[36mProject Load (0.1ms)[0m  [1mSELECT "projects".* FROM "projects" WHERE "projects"."id" = 1 LIMIT 1[0m
+  [1m[35mPermissionLink Exists (0.1ms)[0m  SELECT 1 FROM "permission_links" WHERE ("permission_links"."component_id" = 1 AND "permission_links"."joinable_type" = 'Project' AND "permission_links"."joinable_id" = 1 AND "permission_links"."component_type" = 'Discussion') LIMIT 1
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "permission_links" ("component_id", "component_type", "component_view_permission", "joinable_id", "joinable_type") VALUES (?, ?, ?, ?, ?)[0m  [["component_id", 1], ["component_type", "Discussion"], ["component_view_permission", :view], ["joinable_id", 1], ["joinable_type", "Project"]]
+  [1m[35m (0.0ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.8ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.0ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (1.4ms)[0m  INSERT INTO "users" ("name") VALUES (?)  [["name", "Ryan"]]
+  [1m[36m (2.0ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36m (0.0ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.0ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.6ms)[0m  [1mINSERT INTO "projects" ("user_id") VALUES (?)[0m  [["user_id", 1]]
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "default_permission_sets" ("created_at", "joinable_id", "joinable_type", "permissions", "updated_at") VALUES (?, ?, ?, ?, ?)  [["created_at", Wed, 06 Jun 2012 18:46:19 UTC +00:00], ["joinable_id", 1], ["joinable_type", "Project"], ["permissions", "find"], ["updated_at", Wed, 06 Jun 2012 18:46:19 UTC +00:00]]
+  [1m[36mMembership Exists (0.1ms)[0m  [1mSELECT 1 FROM "memberships" WHERE "memberships"."joinable_type" = 'Project' AND "memberships"."joinable_id" = 1 AND "memberships"."user_id" = 1 LIMIT 1[0m
+  [1m[35mMembership Exists (0.1ms)[0m  SELECT 1 FROM "memberships" WHERE ("memberships"."user_id" = 1 AND "memberships"."joinable_type" = 'Project' AND "memberships"."joinable_id" = 1) LIMIT 1
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "memberships" ("created_at", "joinable_id", "joinable_type", "permissions", "updated_at", "user_id") VALUES (?, ?, ?, ?, ?, ?)[0m  [["created_at", Wed, 06 Jun 2012 18:46:19 UTC +00:00], ["joinable_id", 1], ["joinable_type", "Project"], ["permissions", "find view view_discussions create_discussions delete_discussions manage own"], ["updated_at", Wed, 06 Jun 2012 18:46:19 UTC +00:00], ["user_id", 1]]
+  [1m[35mMembershipInvitation Load (0.2ms)[0m  SELECT "membership_invitations".* FROM "membership_invitations" WHERE "membership_invitations"."joinable_id" = 1 AND "membership_invitations"."joinable_type" = 'Project' AND "membership_invitations"."user_id" = 1 LIMIT 1
+  [1m[36mMembershipRequest Load (0.1ms)[0m  [1mSELECT "membership_requests".* FROM "membership_requests" WHERE "membership_requests"."joinable_id" = 1 AND "membership_requests"."joinable_type" = 'Project' AND "membership_requests"."user_id" = 1 LIMIT 1[0m
+  [1m[35m (0.0ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.0ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "discussions" ("discussable_id", "discussable_type") VALUES (?, ?)  [["discussable_id", 1], ["discussable_type", "Project"]]
+  [1m[36mPermissionLink Load (0.1ms)[0m  [1mSELECT "permission_links".* FROM "permission_links" WHERE "permission_links"."component_id" = 1 AND "permission_links"."component_type" = 'Discussion' LIMIT 1[0m
+  [1m[35mProject Load (0.1ms)[0m  SELECT "projects".* FROM "projects" WHERE "projects"."id" = 1 LIMIT 1
+  [1m[36mProject Load (0.1ms)[0m  [1mSELECT "projects".* FROM "projects" WHERE "projects"."id" = 1 LIMIT 1[0m
+  [1m[35mProject Load (0.1ms)[0m  SELECT "projects".* FROM "projects" WHERE "projects"."id" = 1 LIMIT 1
+  [1m[36mPermissionLink Exists (0.1ms)[0m  [1mSELECT 1 FROM "permission_links" WHERE ("permission_links"."component_id" = 1 AND "permission_links"."joinable_type" = 'Project' AND "permission_links"."joinable_id" = 1 AND "permission_links"."component_type" = 'Discussion') LIMIT 1[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "permission_links" ("component_id", "component_type", "component_view_permission", "joinable_id", "joinable_type") VALUES (?, ?, ?, ?, ?)  [["component_id", 1], ["component_type", "Discussion"], ["component_view_permission", :view_discussions], ["joinable_id", 1], ["joinable_type", "Project"]]
+  [1m[36m (0.0ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.8ms)[0m  rollback transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.0ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "users" ("name") VALUES (?)[0m  [["name", "Ryan"]]
+  [1m[35m (0.0ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.0ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35m (0.0ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.0ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.4ms)[0m  INSERT INTO "projects" ("user_id") VALUES (?)  [["user_id", 1]]
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "default_permission_sets" ("created_at", "joinable_id", "joinable_type", "permissions", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["created_at", Wed, 06 Jun 2012 18:46:19 UTC +00:00], ["joinable_id", 1], ["joinable_type", "Project"], ["permissions", "find"], ["updated_at", Wed, 06 Jun 2012 18:46:19 UTC +00:00]]
+  [1m[35mMembership Exists (0.1ms)[0m  SELECT 1 FROM "memberships" WHERE "memberships"."joinable_type" = 'Project' AND "memberships"."joinable_id" = 1 AND "memberships"."user_id" = 1 LIMIT 1
+  [1m[36mMembership Exists (0.1ms)[0m  [1mSELECT 1 FROM "memberships" WHERE ("memberships"."user_id" = 1 AND "memberships"."joinable_type" = 'Project' AND "memberships"."joinable_id" = 1) LIMIT 1[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "memberships" ("created_at", "joinable_id", "joinable_type", "permissions", "updated_at", "user_id") VALUES (?, ?, ?, ?, ?, ?)  [["created_at", Wed, 06 Jun 2012 18:46:19 UTC +00:00], ["joinable_id", 1], ["joinable_type", "Project"], ["permissions", "find view view_discussions create_discussions delete_discussions manage own"], ["updated_at", Wed, 06 Jun 2012 18:46:19 UTC +00:00], ["user_id", 1]]
+  [1m[36mMembershipInvitation Load (0.1ms)[0m  [1mSELECT "membership_invitations".* FROM "membership_invitations" WHERE "membership_invitations"."joinable_id" = 1 AND "membership_invitations"."joinable_type" = 'Project' AND "membership_invitations"."user_id" = 1 LIMIT 1[0m
+  [1m[35mMembershipRequest Load (0.3ms)[0m  SELECT "membership_requests".* FROM "membership_requests" WHERE "membership_requests"."joinable_id" = 1 AND "membership_requests"."joinable_type" = 'Project' AND "membership_requests"."user_id" = 1 LIMIT 1
+  [1m[36m (0.0ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.0ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "discussions" ("discussable_id", "discussable_type") VALUES (?, ?)[0m  [["discussable_id", 1], ["discussable_type", "Project"]]
+  [1m[35mPermissionLink Load (0.1ms)[0m  SELECT "permission_links".* FROM "permission_links" WHERE "permission_links"."component_id" = 1 AND "permission_links"."component_type" = 'Discussion' LIMIT 1
+  [1m[36mProject Load (0.1ms)[0m  [1mSELECT "projects".* FROM "projects" WHERE "projects"."id" = 1 LIMIT 1[0m
+  [1m[35mProject Load (0.1ms)[0m  SELECT "projects".* FROM "projects" WHERE "projects"."id" = 1 LIMIT 1
+  [1m[36mProject Load (0.1ms)[0m  [1mSELECT "projects".* FROM "projects" WHERE "projects"."id" = 1 LIMIT 1[0m
+  [1m[35mPermissionLink Exists (0.1ms)[0m  SELECT 1 FROM "permission_links" WHERE ("permission_links"."component_id" = 1 AND "permission_links"."joinable_type" = 'Project' AND "permission_links"."joinable_id" = 1 AND "permission_links"."component_type" = 'Discussion') LIMIT 1
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "permission_links" ("component_id", "component_type", "component_view_permission", "joinable_id", "joinable_type") VALUES (?, ?, ?, ?, ?)[0m  [["component_id", 1], ["component_type", "Discussion"], ["component_view_permission", :view], ["joinable_id", 1], ["joinable_type", "Project"]]
+  [1m[35m (0.0ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.8ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36m (0.0ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "discussions" ("discussable_id", "discussable_type") VALUES (?, ?)  [["discussable_id", nil], ["discussable_type", nil]]
+  [1m[36mPermissionLink Load (0.1ms)[0m  [1mSELECT "permission_links".* FROM "permission_links" WHERE "permission_links"."component_id" = 1 AND "permission_links"."component_type" = 'Discussion' LIMIT 1[0m
+  [1m[35m (0.0ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.4ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36m (0.0ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "users" ("name") VALUES (?)  [["name", "Ryan"]]
+  [1m[36m (0.0ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.0ms)[0m  SAVEPOINT active_record_1
+  [1m[36m (0.0ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.0ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "projects" ("user_id") VALUES (?)[0m  [["user_id", 1]]
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "default_permission_sets" ("created_at", "joinable_id", "joinable_type", "permissions", "updated_at") VALUES (?, ?, ?, ?, ?)  [["created_at", Wed, 06 Jun 2012 18:46:19 UTC +00:00], ["joinable_id", 1], ["joinable_type", "Project"], ["permissions", "find"], ["updated_at", Wed, 06 Jun 2012 18:46:19 UTC +00:00]]
+  [1m[36mMembership Exists (0.1ms)[0m  [1mSELECT 1 FROM "memberships" WHERE "memberships"."joinable_type" = 'Project' AND "memberships"."joinable_id" = 1 AND "memberships"."user_id" = 1 LIMIT 1[0m
+  [1m[35mMembership Exists (0.1ms)[0m  SELECT 1 FROM "memberships" WHERE ("memberships"."user_id" = 1 AND "memberships"."joinable_type" = 'Project' AND "memberships"."joinable_id" = 1) LIMIT 1
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "memberships" ("created_at", "joinable_id", "joinable_type", "permissions", "updated_at", "user_id") VALUES (?, ?, ?, ?, ?, ?)[0m  [["created_at", Wed, 06 Jun 2012 18:46:19 UTC +00:00], ["joinable_id", 1], ["joinable_type", "Project"], ["permissions", "find view view_discussions create_discussions delete_discussions manage own"], ["updated_at", Wed, 06 Jun 2012 18:46:19 UTC +00:00], ["user_id", 1]]
+  [1m[35mMembershipInvitation Load (0.1ms)[0m  SELECT "membership_invitations".* FROM "membership_invitations" WHERE "membership_invitations"."joinable_id" = 1 AND "membership_invitations"."joinable_type" = 'Project' AND "membership_invitations"."user_id" = 1 LIMIT 1
+  [1m[36mMembershipRequest Load (0.1ms)[0m  [1mSELECT "membership_requests".* FROM "membership_requests" WHERE "membership_requests"."joinable_id" = 1 AND "membership_requests"."joinable_type" = 'Project' AND "membership_requests"."user_id" = 1 LIMIT 1[0m
+  [1m[35m (0.0ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.1ms)[0m  [1mSELECT COUNT(*) FROM "memberships" WHERE "memberships"."joinable_id" = 1 AND "memberships"."joinable_type" = 'Project'[0m
+  [1m[35mMembership Load (0.1ms)[0m  SELECT "memberships".* FROM "memberships" WHERE "memberships"."joinable_id" = 1 AND "memberships"."joinable_type" = 'Project' ORDER BY id ASC LIMIT 1
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = 1 LIMIT 1[0m
+  [1m[35m (0.9ms)[0m  rollback transaction
