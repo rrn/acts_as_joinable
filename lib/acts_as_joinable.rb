@@ -11,6 +11,15 @@ module ActsAsJoinable
       ActiveRecord::Base.send :extend, Joinable::ActsAsJoinable::ActMethod
       ActiveRecord::Base.send :extend, Joinable::ActsAsJoinableComponent::ActMethod
       ActiveRecord::Base.send :extend, Joinable::ActsAsMember::ActMethod
-    end    
+    end   
+
+    config.to_prepare do
+      if defined?(ActsAsFeedable::Engine)
+        require 'joinable/feedable_extensions'
+        FeedableExtensions.add
+      else
+        puts "[ActsAsJoinable] ActsAsFeedable not loaded. Skipping extensions."
+      end
+    end
   end
 end

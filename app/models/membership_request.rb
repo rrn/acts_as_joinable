@@ -13,11 +13,15 @@ class MembershipRequest < ActiveRecord::Base
   after_create :match_to_invitation_or_send_email
   
   def grant(current_user, permissions)
-    membership = Membership.create_with_feed(current_user, :joinable => joinable, :user => user, :permissions => permissions)
+    membership = create_associated_membership_on_grant(current_user, permissions)
     UserMailer.project_membership_request_accepted_email(current_user, membership).deliver
   end
 
   private
+
+  def create_associated_membership_on_grant(current_user, permissions)
+    Membership.create(:joinable => joinable, :user => user, :permissions => permissions)
+  end
 
   # If a user requests to join a joinable, make sure their isn't a matching invitation
   # to join the joinable. If there is, then automatically accept the user into the joinable.

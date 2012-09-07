@@ -64,7 +64,6 @@ module Joinable #:nodoc:
 
   			base.has_one :default_permission_set, :as => :joinable, :dependent => :destroy
 
-			  base.before_validation :dont_create_membership_invitation_feeds, :on => :create
   			base.after_create :add_owner_membership
 
         base.class_eval do
@@ -309,14 +308,9 @@ module Joinable #:nodoc:
 
       private
 
-      # Adds an initiator to a membership or invitation to use in feed generation
+      # Adds an initiator to a membership or invitation to possibly use in feed generation
       def add_initiator(membership)
         membership.initiator = (initiator || user)
-      end
-
-      # Don't create feeds for membership invitations when the joinable itself is being created
-      def dont_create_membership_invitation_feeds
-        membership_invitations.each { |invitation| invitation.no_default_feed = true }
       end
 
       # Adds an permission entry with full access to the object by the user associated with the object if one does not already exist

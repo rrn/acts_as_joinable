@@ -5,7 +5,6 @@ class Membership < ActiveRecord::Base
   belongs_to :user
 
   before_save :prevent_locked_permission_changes, :normalize_owner_permissions
-  before_destroy :ensure_feed_creation
 
   validates_presence_of :user_id
   validates_uniqueness_of :user_id, :scope => [:joinable_type, :joinable_id] # Ensure that a User has only one Membership per Joinable
@@ -34,10 +33,6 @@ class Membership < ActiveRecord::Base
   end
   
   private
-  
-  def ensure_feed_creation
-    with_feed(initiator) if initiator.present?
-  end
 
   def prevent_locked_permission_changes
     reload if locked?
