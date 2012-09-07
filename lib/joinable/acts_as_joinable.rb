@@ -272,13 +272,13 @@ module Joinable #:nodoc:
         # If User has membership
         #  - depends on permissions
         # Elsif User has been invited
-        #  - depends on existence of invitation
+        #  - depends on existence of invitation and the default permissions (when checking the view permission)
         # Else User doesn't have any membership
         #  - depends on default permissions of the joinable
         if membership = memberships.where(:user_id => user.id).first
           key = "membership_#{membership.updated_at.to_f}"
         elsif self.membership_invitations.where(:user_id => user.id).exists?
-          key = "invitation_exists"
+          key = "default_permissions_#{self.default_permission_set.updated_at.to_f}_invitation_exists"
         else
           key = "default_permissions_#{self.default_permission_set.updated_at.to_f}"
         end
