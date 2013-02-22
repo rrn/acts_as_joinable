@@ -153,7 +153,7 @@ module Joinable #:nodoc:
         elsif permission.to_s.starts_with?('join_and_')
           default_permission_set_permission_exists_sql(joinable_type, joinable_id, permission.to_s.gsub('join_and_', ''))
         elsif permission == :collaborate
-          "EXISTS (SELECT id FROM memberships WHERE memberships.joinable_type = '#{joinable_type}' AND memberships.joinable_id = #{joinable_id} AND memberships.user_id = #{user_id} AND memberships.permissions && ARRAY['#{(collaborator_permissions - viewer_permissions).join("','")}'])"
+          "EXISTS (SELECT id FROM memberships WHERE memberships.joinable_type = '#{joinable_type}' AND memberships.joinable_id = #{joinable_id} AND memberships.user_id = #{user_id} AND memberships.permissions && '{#{(collaborator_permissions - viewer_permissions).join(",")}}')"
         else
           membership_permission_exists_sql(user_id, joinable_type, joinable_id, permission)
         end
