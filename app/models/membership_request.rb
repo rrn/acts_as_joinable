@@ -7,7 +7,7 @@ class MembershipRequest < ActiveRecord::Base
   
   scope :for, lambda {|user|
     joins("INNER JOIN memberships ON membership_requests.joinable_type = memberships.joinable_type AND membership_requests.joinable_id = memberships.joinable_id")
-    .where("memberships.user_id = ? AND memberships.permissions ~ ?", user.id, '\\mmanage\\M')
+    .where("memberships.user_id = ? AND 'manage' = ANY(memberships.permissions)", user.id)
   }
   
   after_create :match_to_invitation_or_send_email

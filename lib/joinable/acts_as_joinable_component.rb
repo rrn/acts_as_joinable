@@ -76,7 +76,7 @@ module Joinable #:nodoc:
         component_id = options[:id_column] || table_name + ".id"
 
         permission_without_join_and_prefix = permission.gsub('join_and_', '')
-        comparison_permission = permission_without_join_and_prefix == 'view' ? "permission_links.component_view_permission || '|' || permission_links.component_view_permission || ' %|% ' || permission_links.component_view_permission || ' %|% ' || permission_links.component_view_permission" : "'#{permission_without_join_and_prefix}|#{permission_without_join_and_prefix} %|% #{permission_without_join_and_prefix} %|% #{permission_without_join_and_prefix}'"
+        comparison_permission = permission_without_join_and_prefix == 'view' ? "permission_links.component_view_permission" : "'#{permission_without_join_and_prefix}'"
 
         if permission.starts_with?('view')
           "#{no_inherited_permissions_exist_sql(component_type, component_id)} OR #{membership_permission_exists_sql(user_id, component_type, component_id, comparison_permission)} OR #{default_permission_set_permission_exists_sql(component_type, component_id, comparison_permission)}"
@@ -105,7 +105,7 @@ module Joinable #:nodoc:
                           WHERE permission_links.component_type = '#{component_type}' 
                                 AND permission_links.component_id = #{component_id} 
                                 AND memberships.user_id = #{user_id} 
-                                AND memberships.permissions SIMILAR TO #{comparison_permission})"
+                                AND #{comparison_permission} = ANY(memberships.permissions))"
       end
 
       def default_permission_set_permission_exists_sql(component_type, component_id, comparison_permission)
@@ -114,7 +114,7 @@ module Joinable #:nodoc:
                                       AND default_permission_sets.joinable_id = permission_links.joinable_id
                             WHERE permission_links.component_type = '#{component_type}'
                                   AND permission_links.component_id = #{component_id}
-                                  AND default_permission_sets.permissions SIMILAR TO #{comparison_permission})"
+                                  AND #{comparison_permission} = ANY(default_permission_sets.permissions))"
       end
     end
 
@@ -134,7 +134,7 @@ module Joinable #:nodoc:
                           FROM users JOIN memberships ON users.id = memberships.user_id 
                           WHERE memberships.joinable_type = '#{joinable.class.to_s}' 
                           AND memberships.joinable_id = #{joinable.id} 
-                          AND #{self.class.permission_regexp_for('memberships.permissions', recurse_to_inherit_custom_view_permission)}")
+                          AND #{self.class.permission_sql_condition('memberships.permissions', recurse_to_inherit_custom_view_permission)}")
       end
 
       def check_permission(user, permission)

@@ -9,20 +9,20 @@ module Joinable #:nodoc:
     end
   
     def permissions_string
-      self[:permissions]
+      self[:permissions].join(' ')
     end
   
     # Returns an array of the permissions as symbols
     def permissions
-      (self[:permissions] || '').split.collect{ |permission| permission.to_sym }
+      self[:permissions].collect(&:to_sym)
     end
   
     def permissions=(permissions)
       case permissions
       when String
-        self[:permissions] = permissions
+        self[:permissions] = permissions.split(' ')
       when Array
-        self[:permissions] = permissions.join(' ')
+        self[:permissions] = permissions
       else
         raise "Permissions were not passed to permissions writer in the appropriate format"
       end
@@ -31,7 +31,7 @@ module Joinable #:nodoc:
     # Used by advanced permission forms which group permissions by their associated component
     # or using a single check box per permission.
     def permission_attributes=(permissions)
-      self.permissions = '' # Reset permissions in anticipation for re-population
+      self.permissions = [] # Reset permissions in anticipation for re-population
     
       permissions.each do |key, value|
         key, value = key.dup, value.dup

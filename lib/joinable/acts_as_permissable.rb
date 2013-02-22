@@ -10,8 +10,8 @@ module Joinable #:nodoc:
   		  return record
   		end
   		
-  		def permission_regexp_for(column, permission)
-  		  "#{column} SIMILAR TO '#{permission}|#{permission} %|% #{permission} %|% #{permission}'"
+  		def permission_sql_condition(column, permission)
+  		  "'#{permission}' = ANY(#{column})"
 		  end
     end
 

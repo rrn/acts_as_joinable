@@ -19,11 +19,11 @@ class DefaultPermissionSet < ActiveRecord::Base
     case model.to_s
     when 'open'
       # Additional permissions are set explicitly so just grant the find and view permissions
-      self.grant_permissions(['find', 'view'])
+      self.grant_permissions([:find, :view])
     when 'closed'
-      self.permissions = 'find'
+      self.permissions = [:find]
     when 'private'
-      self.permissions = ''
+      self.permissions = []
     else
       raise "Access model invalid: #{model}"
     end

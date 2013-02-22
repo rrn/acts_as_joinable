@@ -35,7 +35,7 @@ module Joinable #:nodoc:
         !permission_to?(permission, record)
       end
     
-      def membership_requests_for_managed_projects
+      def membership_requests_for_managed_joinables
         MembershipRequest.for(self)
       end
     end

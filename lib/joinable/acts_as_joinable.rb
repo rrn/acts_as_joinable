@@ -68,9 +68,12 @@ module Joinable #:nodoc:
 
         base.class_eval do
           # Return all *joinables* that a User is a member of with the appropriate permissions
-          scope :with_permission, lambda { |user, permission| where(with_permission_sql(user, permission)) }
+          scope :with_permission, lambda {|user, permission| where(with_permission_sql(user, permission)) }
+
+          #scope :open, lambda { where(default_permission_set_permission_exists_sql(joinable_type, joinable_id, 'find')) }
+
           # TODO: Why is this NULLS LAST? Probably because we want the results in some specific order when joined with users, but couldn't we order manually in the find?
-          scope :with_member, lambda { |user| joins(:memberships).where(:memberships => {:user_id => (user.is_a?(User) ? user.id : user)}).order("memberships.created_at DESC NULLS LAST") }
+          scope :with_member, lambda {|user| joins(:memberships).where(:memberships => {:user_id => (user.is_a?(User) ? user.id : user)}).order("memberships.created_at DESC NULLS LAST") }
         end
 
         base.accepts_nested_attributes_for :default_permission_set
@@ -150,7 +153,7 @@ module Joinable #:nodoc:
         elsif permission.to_s.starts_with?('join_and_')
           default_permission_set_permission_exists_sql(joinable_type, joinable_id, permission.to_s.gsub('join_and_', ''))
         elsif permission == :collaborate
-          "EXISTS (SELECT * FROM memberships WHERE memberships.joinable_type = '#{joinable_type}' AND memberships.joinable_id = #{joinable_id} AND memberships.user_id = #{user_id} AND memberships.permissions SIMILAR TO '%#{(collaborator_permissions - viewer_permissions).join("%|%")}%')"
+          "EXISTS (SELECT id FROM memberships WHERE memberships.joinable_type = '#{joinable_type}' AND memberships.joinable_id = #{joinable_id} AND memberships.user_id = #{user_id} AND memberships.permissions && ARRAY['#{(collaborator_permissions - viewer_permissions).join("','")}'])"
         else
           membership_permission_exists_sql(user_id, joinable_type, joinable_id, permission)
         end
@@ -159,15 +162,15 @@ module Joinable #:nodoc:
       private
 
       def membership_permission_exists_sql(user_id, joinable_type, joinable_id, permission)
-        "EXISTS (SELECT * FROM memberships WHERE memberships.joinable_type = '#{joinable_type}' AND memberships.joinable_id = #{joinable_id} AND memberships.user_id = #{user_id} AND #{permission_regexp_for('memberships.permissions', permission)})"
+        "EXISTS (SELECT id FROM memberships WHERE memberships.joinable_type = '#{joinable_type}' AND memberships.joinable_id = #{joinable_id} AND memberships.user_id = #{user_id} AND #{permission_sql_condition('memberships.permissions', permission)})"
       end
 
       def membership_invitation_permission_exists_sql(user_id, joinable_type, joinable_id, permission)
-        "EXISTS (SELECT * FROM membership_invitations WHERE membership_invitations.joinable_type = '#{joinable_type}' AND membership_invitations.joinable_id = #{joinable_id} AND membership_invitations.user_id = #{user_id} AND #{permission_regexp_for('membership_invitations.permissions', permission)})"
+        "EXISTS (SELECT id FROM membership_invitations WHERE membership_invitations.joinable_type = '#{joinable_type}' AND membership_invitations.joinable_id = #{joinable_id} AND membership_invitations.user_id = #{user_id} AND #{permission_sql_condition('membership_invitations.permissions', permission)})"
       end
 
       def default_permission_set_permission_exists_sql(joinable_type, joinable_id, permission)
-        "EXISTS (SELECT * FROM default_permission_sets WHERE default_permission_sets.joinable_type = '#{joinable_type}' AND default_permission_sets.joinable_id = #{joinable_id} AND #{permission_regexp_for('default_permission_sets.permissions', permission)})"
+        "EXISTS (SELECT id FROM default_permission_sets WHERE default_permission_sets.joinable_type = '#{joinable_type}' AND default_permission_sets.joinable_id = #{joinable_id} AND #{permission_sql_condition('default_permission_sets.permissions', permission)})"
       end
     end
 
