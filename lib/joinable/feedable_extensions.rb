@@ -2,12 +2,14 @@ module FeedableExtensions
   def self.add
     Feed.class_eval do
       # Filter feeds about public joinables that you haven't joined, unless the feed is actually about you
-      scope :without_unjoined, lambda {|joinable_type, user| 
+      scope :not_from_unjoined, lambda {|joinable_type, user| 
         where("feeds.scoping_object_type IS NULL OR
                feeds.scoping_object_type != '#{joinable_type}' OR
                (feeds.feedable_type = 'User' AND feeds.feedable_id = #{user.id}) OR
                EXISTS (SELECT * FROM memberships WHERE memberships.joinable_type = '#{joinable_type}' AND memberships.joinable_id = feeds.scoping_object_id AND memberships.user_id = ?)", user.id)
       }
+      # Filter feeds about public things where the given action took place
+      scope :not_unscoped, lambda {|action| where('NOT (feeds.scoping_object_type IS NULL AND feeds.action = ?)', action) }
 
       acts_as_joinable_component :parent => 'permission_inheritance_target', :polymorphic => true, :view_permission => lambda {|feed| :find if feed.feedable.acts_like?(:joinable) }
       
