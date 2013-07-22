@@ -1,7 +1,8 @@
 PATH
   remote: .
   specs:
-    acts_as_joinable (1.0.0)
+    acts_as_joinable (1.1.0)
+      pg
       postgres_ext (~> 0.2.2)
 
 GEM
@@ -47,6 +48,7 @@ GEM
       treetop (~> 1.4.8)
     mime-types (1.21)
     multi_json (1.6.1)
+    pg (0.15.1)
     pg_array_parser (0.0.8)
     polyglot (0.3.3)
     postgres_ext (0.2.2)

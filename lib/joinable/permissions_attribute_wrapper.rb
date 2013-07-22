@@ -138,11 +138,9 @@ module Joinable #:nodoc:
     # Get a string of all of the permissions the object has for a specific joinable component
     # eg. labels_permissions # returns 'view_labels apply_labels remove_labels'
     def component_permissions_reader(method_name)
-      for component_permissions_hash in joinable_type.constantize.component_permissions_hashes
-        component_permissions_hash.each do |component_name, component_permissions|
-          if method_name.to_s == "#{component_name}_permissions"
-            return component_permissions.collect {|permission| "#{permission}_#{component_name}"}.select {|permission| has_permission?(permission)}.join(" ")
-          end
+      joinable_type.constantize.component_permissions_hash.each do |component_name, component_permissions|
+        if method_name.to_s == "#{component_name}_permissions"
+          return component_permissions.collect {|permission| "#{permission}_#{component_name}"}.select {|permission| has_permission?(permission)}.join(" ")
         end
       end
     

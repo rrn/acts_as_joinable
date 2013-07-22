@@ -8,7 +8,7 @@ module Joinable #:nodoc:
       # These unpacked permissions are put into an array with the singular permissions (eg. find)
       # and stored in a *permissions* class variable.
       #
-      # In addition, The grouped permissions are stored in a separate *component_permissions_hashes* class variable.
+      # In addition, The grouped permissions are stored in a separate *component_permissions_hash* class variable.
       # 
       # NOTE: The permissions are passed in-order because in the view we expect to find certain permission patterns.
       #       eg. the simple project permission level is determined by looking for a string of permissions that span
@@ -19,7 +19,7 @@ module Joinable #:nodoc:
         include InstanceMethods unless included_modules.include?(InstanceMethods)
 
         options.assert_valid_keys :component_permissions
-			  self.component_permissions_hashes = options[:component_permissions]
+			  self.component_permissions_hash = options[:component_permissions]
 
 			  self.permissions = [:find, :view]
         add_flattened_component_permissions(options[:component_permissions])
@@ -34,11 +34,9 @@ module Joinable #:nodoc:
       # eg. {:labels => [:view, :apply, :remove, :create, :delete]} becomes
       #      [:view_labels, :apply_labels, :remove_labels, :create_labels, :delete_labels]
       #      and is added to self.permissions
-      def add_flattened_component_permissions(component_permissions_hashes)
-        for component_permissions_hash in component_permissions_hashes
-  		    component_permissions_hash.each do |component_name, component_permissions|
-            component_permissions.each { |component_permission| self.permissions << "#{component_permission}_#{component_name}".to_sym }
-  		    end
+      def add_flattened_component_permissions(component_permissions_hash)
+		    component_permissions_hash.each do |component_name, component_permissions|
+          component_permissions.each { |component_permission| self.permissions << "#{component_permission}_#{component_name}".to_sym }
 		    end
       end
     end
@@ -47,7 +45,7 @@ module Joinable #:nodoc:
       include Joinable::ActsAsPermissable::ClassMethods
 
       def self.extended(base)
-        base.cattr_accessor :permissions, :component_permissions_hashes
+        base.cattr_accessor :permissions, :component_permissions_hash
 
         base.has_many :membership_invitations, :as => :joinable, :dependent => :destroy, :before_add => :add_initiator
   		  base.has_many :membership_requests, :as => :joinable, :dependent => :destroy
