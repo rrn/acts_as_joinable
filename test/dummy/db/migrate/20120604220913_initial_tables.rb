@@ -3,7 +3,7 @@ class InitialTables < ActiveRecord::Migration
 	  create_table :memberships, :force => true do |t|
 	    t.belongs_to :joinable, :polymorphic => true
 	    t.belongs_to :user
-	    t.text :permissions
+	    t.string :permissions, :array => true
 	    t.timestamps
 	  end
 
@@ -18,7 +18,7 @@ class InitialTables < ActiveRecord::Migration
 	    t.belongs_to :joinable, :polymorphic => true
 	    t.belongs_to :user
 	    t.belongs_to :initiator
-	    t.text :permissions
+	    t.string :permissions, :array => true
 	    t.text :message
 	    t.timestamps
 	  end
@@ -31,7 +31,7 @@ class InitialTables < ActiveRecord::Migration
 
 	  create_table :default_permission_sets, :force => true do |t|
 	    t.belongs_to :joinable, :polymorphic => true
-	    t.text :permissions
+	    t.string :permissions, :array => true
 	    t.timestamps
 	  end
 

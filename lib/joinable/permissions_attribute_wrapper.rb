@@ -98,6 +98,31 @@ module Joinable #:nodoc:
       self.permissions += permissions_to_grant
     end
   
+    # Adds readers for component permission groups and single permissions
+    #
+    # Used by advanced permission forms to determine how which options to select
+    # in the various fields. (eg. which option of f.select :labels_permissions to choose)
+    def method_missing(method_name, *args, &block)      
+      # NOTE: As of Rails 4, respond_to? must be checked inside the case statement otherwise it breaks regular AR attribute accessors
+      case method_name.to_s
+      when /.+_permissions/
+        return component_permissions_reader(method_name) if respond_to?(:joinable_type) && joinable_type.present?
+      when /.+_permission/
+        return single_permission_reader(method_name) if respond_to?(:joinable_type) && joinable_type.present?
+      end
+
+      super
+    end
+
+    def respond_to?(method_name, include_private = false)
+      case method_name.to_s
+      when /.+_permissions?/
+        return true if respond_to?(:joinable_type) && joinable_type.present?
+      end
+
+      super
+    end    
+
     private
   
     # Verifies that all the access levels are valid for the attached permissible
@@ -110,29 +135,6 @@ module Joinable #:nodoc:
       raise "Invalid permissions: #{(permissions - allowed_permissions).inspect}. Must be one of #{allowed_permissions.inspect}" unless permissions.all? {|permission| allowed_permissions.include? permission}
     
       self.permissions = permissions.uniq.sort_by { |permission| allowed_permissions.index(permission) }
-    end
-  
-    # Adds readers for component permission groups and single permissions
-    #
-    # Used by advanced permission forms to determine how which options to select
-    # in the various fields. (eg. which option of f.select :labels_permissions to choose)
-    def method_missing(method_name, *args)
-      # add permission_for accessors and mutators
-    
-      # NOTE: Don't mess with the method_name variable (e.g. change it to a string)
-      # since upstream methods might assume it is a symbol.
-      # NOTE: Ensure we enforce some characters before the '_permission' suffix because Rails 3 creates 
-      if respond_to?(:joinable_type) && joinable_type.present?
-        if method_name.to_s =~ /.+_permissions/
-          return component_permissions_reader(method_name)
-        elsif method_name.to_s =~ /.+_permission/
-          return single_permission_reader(method_name)
-        else
-          super
-        end
-      else
-        super
-      end
     end
   
     # Get a string of all of the permissions the object has for a specific joinable component

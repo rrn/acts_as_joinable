@@ -15,13 +15,13 @@ module Joinable #:nodoc:
       #       several components, (labels, writeboards, files, etc...).
       # TODO: Remove the aforementioned order dependency      
       def acts_as_joinable(options = {})
-        extend ClassMethods unless (class << self; included_modules; end).include?(ClassMethods)
-        include InstanceMethods unless included_modules.include?(InstanceMethods)
+        extend ClassMethods
+        include InstanceMethods
 
         options.assert_valid_keys :component_permissions
-			  self.component_permissions_hash = options[:component_permissions]
+        self.component_permissions_hash = options[:component_permissions]
 
-			  self.permissions = [:find, :view]
+        self.permissions = [:find, :view]
         add_flattened_component_permissions(options[:component_permissions])
         self.permissions += [:manage, :own]
       end
@@ -35,9 +35,9 @@ module Joinable #:nodoc:
       #      [:view_labels, :apply_labels, :remove_labels, :create_labels, :delete_labels]
       #      and is added to self.permissions
       def add_flattened_component_permissions(component_permissions_hash)
-		    component_permissions_hash.each do |component_name, component_permissions|
+        component_permissions_hash.each do |component_name, component_permissions|
           component_permissions.each { |component_permission| self.permissions << "#{component_permission}_#{component_name}".to_sym }
-		    end
+        end
       end
     end
 
@@ -45,38 +45,34 @@ module Joinable #:nodoc:
       include Joinable::ActsAsPermissable::ClassMethods
 
       def self.extended(base)
-        base.cattr_accessor :permissions, :component_permissions_hash
-
-        base.has_many :membership_invitations, :as => :joinable, :dependent => :destroy, :before_add => :add_initiator
-  		  base.has_many :membership_requests, :as => :joinable, :dependent => :destroy
-  			base.has_many :memberships, :as => :joinable, :dependent => :destroy, :order => "id ASC", :before_remove => :add_initiator
-
-  			base.has_many :invitees, :class_name => "User", :through => :membership_invitations, :source => :user
-  		  base.has_many :requestees, :class_name => "User", :through => :membership_requests, :source => :user
-  		  base.has_many :members, :class_name => "User", :through => :memberships, :source => :user
-
-  			base.has_many :non_owner_memberships, :as => :joinable, :class_name => 'Membership', :conditions => "permissions NOT LIKE '%own%'"
-        base.has_one :owner_membership, :as => :joinable, :class_name => 'Membership', :conditions => "permissions LIKE '%own%'"
-
-  			base.has_many :permission_links, :as => :joinable, :dependent => :destroy
-
-  			base.has_one :default_permission_set, :as => :joinable, :dependent => :destroy
-
-  			base.after_create :add_owner_membership
-
         base.class_eval do
+          cattr_accessor :permissions, :component_permissions_hash
+
+          has_many :membership_invitations,   :as => :joinable, :dependent => :destroy, :before_add => :add_initiator
+          has_many :membership_requests,      :as => :joinable, :dependent => :destroy
+          has_many :memberships,              lambda { order :id }, :as => :joinable, :dependent => :destroy, :before_remove => :add_initiator
+
+          has_many :invitees,                 :class_name => "User", :through => :membership_invitations, :source => :user
+          has_many :requestees,               :class_name => "User", :through => :membership_requests, :source => :user
+          has_many :members,                  :class_name => "User", :through => :memberships, :source => :user
+
+          has_many :permission_links,         :as => :joinable, :dependent => :destroy
+
+          has_one :default_permission_set,    :as => :joinable, :dependent => :destroy
+
+        
           # Return all *joinables* that a User is a member of with the appropriate permissions
           scope :with_permission, lambda {|user, permission| where(with_permission_sql(user, permission)) }
 
-          #scope :open, lambda { where(default_permission_set_permission_exists_sql(joinable_type, joinable_id, 'find')) }
-
           # TODO: Why is this NULLS LAST? Probably because we want the results in some specific order when joined with users, but couldn't we order manually in the find?
-          scope :with_member, lambda {|user| joins(:memberships).where(:memberships => {:user_id => (user.is_a?(User) ? user.id : user)}).order("memberships.created_at DESC NULLS LAST") }
-        end
+          scope :with_member, lambda {|user| joins(:memberships).where(:memberships => {:user_id => user}).order("memberships.created_at DESC NULLS LAST") }
 
-        base.accepts_nested_attributes_for :default_permission_set
-        base.accepts_nested_attributes_for :membership_invitations, :allow_destroy => true
-        base.accepts_nested_attributes_for :memberships, :allow_destroy => true, :reject_if => proc { |attributes| attributes['locked'] == 'true' }
+          accepts_nested_attributes_for :default_permission_set
+          accepts_nested_attributes_for :membership_invitations, :allow_destroy => true
+          accepts_nested_attributes_for :memberships, :allow_destroy => true, :reject_if => proc { |attributes| attributes['locked'] == 'true' }
+
+          after_create :add_owner_membership        
+        end
       end
 
       def permissions_string
@@ -285,8 +281,8 @@ module Joinable #:nodoc:
 
         cache_path = "permissions/#{self.class.table_name}/#{self.id}/user_#{user.id}_#{key}"
 
-        if defined?(RAILS_CACHE)
-          permissions = RAILS_CACHE.read(cache_path)
+        if defined?(Rails.cache)
+          permissions = Rails.cache.read(cache_path)
           if permissions && (value = permissions[permission_name]) != nil
             return value
           end
@@ -295,14 +291,14 @@ module Joinable #:nodoc:
         # The permission isn't cached yet, so cache it
         value = self.class.with_permission(user, permission_name).exists?(self.id)
 
-        if defined?(RAILS_CACHE)
+        if defined?(Rails.cache)
           if permissions
             permissions = permissions.dup
             permissions[permission_name] = value
           else
             permissions = {permission_name => value}
           end
-          RAILS_CACHE.write(cache_path, permissions)
+          Rails.cache.write(cache_path, permissions)
         end
         return value
       end
@@ -321,4 +317,3 @@ module Joinable #:nodoc:
     end
   end
 end
-

@@ -1,6 +1,3 @@
-# GEM DEPENDENCIES
-require 'postgres_ext'
-
 require 'joinable/acts_as_permissable'
 require 'joinable/acts_as_joinable'
 require 'joinable/acts_as_joinable_component'
