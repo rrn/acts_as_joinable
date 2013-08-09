@@ -10,9 +10,21 @@ module Joinable #:nodoc:
   		  return record
   		end
   		
-  		def permission_sql_condition(column, permission)
-  		  "'#{permission}' = ANY(#{column})"
-		  end
+      # Returns all records where the given user has the given permission
+      def with_permission(user, permission)
+        select("#{table_name}.*").where(with_permission_sql(user, permission))
+      end
+
+      # Returns an SQL fragment for a WHERE condition that evaluates to true if the user has the given permission
+      # For use when asking 
+      def with_permission_sql(user, permission, options = {})
+        raise NotImplementedError
+      end
+
+      # Returns an SQL fragment for a WHERE condition that checks the given column for the given permission
+      def permission_sql_condition(column, permission)
+        "'#{permission}' = ANY(#{column})"
+      end
     end
 
     module InstanceMethods
@@ -22,8 +34,10 @@ module Joinable #:nodoc:
     
       # Returns a list of users who either do or do not have the specified permission.
       def who_can?(permission)
-        User.find_by_sql("SELECT * FROM users AS u1 WHERE #{self.class.with_permission_sql('u1.id', permission, :id_column => id)}")
+        User.where(self.class.with_permission_sql("#{User.table_name}.id", permission, :id_column => id))
       end
+
+      delegate :with_permission_sql, :permission_sql_condition, :to => 'self.class'
     end
   end
 end

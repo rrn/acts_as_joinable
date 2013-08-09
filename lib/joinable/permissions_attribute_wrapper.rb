@@ -19,8 +19,8 @@ module Joinable #:nodoc:
   
     def permissions=(permissions)
       case permissions
-      when String
-        self[:permissions] = permissions.split(' ')
+      when String, Symbol
+        self[:permissions] = permissions.to_s.split(' ')
       when Array
         self[:permissions] = permissions
       else

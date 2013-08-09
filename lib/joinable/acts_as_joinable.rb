@@ -57,15 +57,9 @@ module Joinable #:nodoc:
           has_many :members,                  :class_name => "User", :through => :memberships, :source => :user
 
           has_many :permission_links,         :as => :joinable, :dependent => :destroy
-
           has_one :default_permission_set,    :as => :joinable, :dependent => :destroy
-
-        
-          # Return all *joinables* that a User is a member of with the appropriate permissions
-          scope :with_permission, lambda {|user, permission| where(with_permission_sql(user, permission)) }
-
-          # TODO: Why is this NULLS LAST? Probably because we want the results in some specific order when joined with users, but couldn't we order manually in the find?
-          scope :with_member, lambda {|user| joins(:memberships).where(:memberships => {:user_id => user}).order("memberships.created_at DESC NULLS LAST") }
+                  
+          scope :with_member,                 lambda {|user| joins(:memberships).where(:memberships => {:user_id => user}).order("memberships.created_at DESC") }
 
           accepts_nested_attributes_for :default_permission_set
           accepts_nested_attributes_for :membership_invitations, :allow_destroy => true
@@ -235,17 +229,17 @@ module Joinable #:nodoc:
       # user. This method also supports caching of a membership
       # request in order to facilitate eager loading.
       #NOTE: See :membership_request_for documentation for an in depth example of this type of behaviour
-      def membership_for(user)
+      def membership_for(user_id)
         if cached_membership != nil
           cached_membership
         else
-          memberships.where(:user_id => user.id).first
+          memberships.where(:user_id => user_id).first
         end
       end
 
       # Find out whether this Joinable has a membership for a certain user and return true, else false
-      def membership_for?(user)
-        !membership_for(user).nil?
+      def membership_for?(user_id)
+        !membership_for(user_id).nil?
       end
 
       # Returns the timestamp of the last time the memberships were updated for this joinable

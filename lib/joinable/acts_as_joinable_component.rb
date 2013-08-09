@@ -46,10 +46,6 @@ module Joinable #:nodoc:
       def self.extended(base)        
         base.has_one :permission_link, :as => :component, :dependent => :destroy
         base.after_create :find_joinable_and_create_permission_link
-
-        base.class_eval do
-          scope :with_permission, lambda { |user, permission| select("#{table_name}.*").where(with_permission_sql(user, permission)) }
-        end
       end
   
       # Returns the SQL necessary to find all components for which there is no associated joinable or 
@@ -134,7 +130,7 @@ module Joinable #:nodoc:
                           FROM users JOIN memberships ON users.id = memberships.user_id 
                           WHERE memberships.joinable_type = '#{joinable.class.to_s}' 
                           AND memberships.joinable_id = #{joinable.id} 
-                          AND #{self.class.permission_sql_condition('memberships.permissions', recurse_to_inherit_custom_view_permission)}")
+                          AND #{permission_sql_condition('memberships.permissions', recurse_to_inherit_custom_view_permission)}")
       end
 
       def check_permission(user, permission)
@@ -196,6 +192,7 @@ module Joinable #:nodoc:
       end
       attr_writer :view_permission
 
+      private
 
       # Recurse up the tree to see if any of the intervening joinable_components have a customized view permission
       # In that case, inherit that customized view permission. This allows searches of the form

@@ -10,6 +10,7 @@ Rails.backtrace_cleaner.remove_silencers!
 Dir["#{File.dirname(__FILE__)}/support/**/*.rb"].each { |f| require f }
 
 # Create the database
+`dropdb acts_as_joinable_test`
 `createdb acts_as_joinable_test`
 
 # Run any available migrations
@@ -25,11 +26,19 @@ def equal(actual, expected)
 end
 
 def current_user
-	@current_user ||= User.create!(:name => "Ryan")
+	@current_user ||= create_user
 end
 
-def closed_project
-	Project.create!(:default_permission_set_attributes => {:access_model => "closed"}, :user => current_user)
+def create_user(attributes = {})
+	User.create!(attributes.reverse_merge :name => "User #{User.maximum(:id).to_i + 1}")
+end
+
+def create_project(attributes = {})
+	Project.create!(attributes.reverse_merge :user => current_user)
+end
+
+def create_closed_project(attributes = {})
+	create_project(attributes.reverse_merge :default_permission_set_attributes => {:access_model => "closed"})
 end
 
 def with_view_permission(klass, permission, &block)
