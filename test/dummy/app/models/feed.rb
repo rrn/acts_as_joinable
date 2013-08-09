@@ -1,4 +1,6 @@
 class Feed < ActiveRecord::Base
+  belongs_to :feedable, :polymorphic => true
+  
   acts_as_joinable_component :parent => 'permission_inheritance_target', :polymorphic => true, :view_permission => lambda {|feed| :find if feed.feedable.acts_like?(:joinable) }
   
   # The feed may have been delegated (or the feedable may have been deleted) so inherit permissions from scoping_object

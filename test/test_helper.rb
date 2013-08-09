@@ -48,3 +48,11 @@ def with_view_permission(klass, permission, &block)
 	yield
 	klass.view_permission = old_view_permission
 end
+
+def debug_active_record
+  logger = ActiveRecord::Base.logger
+  ActiveRecord::Base.logger = Logger.new(STDOUT)
+  yield
+ensure
+  ActiveRecord::Base.logger = logger
+end

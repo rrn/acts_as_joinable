@@ -35,23 +35,33 @@ class JoinableComponentTest < ActiveSupport::TestCase
     equal discussion.permission_link.component_view_permission.to_s, 'create_discussions'
   end
 
+  test "joinable method should recurse up the chain of joinable_components until it reaches and returns a joinable" do
+    project = create_project
+    discussion = Discussion.create!(:discussable => project)
+    feed = Feed.create(:feedable => discussion)
+    
+    assert_equal project, feed.joinable
+  end
+
+  test "should be able to return a list of records where a particular user has the given permission" do
+    project1 = create_project
+    project2 = create_project    
+    discussion1 = Discussion.create!(:discussable => project1)
+    discussion2 = Discussion.create!(:discussable => project2)
+    user = create_user
+    project1.memberships.create!(:user => user, :permissions => :delete_discussions)
+
+    assert_equal [discussion1], Discussion.with_permission(user, :delete_discussions)
+  end  
+
   test "should be able to list the users who will be able to view the component once it is saved" do
     with_view_permission(Discussion, :view_discussions) do
       project = create_closed_project
-      p user1 = create_user
-      p user2 = create_user
+      user1 = create_user
+      user2 = create_user
       project.memberships.create!(:user => user1, :permissions => :view_discussions)
-      p project
-      p project.membership_for(project.user)
-      p project.membership_for(user1)
+      discussion = Discussion.new(:discussable => project)
 
-
-      discussion = Discussion.new(:discussable => create_closed_project)
-      logger = ActiveRecord::Base.logger
-      p discussion.view_permission
-      ActiveRecord::Base.logger = Logger.new(STDOUT)
-      p discussion.who_will_be_able_to_view?
-      ActiveRecord::Base.logger = logger
       assert discussion.who_will_be_able_to_view?.include?(user1)
       assert_not discussion.who_will_be_able_to_view?.include?(user2)
     end

@@ -126,11 +126,9 @@ module Joinable #:nodoc:
       # Useful for outputting information to the user while they 
       # are creating a new component.
       def who_will_be_able_to_view?
-        User.find_by_sql("SELECT users.* 
-                          FROM users JOIN memberships ON users.id = memberships.user_id 
-                          WHERE memberships.joinable_type = '#{joinable.class.to_s}' 
-                          AND memberships.joinable_id = #{joinable.id} 
-                          AND #{permission_sql_condition('memberships.permissions', recurse_to_inherit_custom_view_permission)}")
+        User.joins(:memberships)
+          .where(:memberships => {:joinable => joinable})
+          .where(permission_sql_condition('memberships.permissions', recurse_to_inherit_custom_view_permission))
       end
 
       def check_permission(user, permission)
@@ -205,7 +203,7 @@ module Joinable #:nodoc:
         if parent.acts_like?(:joinable) || self.view_permission
           return self.view_permission || :view
         elsif parent.acts_like?(:joinable_component)
-          return parent.recurse_to_inherit_custom_view_permission
+          return parent.send(:recurse_to_inherit_custom_view_permission)
         else
           return nil
         end

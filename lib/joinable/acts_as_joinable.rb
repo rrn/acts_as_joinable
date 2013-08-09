@@ -242,9 +242,9 @@ module Joinable #:nodoc:
         !membership_for(user_id).nil?
       end
 
-      # Returns the timestamp of the last time the memberships were updated for this joinable
-      def memberships_updated_at
-        memberships.maximum(:updated_at)
+      # Returns a unique cache key any time the memberships were updated for this joinable
+      def memberships_cache_key
+        "#{memberships.size}_#{memberships.maximum(:updated_at).to_f}"
       end
 
       delegate :access_model, :to => :default_permission_set
@@ -306,7 +306,7 @@ module Joinable #:nodoc:
 
       # Adds an permission entry with full access to the object by the user associated with the object if one does not already exist
       def add_owner_membership
-       Membership.create(:joinable => self, :user => user, :permissions => self.class.permissions_string) unless Membership.where(:joinable_type => self.class.to_s, :joinable_id => self.id, :user_id => user.id).exists?
+       Membership.where(:joinable => self, :user => user).first_or_create!(:permissions => self.class.permissions_string)
       end
     end
   end

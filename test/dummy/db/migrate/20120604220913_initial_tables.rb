@@ -46,5 +46,9 @@ class InitialTables < ActiveRecord::Migration
 	  create_table :users, :force => true do |t|
 	    t.string :name
 	  end
+
+	  create_table :feeds, :force => true do |t|
+	  	t.belongs_to :feedable, :polymorphic => true
+	  end
   end
 end
