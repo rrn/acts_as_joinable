@@ -2,6 +2,7 @@ class DefaultPermissionSet < ActiveRecord::Base
   include Joinable::PermissionsAttributeWrapper
     
 	belongs_to :joinable, :polymorphic => true
+  has_many :permission_links, lambda { where("#{PermissionLink.table_name}.joinable_type = #{table_name}.joinable_type") }, :primary_key => :joinable_id, :foreign_key => :joinable_id
 
   after_update :raise_existing_member_permissions
   
@@ -15,6 +16,7 @@ class DefaultPermissionSet < ActiveRecord::Base
     end
   end
   
+  # Easy way to choose basic permission sets
   def access_model=(model)
     case model.to_s
     when 'open'

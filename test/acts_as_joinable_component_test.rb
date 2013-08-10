@@ -8,25 +8,25 @@ class JoinableComponentTest < ActiveSupport::TestCase
   end
 
   test "joinable_component with non-permissable parent generates no PermissionLink" do
-  	discussion = Discussion.create!
+    discussion = Discussion.create!
 
     equal discussion.permission_link, nil
   end
 
   test "joinable_component with custom view_permission generates the correct PermissionLink" do
     with_view_permission(Discussion, :view_discussions) do
-    	discussion = Discussion.create!(:discussable => create_closed_project)
+      discussion = Discussion.create!(:discussable => create_closed_project)
 
-    	equal discussion.permission_link.component_view_permission.to_s, 'view_discussions'
+      equal discussion.permission_link.component_view_permission.to_s, 'view_discussions'
     end
   end
 
   test "joinable_component with custom lambda view_permission generates the correct PermissionLink" do
-  	with_view_permission(Discussion, lambda {|discussion| :view if discussion.discussable.is_a?(Project)}) do
-    	discussion = Discussion.create!(:discussable => create_closed_project)
+    with_view_permission(Discussion, lambda {|discussion| :view if discussion.discussable.is_a?(Project)}) do
+      discussion = Discussion.create!(:discussable => create_closed_project)
 
-    	equal discussion.permission_link.component_view_permission.to_s, 'view'
-  	end
+      equal discussion.permission_link.component_view_permission.to_s, 'view'
+    end
   end
 
   test "joinable_component with custom instance level view_permission generates the correct PermissionLink" do
@@ -43,6 +43,17 @@ class JoinableComponentTest < ActiveSupport::TestCase
     assert_equal project, feed.joinable
   end
 
+  test "should be able to return a list of records where a particular user has a view permission" do
+    project1 = create_project
+    project2 = create_project    
+    discussion1 = Discussion.create!(:discussable => project1)
+    discussion2 = Discussion.create!(:discussable => project2)
+    user = create_user
+    project1.memberships.create!(:user => user, :permissions => :view_discussions)
+
+    assert_equal [discussion1], Discussion.with_permission(user, :view_discussions)
+  end
+
   test "should be able to return a list of records where a particular user has the given permission" do
     project1 = create_project
     project2 = create_project    
@@ -52,7 +63,19 @@ class JoinableComponentTest < ActiveSupport::TestCase
     project1.memberships.create!(:user => user, :permissions => :delete_discussions)
 
     assert_equal [discussion1], Discussion.with_permission(user, :delete_discussions)
+  end
+
+  test "should be able to return a list of records where a particular user has the given 'join_and...' permission" do
+    project1 = create_project
+    project2 = create_project
+    discussion1 = Discussion.create!(:discussable => project1)
+    discussion2 = Discussion.create!(:discussable => project2)
+    user = create_user
+    project1.update_attribute(:default_permissions, :delete_discussions)
+
+    assert_equal [discussion1], Discussion.with_permission(user, :join_and_delete_discussions)
   end  
+
 
   test "should be able to list the users who will be able to view the component once it is saved" do
     with_view_permission(Discussion, :view_discussions) do

@@ -22,8 +22,9 @@ module Joinable #:nodoc:
       end
 
       # Returns an SQL fragment for a WHERE condition that checks the given column for the given permission
-      def permission_sql_condition(column, permission)
-        "'#{permission}' = ANY(#{column})"
+      def permission_sql_condition(column, permission, options = {})
+        permission = "'#{permission}'" unless options[:raw]
+        "#{permission} = ANY(#{column})"
       end
     end
 
@@ -34,7 +35,7 @@ module Joinable #:nodoc:
     
       # Returns a list of users who either do or do not have the specified permission.
       def who_can?(permission)
-        User.where(self.class.with_permission_sql("#{User.table_name}.id", permission, :id_column => id))
+        User.where(with_permission_sql("#{User.table_name}.id", permission, :id_column => id))
       end
 
       delegate :with_permission_sql, :permission_sql_condition, :to => 'self.class'

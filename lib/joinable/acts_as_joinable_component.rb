@@ -68,49 +68,50 @@ module Joinable #:nodoc:
           user_id = user.id
         end
     
-        component_type = options[:type_column] || name
-        component_id = options[:id_column] || table_name + ".id"
+        component_id_column = options[:id_column] || "#{table_name}.id"
 
         permission_without_join_and_prefix = permission.gsub('join_and_', '')
-        comparison_permission = permission_without_join_and_prefix == 'view' ? "permission_links.component_view_permission" : "'#{permission_without_join_and_prefix}'"
+        permission_or_column = permission_without_join_and_prefix == 'view' ? "permission_links.component_view_permission" : "'#{permission_without_join_and_prefix}'"
 
         if permission.starts_with?('view')
-          "#{no_inherited_permissions_exist_sql(component_type, component_id)} OR #{membership_permission_exists_sql(user_id, component_type, component_id, comparison_permission)} OR #{default_permission_set_permission_exists_sql(component_type, component_id, comparison_permission)}"
+          "#{no_inherited_permissions_exist_sql(component_id_column)} OR #{membership_permission_exists_sql(user_id, component_id_column, permission_or_column)} OR #{default_permission_set_permission_exists_sql(component_id_column, permission_or_column)}"
         elsif permission.starts_with?('join_and_')
-          default_permission_set_permission_exists_sql(component_type, component_id, comparison_permission)
+          default_permission_set_permission_exists_sql(component_id_column, permission_or_column)
         else
-          "#{no_inherited_permissions_exist_sql(component_type, component_id)} OR #{membership_permission_exists_sql(user_id, component_type, component_id, comparison_permission)}"
+          "#{no_inherited_permissions_exist_sql(component_id_column)} OR #{membership_permission_exists_sql(user_id, component_id_column, permission_or_column)}"
         end
       end
   
       private
   
       # All components that don't have a permission link to a joinable
-      def no_inherited_permissions_exist_sql(component_type, component_id)
-        "NOT EXISTS (SELECT * FROM permission_links WHERE permission_links.component_type = '#{component_type}' AND permission_links.component_id = #{component_id})"
+      def no_inherited_permissions_exist_sql(component_id_column)
+        permission_links_for_joinable = PermissionLink.where(:component_type => self.name).where("permission_links.component_id = #{component_id_column}")
+
+        return "NOT EXISTS (#{ permission_links_for_joinable.to_sql })"
       end
   
       # All components that have an associated membership with a specific permission
       #
       # The view permission requires special handling because it may be customized in the permission_link.
       # For more information see the *recurse_to_inherit_custom_view_permission* method.
-      def membership_permission_exists_sql(user_id, component_type, component_id, comparison_permission)
-        "EXISTS (SELECT * FROM memberships 
-                               INNER JOIN permission_links ON memberships.joinable_type = permission_links.joinable_type
-                                    AND memberships.joinable_id = permission_links.joinable_id 
-                          WHERE permission_links.component_type = '#{component_type}' 
-                                AND permission_links.component_id = #{component_id} 
-                                AND memberships.user_id = #{user_id} 
-                                AND #{comparison_permission} = ANY(memberships.permissions))"
+      def membership_permission_exists_sql(user_id, component_id_column, permission_or_column)
+        memberships_allowing_permission = Membership.joins(:permission_links)
+          .where(:user_id => user_id)
+          .where("permission_links.component_type" => self.name)
+          .where("permission_links.component_id = #{component_id_column}")
+          .where(permission_sql_condition('memberships.permissions', permission_or_column, :raw => true))
+        
+        return "EXISTS (#{ memberships_allowing_permission.to_sql })"
       end
 
-      def default_permission_set_permission_exists_sql(component_type, component_id, comparison_permission)
-        "EXISTS (SELECT * FROM default_permission_sets
-                                 INNER JOIN permission_links ON default_permission_sets.joinable_type = permission_links.joinable_type
-                                      AND default_permission_sets.joinable_id = permission_links.joinable_id
-                            WHERE permission_links.component_type = '#{component_type}'
-                                  AND permission_links.component_id = #{component_id}
-                                  AND #{comparison_permission} = ANY(default_permission_sets.permissions))"
+      def default_permission_set_permission_exists_sql(component_id_column, permission_or_column)
+        sets_allowing_permission = DefaultPermissionSet.joins(:permission_links)
+          .where("permission_links.component_type" => self.name)
+          .where("permission_links.component_id = #{component_id_column}")
+          .where(permission_sql_condition('default_permission_sets.permissions', permission_or_column, :raw => true))
+
+        return "EXISTS (#{ sets_allowing_permission.to_sql })"
       end
     end
 

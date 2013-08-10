@@ -65,7 +65,8 @@ module Joinable #:nodoc:
           accepts_nested_attributes_for :membership_invitations, :allow_destroy => true
           accepts_nested_attributes_for :memberships, :allow_destroy => true, :reject_if => proc { |attributes| attributes['locked'] == 'true' }
 
-          after_create :add_owner_membership        
+          after_initialize :build_default_permissions
+          after_create :add_owner_membership
         end
       end
 
@@ -129,36 +130,35 @@ module Joinable #:nodoc:
           user_id = user.id
         end
 
-        joinable_type = options[:type_column] || name
-        joinable_id = options[:id_column] || table_name + ".id"
+        joinable_id = options[:id_column] || "#{table_name}.id"
 
         if permission == :find
-          "#{membership_permission_exists_sql(user_id, joinable_type, joinable_id, 'find')} OR #{membership_invitation_permission_exists_sql(user_id, joinable_type, joinable_id, 'find')} OR #{default_permission_set_permission_exists_sql(joinable_type, joinable_id, 'find')}"
+          "#{membership_permission_exists_sql(user_id, joinable_id, 'find')} OR #{membership_invitation_permission_exists_sql(user_id, joinable_id, 'find')} OR #{default_permission_set_permission_exists_sql(joinable_id, 'find')}"
         elsif permission.to_s.starts_with?('view')
-          "#{membership_permission_exists_sql(user_id, joinable_type, joinable_id, permission)} OR #{default_permission_set_permission_exists_sql(joinable_type, joinable_id, permission)}"
+          "#{membership_permission_exists_sql(user_id, joinable_id, permission)} OR #{default_permission_set_permission_exists_sql(joinable_id, permission)}"
         elsif permission == :join
-          "#{membership_invitation_permission_exists_sql(user_id, joinable_type, joinable_id, 'view')} OR #{default_permission_set_permission_exists_sql(joinable_type, joinable_id, 'view')}"
+          "#{membership_invitation_permission_exists_sql(user_id, joinable_id, 'view')} OR #{default_permission_set_permission_exists_sql(joinable_id, 'view')}"
         elsif permission.to_s.starts_with?('join_and_')
-          default_permission_set_permission_exists_sql(joinable_type, joinable_id, permission.to_s.gsub('join_and_', ''))
+          default_permission_set_permission_exists_sql(joinable_id, permission.to_s.gsub('join_and_', ''))
         elsif permission == :collaborate
-          "EXISTS (SELECT id FROM memberships WHERE memberships.joinable_type = '#{joinable_type}' AND memberships.joinable_id = #{joinable_id} AND memberships.user_id = #{user_id} AND memberships.permissions && '{#{(collaborator_permissions - viewer_permissions).join(",")}}')"
+          "EXISTS (SELECT id FROM memberships WHERE memberships.joinable_type = '#{self.name}' AND memberships.joinable_id = #{joinable_id} AND memberships.user_id = #{user_id} AND memberships.permissions && '{#{(collaborator_permissions - viewer_permissions).join(",")}}')"
         else
-          membership_permission_exists_sql(user_id, joinable_type, joinable_id, permission)
+          membership_permission_exists_sql(user_id, joinable_id, permission)
         end
       end
 
       private
 
-      def membership_permission_exists_sql(user_id, joinable_type, joinable_id, permission)
-        "EXISTS (SELECT id FROM memberships WHERE memberships.joinable_type = '#{joinable_type}' AND memberships.joinable_id = #{joinable_id} AND memberships.user_id = #{user_id} AND #{permission_sql_condition('memberships.permissions', permission)})"
+      def membership_permission_exists_sql(user_id, joinable_id, permission)
+        "EXISTS (SELECT id FROM memberships WHERE memberships.joinable_type = '#{self.name}' AND memberships.joinable_id = #{joinable_id} AND memberships.user_id = #{user_id} AND #{permission_sql_condition('memberships.permissions', permission)})"
       end
 
-      def membership_invitation_permission_exists_sql(user_id, joinable_type, joinable_id, permission)
-        "EXISTS (SELECT id FROM membership_invitations WHERE membership_invitations.joinable_type = '#{joinable_type}' AND membership_invitations.joinable_id = #{joinable_id} AND membership_invitations.user_id = #{user_id} AND #{permission_sql_condition('membership_invitations.permissions', permission)})"
+      def membership_invitation_permission_exists_sql(user_id, joinable_id, permission)
+        "EXISTS (SELECT id FROM membership_invitations WHERE membership_invitations.joinable_type = '#{self.name}' AND membership_invitations.joinable_id = #{joinable_id} AND membership_invitations.user_id = #{user_id} AND #{permission_sql_condition('membership_invitations.permissions', permission)})"
       end
 
-      def default_permission_set_permission_exists_sql(joinable_type, joinable_id, permission)
-        "EXISTS (SELECT id FROM default_permission_sets WHERE default_permission_sets.joinable_type = '#{joinable_type}' AND default_permission_sets.joinable_id = #{joinable_id} AND #{permission_sql_condition('default_permission_sets.permissions', permission)})"
+      def default_permission_set_permission_exists_sql(joinable_id, permission)
+        "EXISTS (SELECT id FROM default_permission_sets WHERE default_permission_sets.joinable_type = '#{self.name}' AND default_permission_sets.joinable_id = #{joinable_id} AND #{permission_sql_condition('default_permission_sets.permissions', permission)})"
       end
     end
 
@@ -247,10 +247,17 @@ module Joinable #:nodoc:
         "#{memberships.size}_#{memberships.maximum(:updated_at).to_f}"
       end
 
-      delegate :access_model, :to => :default_permission_set
+      # Convenience method for reading or writing the default permission set's access_model
+      delegate :access_model, 'access_model=', :to => :default_permission_set
 
-      def access_model=(model)
-        default_permission_set.access_model = model
+      # Convenience method for reading the default permission set's access_model
+      def default_permissions
+        self.default_permission_set.permissions
+      end
+
+      # Convenience method for writing the default permission set's access_model
+      def default_permissions=(permissions)
+        self.default_permission_set.permissions = permissions
       end
 
       # Returns true or false depending on whether or not the user has the specified permission for this object.
@@ -307,6 +314,11 @@ module Joinable #:nodoc:
       # Adds an permission entry with full access to the object by the user associated with the object if one does not already exist
       def add_owner_membership
        Membership.where(:joinable => self, :user => user).first_or_create!(:permissions => self.class.permissions_string)
+      end
+
+      # Ensure the joinable has a set of default permissions (an empty set unless one already exists)
+      def build_default_permissions
+        self.default_permission_set ||= DefaultPermissionSet.new
       end
     end
   end

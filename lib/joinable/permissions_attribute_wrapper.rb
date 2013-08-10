@@ -14,7 +14,7 @@ module Joinable #:nodoc:
   
     # Returns an array of the permissions as symbols
     def permissions
-      self[:permissions].collect(&:to_sym)
+      Array.wrap(self[:permissions]).collect(&:to_sym)
     end
   
     def permissions=(permissions)
