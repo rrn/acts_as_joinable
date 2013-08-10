@@ -23,13 +23,11 @@ class ActsAsJoinableTest < ActiveSupport::TestCase
 		assert default_permission_set, project.default_permission_set
 	end
 
+	# Test for https://github.com/rails/rails/issues/11824
 	test "should be able to get a result could while limiting and scoping by permissions" do
-		2.times { create_project }
+		create_closed_project(:user => create_user)
+		create_project
 
-		debug_active_record do
-			Project.with_permission(current_user, :find).limit(10).count
-		end
-
-		assert_equal 2, Project.with_permission(current_user, :find).limit(10).count
+		assert_equal 1, Project.with_permission(current_user, :view).limit(10).count
 	end
 end

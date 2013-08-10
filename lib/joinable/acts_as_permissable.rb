@@ -12,7 +12,7 @@ module Joinable #:nodoc:
   		
       # Returns all records where the given user has the given permission
       def with_permission(user, permission)
-        select("#{table_name}.*").where(with_permission_sql(user, permission))
+        where(with_permission_sql(user, permission))
       end
 
       # Returns an SQL fragment for a WHERE condition that evaluates to true if the user has the given permission

@@ -89,4 +89,13 @@ class JoinableComponentTest < ActiveSupport::TestCase
       assert_not discussion.who_will_be_able_to_view?.include?(user2)
     end
   end
+
+  # Test for https://github.com/rails/rails/issues/11824
+  test "should be able to get a result could while limiting and scoping by permissions" do
+    Discussion.create(:discussable => create_closed_project(:user => create_user))
+    Discussion.create(:discussable => create_project)
+
+    assert_equal 1, Discussion.with_permission(current_user, :view).limit(10).count
+  end
+
 end
