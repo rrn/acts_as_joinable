@@ -65,7 +65,6 @@ module Joinable #:nodoc:
           accepts_nested_attributes_for :membership_invitations, :allow_destroy => true
           accepts_nested_attributes_for :memberships, :allow_destroy => true, :reject_if => proc { |attributes| attributes['locked'] == 'true' }
 
-          after_initialize :build_default_permissions
           after_create :add_owner_membership
         end
       end
@@ -304,6 +303,11 @@ module Joinable #:nodoc:
         return value
       end
 
+      # Ensure the joinable has a set of default permissions (an empty set unless one already exists)
+      def default_permission_set
+        super || self.build_default_permission_set
+      end
+
       private
 
       # Adds an initiator to a membership or invitation to possibly use in feed generation
@@ -314,11 +318,6 @@ module Joinable #:nodoc:
       # Adds an permission entry with full access to the object by the user associated with the object if one does not already exist
       def add_owner_membership
        Membership.where(:joinable => self, :user => user).first_or_create!(:permissions => self.class.permissions_string)
-      end
-
-      # Ensure the joinable has a set of default permissions (an empty set unless one already exists)
-      def build_default_permissions
-        self.default_permission_set ||= DefaultPermissionSet.new
       end
     end
   end
