@@ -3,7 +3,7 @@ class Membership < ActiveRecord::Base
 
   belongs_to :joinable, :polymorphic => true
   belongs_to :user
-  has_many :permission_links, lambda { where("#{PermissionLink.table_name}.joinable_type = #{table_name}.joinable_type") }, :primary_key => :joinable_id, :foreign_key => :joinable_id
+  has_many :permission_links, lambda { where("permission_links.joinable_type = memberships.joinable_type") }, :primary_key => :joinable_id, :foreign_key => :joinable_id
 
   before_save :prevent_locked_permission_changes, :normalize_owner_permissions
 

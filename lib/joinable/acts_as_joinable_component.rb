@@ -97,7 +97,7 @@ module Joinable #:nodoc:
       # For more information see the *recurse_to_inherit_custom_view_permission* method.
       def membership_permission_exists_sql(user_id, component_id_column, permission_or_column)
         memberships_allowing_permission = Membership.joins(:permission_links)
-          .where(:user_id => user_id)
+          .where("user_id = #{user_id}")
           .where("permission_links.component_type" => self.name)
           .where("permission_links.component_id = #{component_id_column}")
           .where(permission_sql_condition('memberships.permissions', permission_or_column, :raw => true))

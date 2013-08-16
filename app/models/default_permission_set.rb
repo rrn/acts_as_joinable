@@ -2,7 +2,7 @@ class DefaultPermissionSet < ActiveRecord::Base
   include Joinable::PermissionsAttributeWrapper
     
 	belongs_to :joinable, :polymorphic => true
-  has_many :permission_links, lambda { where("#{PermissionLink.table_name}.joinable_type = #{table_name}.joinable_type") }, :primary_key => :joinable_id, :foreign_key => :joinable_id
+  has_many :permission_links, lambda { where("permission_links.joinable_type = default_permission_sets.joinable_type") }, :primary_key => :joinable_id, :foreign_key => :joinable_id
 
   after_update :raise_existing_member_permissions
   
