@@ -48,7 +48,7 @@ module Joinable #:nodoc:
         base.class_eval do
           cattr_accessor :permissions, :component_permissions_hash
 
-          has_many :membership_invitations,   :as => :joinable, :dependent => :destroy, :before_add => :add_initiator
+          has_many :membership_invitations,   :as => :joinable, :dependent => :destroy, :before_add => :add_initiator, :before_remove => :add_initiator
           has_many :membership_requests,      :as => :joinable, :dependent => :destroy
           has_many :memberships,              lambda { order :id }, :as => :joinable, :dependent => :destroy, :before_remove => :add_initiator
 
