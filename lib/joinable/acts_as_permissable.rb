@@ -15,6 +15,11 @@ module Joinable #:nodoc:
         where(with_permission_sql(user, permission))
       end
 
+      # Returns all records where the given user does not have the given permission
+      def without_permission(user, permission)
+        where.not(with_permission_sql(user, permission))
+      end
+
       # Returns an SQL fragment for a WHERE condition that evaluates to true if the user has the given permission
       # For use when asking 
       def with_permission_sql(user, permission, options = {})

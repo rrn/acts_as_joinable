@@ -60,16 +60,8 @@ module Joinable #:nodoc:
       #                after they join a project, we need to check the default_permission_set of the project.
       def with_permission_sql(user, permission, options = {})
         permission = permission.to_s
-        
-        case user
-        when String
-          user_id = user
-        else
-          user_id = user.id
-        end
-    
+        user_id = user.is_a?(ActiveRecord::Base) ? user.id : user
         component_id_column = options[:id_column] || "#{table_name}.id"
-
         permission_without_join_and_prefix = permission.gsub('join_and_', '')
         permission_or_column = permission_without_join_and_prefix == 'view' ? "permission_links.component_view_permission" : "'#{permission_without_join_and_prefix}'"
 

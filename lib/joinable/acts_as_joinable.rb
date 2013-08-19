@@ -121,14 +121,7 @@ module Joinable #:nodoc:
       # * collaborate - This is a faux permission. A user has permission to collaborate if they have any additional permissions above the standard viewer permissions.
       def with_permission_sql(user, permission, options = {})
         permission = permission.to_sym
-
-        case user
-        when String
-          user_id = user
-        when
-          user_id = user.id
-        end
-
+        user_id = user.is_a?(ActiveRecord::Base) ? user.id : user
         joinable_id = options[:id_column] || "#{table_name}.id"
 
         if permission == :find
