@@ -121,7 +121,7 @@ module Joinable #:nodoc:
       # * collaborate - This is a faux permission. A user has permission to collaborate if they have any additional permissions above the standard viewer permissions.
       def with_permission_sql(user, permission, options = {})
         permission = permission.to_sym
-        user_id = user.is_a?(ActiveRecord::Base) ? user.id : user
+        user_id = user.respond_to?(:id) ? user.id : user # Support objects that aren't ActiveRecord::Base but respond to id
         joinable_id = options[:id_column] || "#{table_name}.id"
 
         if permission == :find
@@ -190,7 +190,7 @@ module Joinable #:nodoc:
         if cached_membership_request != nil
           cached_membership_request
         else
-          membership_requests.where(:user_id => user.id).first
+          membership_requests.where(:user_id => user).first
         end
       end
 
@@ -208,7 +208,7 @@ module Joinable #:nodoc:
         if cached_membership_invitation != nil
           cached_membership_invitation
         else
-          membership_invitations.where(:user_id => user.id).first
+          membership_invitations.where(:user_id => user).first
         end
       end
       
@@ -221,17 +221,17 @@ module Joinable #:nodoc:
       # user. This method also supports caching of a membership
       # request in order to facilitate eager loading.
       #NOTE: See :membership_request_for documentation for an in depth example of this type of behaviour
-      def membership_for(user_id)
+      def membership_for(user)
         if cached_membership != nil
           cached_membership
         else
-          memberships.where(:user_id => user_id).first
+          memberships.where(:user_id => user).first
         end
       end
 
       # Find out whether this Joinable has a membership for a certain user and return true, else false
-      def membership_for?(user_id)
-        !membership_for(user_id).nil?
+      def membership_for?(user)
+        !membership_for(user).nil?
       end
 
       # Returns a unique cache key any time the memberships were updated for this joinable
