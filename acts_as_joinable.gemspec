@@ -1,6 +1,6 @@
 Gem::Specification.new do |s|
   s.name = 'acts_as_joinable'
-  s.version = '1.3.2'
+  s.version = '1.3.3'
   s.date = %q{2013-08-16}
   s.email = 'technical@rrnpilot.org'
   s.homepage = 'http://github.com/rrn/acts_as_joinable'
