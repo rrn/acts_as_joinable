@@ -1,6 +1,12 @@
 # Warning: The database defined as "test" will be erased and
 # re-generated from your development database when you run "rake".
 # Do not set this db to the same as development or production.
+development:
+  adapter: postgresql
+  database: acts_as_joinable_development
+  pool: 5
+  timeout: 5000
+
 test:
   adapter: postgresql
   database: acts_as_joinable_test
