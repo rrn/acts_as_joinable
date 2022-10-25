@@ -10,6 +10,6 @@ Gem::Specification.new do |s|
   s.require_path = "lib"
   s.files = Dir.glob("{app,lib}/**/*") + %w(README.rdoc)
 
-  s.add_dependency('rails', '>= 4.2', '< 6')
+  s.add_dependency('rails', '>= 4.2', '< 7')
   s.add_dependency('pg')
 end
