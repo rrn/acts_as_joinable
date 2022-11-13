@@ -10,8 +10,6 @@ Gem::Specification.new do |s|
   s.require_path = "lib"
   s.files = Dir.glob("{app,lib}/**/*") + %w(README.rdoc)
 
+  s.add_dependency('rails', '>= 4.2', '< 8')
   s.add_dependency('pg')
-  s.add_dependency('rails', '~> 4.0')
-
-  s.add_development_dependency('sqlite3')
 end

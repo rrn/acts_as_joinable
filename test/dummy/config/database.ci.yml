@@ -1,0 +1,8 @@
+test:
+  adapter: postgresql
+  database: acts_as_joinable_test
+  user: postgres
+  password: postgres
+  host: localhost
+  pool: 5
+  timeout: 5000

@@ -51,3 +51,8 @@ Represents a set of permissions for a specific user in a specific joinable. Can 
 * Through the accepting of a MembershipRequest by the managers of a joinable
 * Through the accepting of a MembershipInvitation by the invitee
 * If the joinable has an *open* access model, a User can create a Membership directly
+
+== Testing
+
+    bundle exec rake app:db:create
+    bundle exec rake
